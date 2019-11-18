@@ -1,4 +1,4 @@
-<img src="img/logo.jpg" title="Makeschool Icon"></a>
+<img src="img/logo.png" title="Makeschool Icon"></a>
 
 makeBroot
 
