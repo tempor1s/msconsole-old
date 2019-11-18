@@ -72,6 +72,7 @@ or whatever modifications you've made to the project, issue a pull request to th
 ## Authors
 
 -   **Gary Frederick** - _Initial work_ - [imthaghost](https://github.com/imthaghost)
+-   **Ben Lafferty** - _Initial idea_ - [tempor1s](https://github.com/tempor1s)
 
 See also the list of [contributors](https://github.com/imthaghost/makeBroot/contributors) who participated in this project.
 
