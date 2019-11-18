@@ -1,10 +1,11 @@
-<img src="img/logo.png" title="Makeschool Icon"></a>
+# makeBroot
 
-makeBroot
+<img src="img/logo.png" title="Makeschool Icon"></a>
 
 ## Description
 
-Are you lazy and don't want to go to your dashboard and plug in the acccess token to make your attendance as present, welp here you go.
+Are you lazy and don't want to go to your dashboard and plug in the acccess token to make your attendance as present, well try makeBroot.
+
 There is also a Brute force implementation of marking yourself present for the MakeSchool attendence tracker if you don't know the access code.
 
 Never be marked tardy again! :)
@@ -57,6 +58,8 @@ python3 broot.py
 
 This also assumes that you have `brew` installed. After cloning the repository in desired directory we run the command `pipenv shell` to initialize and activate our virtual enviornment. Unless specified pipenv will default to whatever virtualenv defaults to. We then allow pipenv to find and install the necessary modules for our server. All modules can be viewed inside the file `Pipfile` under the [packages] section.
 
+## How to Run Script
+
 ## How to contribute
 
 Fork the current repository and then make the changes that you'd like to said fork. Upon adding features, fixing bugs,
@@ -64,7 +67,7 @@ or whatever modifications you've made to the project, issue a pull request to th
 
 ## Built With
 
--   [Selenium](http://flask.palletsprojects.com/en/1.1.x/) - Web Browser Automation Tool
+-   [Selenium](https://selenium.dev/) - Web Browser Automation Tool
 
 ## Authors
 
@@ -74,4 +77,4 @@ See also the list of [contributors](https://github.com/imthaghost/makeBroot/cont
 
 ## Acknowledgments
 
--   Hat tip to my professors [Meredith](https://github.com/neptunius) and [Danni](https://github.com/neptunius)
+-   Hat tip to my professors [Meredith](https://github.com/meredithcat) and [Danni](https://github.com/droxey) for the inspiration!
