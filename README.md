@@ -4,7 +4,7 @@
 
 ## Description
 
-Are you lazy and don't want to go to your dashboard and plug in the acccess token to mark your attendance as present, well try makeBrute.
+Are you lazy and don't want to go to your dashboard and plug in the acccess token to mark your attendance as present, well try Make Check.
 
 There is also a Brute force implementation of marking yourself present for the MakeSchool attendence tracker if you don't know the access code.
 
@@ -32,7 +32,7 @@ The python modules were configured in a virtual enviornment with `pipenv`:
 # (if you have pipenv installed skip this step)
 brew install pipenv
 # clone repository
-git clone https://github.com/imthaghost/makeBroot
+git clone https://github.com/tempor1s/make-check
 # active the virtual enviornment
 pipenv shell
 # install modules into virtual environment
@@ -47,7 +47,7 @@ python3 brute.py
 # install pipenv
 sudo pip install pipenv
 # clone repository
-git clone https://github.com/imthaghost/makeBroot
+git clone https://github.com/tempor1s/make-check
 # active the virtual enviornment
 pipenv shell
 # install modules into virtual environment
