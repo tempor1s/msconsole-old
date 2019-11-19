@@ -1,10 +1,10 @@
-# makeBroot
+# makeBrute
 
 <img src="img/logo.png" title="Makeschool Icon"></a>
 
 ## Description
 
-Are you lazy and don't want to go to your dashboard and plug in the acccess token to mark your attendance as present, well try makeBroot.
+Are you lazy and don't want to go to your dashboard and plug in the acccess token to mark your attendance as present, well try makeBrute.
 
 There is also a Brute force implementation of marking yourself present for the MakeSchool attendence tracker if you don't know the access code.
 
@@ -38,7 +38,7 @@ pipenv shell
 # install modules into virtual environment
 pipenv install
 # start script
-python3 broot.py
+python3 brute.py
 ```
 
 #### apt systems Ubuntu, Debian, Mint, Etc
@@ -53,7 +53,7 @@ pipenv shell
 # install modules into virtual environment
 pipenv install
 # start script
-python3 broot.py
+python3 brute.py
 ```
 
 This also assumes that you have `brew` installed. After cloning the repository in desired directory we run the command `pipenv shell` to initialize and activate our virtual enviornment. Unless specified pipenv will default to whatever virtualenv defaults to. We then allow pipenv to find and install the necessary modules for our server. All modules can be viewed inside the file `Pipfile` under the [packages] section.
