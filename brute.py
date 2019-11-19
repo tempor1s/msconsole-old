@@ -1,5 +1,6 @@
 #!/usr/local/bin/python3
 
+import re
 import os
 import sys
 import time
@@ -18,7 +19,7 @@ class CheckIn(object):
     def __init__(self):
         self.email = None
         self.password = None
-        self.session = requests.Session()
+        self.s = requests.Session()  # masters/PHD student named this variable
 
     def set_email(self, email):
         self.email = email
@@ -26,25 +27,30 @@ class CheckIn(object):
     def set_password(self, password):
         self.password = password
 
-    def dashboard(self):
-        form_data = {
-            'user[email]': self.email,
-            'user[password]': self.password,
-            'submit': 'submit',
-        }
-        url = "https://www.makeschool.com/dashboard"
-        # dash = requests.get("https://www.makeschool.com/dashboard")
-        response = requests.post(url, data=form_data)
-        print(response.status_code)
-        tree = html.document_fromstring(response.content)
-        # email XPath
-        email_x_path = "//*[@id='user_email']"
-        # password XPath
-        password_x_path = "//*[@id='new_user']/label[2]/input"
-        # login XPath
-        login_x_path = "//*[@id='new_user']/input[3]"
-
-        return tree.xpath("//*[@id='token']")
+    def login(self):
+        dashboard = self.s.get("https://www.makeschool.com/dashboard")
+        dashboard_html = html.fromstring(dashboard.text)
+        hidden_inputs = dashboard_html.xpath(r'//form//input[@type="hidden"]')
+        print(hidden_inputs)
+        form = {x.attrib["name"]: x.attrib["value"] for x in hidden_inputs}
+        print(form)
+        response = self.s.post(
+            'https://www.makeschool.com/dashboard', data=form)
+        print(response.url)
+        print(response.text)
+        if 'gary.frederick@smash.lpfi.org' in response.text:
+            print('Worked')
+        # # dash = requests.get("https://www.makeschool.com/dashboard")
+        # response = requests.post(url, data=form_data)
+        # print(response.status_code)
+        # tree = html.document_fromstring(response.content)
+        # # email XPath
+        # email_x_path = "//*[@id='user_email']"
+        # # password XPath
+        # password_x_path = "//*[@id='new_user']/label[2]/input"
+        # # login XPath
+        # login_x_path = "//*[@id='new_user']/input[3]"
+        # return tree.xpath("//*[@id='token']")
 
 
 class Bot(object):
@@ -140,27 +146,27 @@ def get_token():
 
 ############## Helper Functions ##################
 if __name__ == "__main__":
-    # grab the users email address
-    email = get_email()
-    # grab the users password
-    pw = get_pass()
-    # get the access token
-    token = get_token()
-    # instantiate the users bot
-    user = Bot()
-    # set the user email
-    user.set_email(email)
-    # set the user password
-    user.set_password(pw)
-    # set the user token
-    user.set_token(token)
-    # login
-    user.login()
-    # check in
-    user.checkin()
-    # user = CheckIn()
+    # # grab the users email address
+    # email = get_email()
+    # # grab the users password
+    # pw = get_pass()
+    # # get the access token
+    # token = get_token()
+    # # instantiate the users bot
+    # user = Bot()
+    # # set the user email
+    # user.set_email(email)
+    # # set the user password
+    # user.set_password(pw)
+    # # set the user token
+    # user.set_token(token)
+    # # login
+    # user.login()
+    # # check in
+    # user.checkin()
+    user = CheckIn()
     # email = get_email()
     # password = get_pass()
     # user.set_email(email)
     # user.set_password(password)
-    # print(user.dashboard())
+    user.login()
