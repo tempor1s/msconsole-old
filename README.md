@@ -1,10 +1,12 @@
 # Make Checkin
 
-<img src="img/logo.png" title="Makeschool Icon"></a>
+<img src="media/logo.png" title="Makeschool Icon"></a>
 
 ## Description
 
 Are you lazy and don't want to go to your dashboard and plug in the acccess token to mark your attendance as present, well try Make Checkin.
+
+![Word Generation](/media/gen.gif)
 
 ### Prerequisites
 
