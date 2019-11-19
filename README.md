@@ -6,10 +6,6 @@
 
 Are you lazy and don't want to go to your dashboard and plug in the acccess token to mark your attendance as present, well try Make Checkin.
 
-There is also a Brute force implementation of marking yourself present for the MakeSchool attendence tracker if you don't know the access code.
-
-Never be marked tardy again! :)
-
 ![Word Generation](/static/img/gen.gif)
 
 ### Prerequisites
@@ -67,7 +63,6 @@ or whatever modifications you've made to the project, issue a pull request to th
 
 ## Built With
 
--   [Selenium](https://selenium.dev/) - Web Browser Automation Tool
 -   [Requests](https://2.python-requests.org/en/master/) - HTTP library
 -   [lxml](https://lxml.de/) - XML and HTML parsing library
 
