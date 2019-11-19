@@ -53,7 +53,7 @@ pipenv shell
 # install modules into virtual environment
 pipenv install
 # start script
-python3 brute.py
+python3 main.py
 ```
 
 This also assumes that you have `brew` installed. After cloning the repository in desired directory we run the command `pipenv shell` to initialize and activate our virtual enviornment. Unless specified pipenv will default to whatever virtualenv defaults to. We then allow pipenv to find and install the necessary modules for our server. All modules can be viewed inside the file `Pipfile` under the [packages] section.
@@ -73,11 +73,7 @@ or whatever modifications you've made to the project, issue a pull request to th
 
 ## Authors
 
+-   **Ben Lafferty** - _Initial idea / CLI implementation_ - [tempor1s](https://github.com/tempor1s)
 -   **Gary Frederick** - _Initial work_ - [imthaghost](https://github.com/imthaghost)
--   **Ben Lafferty** - _Initial idea_ - [tempor1s](https://github.com/tempor1s)
 
 See also the list of [contributors](https://github.com/tempor1s/make-checkin/contributors) who participated in this project.
-
-## Acknowledgments
-
--   Hat tip to my professors [Meredith](https://github.com/meredithcat) and [Dani](https://github.com/droxey) for the inspiration!
