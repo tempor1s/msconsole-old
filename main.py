@@ -11,8 +11,6 @@ load_dotenv()
 
 class CheckIn(object):
     def __init__(self, token):
-        # self.email = os.getenv('EMAIL')
-        # self.password = os.getenv('PASSWORD')
         self.email = None
         self.password = None
         self.token = token
@@ -56,24 +54,6 @@ class CheckIn(object):
             print('Success. You are now attending the class :)')
 
 
-############## Helper Functions ##################
-
-def get_email():
-    email = input('Email: ')
-    return email
-
-
-def get_pass():
-    password = getpass()
-    return password
-
-
-def get_token():
-    token = input('Token: ')
-    return token
-
-
-############## Helper Functions ##################
 if __name__ == "__main__":
     # Get the first arg from command line
     args = sys.argv[1:3]
