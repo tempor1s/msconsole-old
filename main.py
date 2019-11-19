@@ -5,6 +5,7 @@ import sys
 import requests
 from lxml import html, etree
 
+
 class CheckIn(object):
     """CheckIn is a class that allows you to checkin to your MakeShool classes using a CLI"""
 
@@ -18,10 +19,31 @@ class CheckIn(object):
         self.token = token
         self.s = requests.Session()  # masters/PHD student named this variable
 
+    def requests_retry_session(self, retries=3, backoff_factor=0.3, status_forcelist=(500, 502, 504), session=None):
+        """Retry requesting session
+        Keyword arguments:
+            retries -- limit of retries before fatal error
+            backoff_factor -- time limit before creating new request
+            status_forcelist -- force retry request status code list
+            session -- established connection between client and server
+        """
+        session = self.s
+        retry = Retry(
+            total=retries,  # retry limit
+            read=retries,  # retry limit again
+            connect=retries,  # retry limit andddd again
+            backoff_factor=backoff_factor,  # wait time
+            status_forcelist=status_forcelist,  # status code auto retry list
+        )
+        adapter = HTTPAdapter(max_retries=retry)  # start reconnection
+        session.mount('http://', adapter)
+        session.mount('https://', adapter)
+        return session
+
     def credentials(self):
         """Set email and password fields if file exists, otherwise create creds.txt file and get email and password from user."""
         filename = 'creds.txt'
-        # TODO: Rewrite this
+        # TODO: Rewrite this with .env
         # check if file exists - if it does then set email and password from env, otherwise get email and password from user and create creds.txt file
         if os.path.exists(filename):
             with open(filename, 'r') as f:
@@ -46,16 +68,22 @@ class CheckIn(object):
 
     def login(self):
         """Login to MakeSchool dashboard using email and password."""
+        login_url = "https://www.makeschool.com/login"
         self.credentials()
-        dashboard = self.s.get("https://www.makeschool.com/login")
-        dashboard_html = html.fromstring(dashboard.text)
-        hidden_inputs = dashboard_html.xpath(r'//form//input[@type="hidden"]')
-        form = {x.attrib["name"]: x.attrib["value"] for x in hidden_inputs}
-        form['user[email]'] = self.email
-        form['user[password]'] = self.password
-        response = self.s.post(
-            'https://www.makeschool.com/login', data=form)
-        
+        dashboard = self.s.get(login_url)
+        if dashboard.status_code == 200:
+            dashboard_html = html.fromstring(dashboard.text)
+            hidden_inputs = dashboard_html.xpath(
+                r'//form//input[@type="hidden"]')
+            form = {x.attrib["name"]: x.attrib["value"] for x in hidden_inputs}
+            form['user[email]'] = self.email
+            form['user[password]'] = self.password
+            response = self.s.post(
+                'https://www.makeschool.com/login', data=form)
+        else:
+            print('Retrying to connect to server')
+            requests_retry_session().get(login_url)
+
         # jesus christ
         if 'successfully' in response.text:
             print('Signed in successfully.')
@@ -87,7 +115,6 @@ class CheckIn(object):
             print(banner_message, '\n')
         else:
             print('Something went wrong, please try again :(')
-        
 
 
 if __name__ == "__main__":
