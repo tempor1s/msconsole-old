@@ -1,18 +1,10 @@
 #!/usr/local/bin/python3
 
-import re
 import os
 import sys
-import time
 import requests
 from lxml import html
-from getpass import getpass
 from verify import is_valid
-from threading import Thread
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from multiprocessing import Process, ProcessError
-from selenium.webdriver.chrome.options import Options
 from dotenv import load_dotenv
 load_dotenv()
 
