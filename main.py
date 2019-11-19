@@ -24,14 +24,20 @@ class CheckIn(object):
     def credentials(self):
         """Set email and password fields if file exists, otherwise create .env file and get email and password from user."""
         filename = '.env'
+        # check if file exists - if it does then set email and password from env, otherwise get email and password from user and create .env file
         if os.path.exists(filename):
             self.email = os.getenv('EMAIL')
             self.password = os.getenv('PASSWORD')
         else:
+            # create a new file
             with open(filename, 'a+') as f:
-                # TODO: Change the wording here because we are braindead
+                # get the email and password from the user
                 email = input('Enter Makeschool login email (we don\'t store your email or password): ')
                 password = input('Enter your Makeschool password: ')
+                # set email and password properties
+                self.email = email
+                self.password = password
+                # write the email and the password to the .env file for later use
                 f.write(f'EMAIL={email}\n')
                 f.write(f'PASSWORD={password}')
 
@@ -49,7 +55,9 @@ class CheckIn(object):
         
     def checkin(self):
         """Checks the user into their class!"""
+        # log the user in
         self.login()
+        # send a post request to the shortlink with the token provided from cli
         r = self.s.post(f'http://make.sc/attend/{self.token.upper()}')
         
         if r.status_code == 200:
