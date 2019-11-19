@@ -10,19 +10,19 @@ load_dotenv()
 
 
 class CheckIn(object):
+    """CheckIn is a class that allows you to checkin to your MakeShool classes using a CLI"""
     def __init__(self, token):
+        """
+        Params:
+            token: str - The login token for that class
+        """
         self.email = None
         self.password = None
         self.token = token
         self.s = requests.Session()  # masters/PHD student named this variable
 
-    def set_email(self, email):
-        self.email = email
-
-    def set_password(self, password):
-        self.password = password
-    
     def credentials(self):
+        """Set email and password fields if file exists, otherwise create .env file and get email and password from user."""
         filename = '.env'
         if os.path.exists(filename):
             self.email = os.getenv('EMAIL')
@@ -36,6 +36,7 @@ class CheckIn(object):
                 f.write(f'PASSWORD={password}')
 
     def login(self):
+        """Login to MakeSchool dashboard using email and password."""
         self.credentials()
         dashboard = self.s.get("https://www.makeschool.com/login")
         dashboard_html = html.fromstring(dashboard.text)
@@ -47,6 +48,7 @@ class CheckIn(object):
             'https://www.makeschool.com/login', data=form)
         
     def checkin(self):
+        """Checks the user into their class!"""
         self.login()
         r = self.s.post(f'http://make.sc/attend/{self.token.upper()}')
         
