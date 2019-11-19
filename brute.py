@@ -28,29 +28,28 @@ class CheckIn(object):
         self.password = password
 
     def login(self):
-        dashboard = self.s.get("https://www.makeschool.com/dashboard")
+        dashboard = self.s.get("https://www.makeschool.com/login")
         dashboard_html = html.fromstring(dashboard.text)
         hidden_inputs = dashboard_html.xpath(r'//form//input[@type="hidden"]')
         print(hidden_inputs)
         form = {x.attrib["name"]: x.attrib["value"] for x in hidden_inputs}
-        print(form)
+        form['user[email]'] = pass
+        form['user[password]'] = pass
         response = self.s.post(
-            'https://www.makeschool.com/dashboard', data=form)
+            'https://www.makeschool.com/login', data=form)
         print(response.url)
         print(response.text)
-        if 'gary.frederick@smash.lpfi.org' in response.text:
-            print('Worked')
-        # # dash = requests.get("https://www.makeschool.com/dashboard")
-        # response = requests.post(url, data=form_data)
-        # print(response.status_code)
-        # tree = html.document_fromstring(response.content)
-        # # email XPath
+        if 'gary' in response.text:
+            print('fuckkkk')
+        # dash = requests.get("https://www.makeschool.com/dashboard")
+        #tree = html.document_fromstring(response.content)
+        # email XPath
         # email_x_path = "//*[@id='user_email']"
         # # password XPath
         # password_x_path = "//*[@id='new_user']/label[2]/input"
         # # login XPath
         # login_x_path = "//*[@id='new_user']/input[3]"
-        # return tree.xpath("//*[@id='token']")
+        # # return tree.xpath("//*[@id='token']")
 
 
 class Bot(object):
