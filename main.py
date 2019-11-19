@@ -3,7 +3,7 @@
 import os
 import sys
 import requests
-from lxml import html
+from lxml import html, etree
 
 
 class CheckIn(object):
@@ -75,8 +75,12 @@ class CheckIn(object):
         # send a post request to the shortlink with the token provided from cli
         r = self.s.post(f'http://make.sc/attend/{self.token.upper()}')
 
+        dashboard_html = html.fromstring(r.text)
+        value = dashboard_html.xpath(r'//*[@id="js-header"]/div[3]/div/text()')[0].strip()
+
         # check to see if the login was successful
-        print('Success. You are now attending the class :)')
+        print('Request succeeded. Banner message is as followed:\n')
+        print(value, '\n')
         
 
 
