@@ -1,10 +1,10 @@
 #!/usr/local/bin/python3
 
 import os
+import re
 import sys
 import requests
 from lxml import html, etree
-
 
 class CheckIn(object):
     """CheckIn is a class that allows you to checkin to your MakeShool classes using a CLI"""
@@ -102,7 +102,18 @@ class CheckIn(object):
                 sys.exit(1)
         # if the login was successful
         if 'successfully' in response.text:
-            print('Signed in successfully.')
+            # Get HTML tree representation from text
+            html_tree = html.fromstring(response.text)
+            # Get <HEAD> element from HTML tree
+            root = html_tree.xpath('/html/head')
+            # Get the text content in the <HEAD> element
+            content = root[0].text_content()
+            # Regex pattern for getting email
+            pattern = r'[\w\.-]+@[\w\.-]+'
+            # Get the email from the <HEAD> content using the regex pattern
+            email = re.findall(pattern, content)
+            # Send the user a message letting them know they singed in successfully, and print out their Make School email
+            print(f'Signed in successfully. Make School Email: {email[0]}')
         else:
             # the crednetials are probably wrong
             print('The crendetials entered are incorrect.\n')
