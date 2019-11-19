@@ -9,6 +9,7 @@ autopep8 = "*"
 [packages]
 requests = "*"
 selenium = "*"
+lxml = "*"
 
 [requires]
 python_version = "3.7"
