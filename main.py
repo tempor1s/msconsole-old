@@ -3,17 +3,7 @@
 import os
 import sys
 import requests
-<<<<<<< HEAD
 from lxml import html, etree
-=======
-from lxml import html
-<<<<<<< HEAD
-from dotenv import load_dotenv
-load_dotenv()
-=======
->>>>>>> a0283091668f08a52108fd3e8fc45b167cc16c28
->>>>>>> 1f2719d82573872007e5a0d626cbf969283d6075
-
 
 class CheckIn(object):
     """CheckIn is a class that allows you to checkin to your MakeShool classes using a CLI"""
