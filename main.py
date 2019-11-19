@@ -11,6 +11,7 @@ load_dotenv()
 
 class CheckIn(object):
     """CheckIn is a class that allows you to checkin to your MakeShool classes using a CLI"""
+
     def __init__(self, token):
         """
         Params:
@@ -30,7 +31,8 @@ class CheckIn(object):
         else:
             with open(filename, 'a+') as f:
                 # TODO: Change the wording here because we are braindead
-                email = input('Enter Makeschool login email (we don\'t store your email or password): ')
+                email = input(
+                    'Enter Makeschool login email (we don\'t store your email or password): ')
                 password = input('Enter your Makeschool password: ')
                 f.write(f'EMAIL={email}\n')
                 f.write(f'PASSWORD={password}')
@@ -46,14 +48,21 @@ class CheckIn(object):
         form['user[password]'] = self.password
         response = self.s.post(
             'https://www.makeschool.com/login', data=form)
-        
+
     def checkin(self):
         """Checks the user into their class!"""
         self.login()
         r = self.s.post(f'http://make.sc/attend/{self.token.upper()}')
-        
-        if r.status_code == 200:
+        # check to see if the login was successful
+        if 'success' in r.content:
             print('Success. You are now attending the class :)')
+        else:
+            # the crednetials are probably wrong
+            print('The crendetials entered are incorrect \n')
+            # delete the .env file
+            os.remove('.env')
+            # recall the credentials function
+            self.credentials()
 
 
 if __name__ == "__main__":
