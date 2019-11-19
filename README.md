@@ -6,6 +6,8 @@
 
 Are you lazy and don't want to go to your dashboard and plug in the acccess token to mark your attendance as present, well try Make Checkin.
 
+![Success](/media/success.gif)
+
 ### Prerequisites
 
 What things you need to install the software and how to install them
