@@ -37,8 +37,12 @@ git clone https://github.com/imthaghost/makeBroot
 pipenv shell
 # install modules into virtual environment
 pipenv install
+# lets make the script into an executable
+sudo chmod +x brooty.py
+#Add the dir containing it to your PATH variable. (If you want it to stick, you'll have to do this in .bashrc or .bash_profile in your home dir.) If you are using zsh shell then edit the zsh conf.
+export PATH=/path/to/script:$PATH
 # start script
-python3 broot.py
+broot.py
 ```
 
 #### apt systems Ubuntu, Debian, Mint, Etc
@@ -68,6 +72,7 @@ or whatever modifications you've made to the project, issue a pull request to th
 ## Built With
 
 -   [Selenium](https://selenium.dev/) - Web Browser Automation Tool
+-   [Requests](https://2.python-requests.org/en/master/) - HTTP library
 
 ## Authors
 
