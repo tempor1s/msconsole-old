@@ -13,12 +13,14 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from multiprocessing import Process, ProcessError
 from selenium.webdriver.chrome.options import Options
+from dotenv import load_dotenv
+load_dotenv()
 
 
 class CheckIn(object):
     def __init__(self):
-        self.email = None
-        self.password = None
+        self.email = os.getenv('EMAIL')
+        self.password = os.getenv('PASSWORD')
         self.s = requests.Session()  # masters/PHD student named this variable
 
     def set_email(self, email):
@@ -31,25 +33,16 @@ class CheckIn(object):
         dashboard = self.s.get("https://www.makeschool.com/login")
         dashboard_html = html.fromstring(dashboard.text)
         hidden_inputs = dashboard_html.xpath(r'//form//input[@type="hidden"]')
-        print(hidden_inputs)
         form = {x.attrib["name"]: x.attrib["value"] for x in hidden_inputs}
-        form['user[email]'] = pass
-        form['user[password]'] = pass
+        form['user[email]'] = 'benlaugherty@gmail.com'
+        form['user[password]'] = 'rqN!RmmzoI9Cv4$7'
         response = self.s.post(
             'https://www.makeschool.com/login', data=form)
-        print(response.url)
-        print(response.text)
-        if 'gary' in response.text:
-            print('fuckkkk')
-        # dash = requests.get("https://www.makeschool.com/dashboard")
-        #tree = html.document_fromstring(response.content)
-        # email XPath
-        # email_x_path = "//*[@id='user_email']"
-        # # password XPath
-        # password_x_path = "//*[@id='new_user']/label[2]/input"
-        # # login XPath
-        # login_x_path = "//*[@id='new_user']/input[3]"
-        # # return tree.xpath("//*[@id='token']")
+        
+        r = self.s.post('http://make.sc/attend/GRAVE')
+        
+        if r.status_code == 200:
+            print('Success. You are now attending the class :)')
 
 
 class Bot(object):
