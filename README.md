@@ -34,7 +34,9 @@ pipenv shell
 # install modules into virtual environment
 pipenv install
 # start script
-python3 main.py
+python3 main.py <CODE>
+# example
+python main.py BRAVE
 ```
 
 #### apt systems Ubuntu, Debian, Mint, Etc
@@ -49,7 +51,9 @@ pipenv shell
 # install modules into virtual environment
 pipenv install
 # start script
-python3 main.py
+python3 main.py <CODE>
+# example
+python main.py BRAVE
 ```
 
 This also assumes that you have `brew` installed. After cloning the repository in desired directory we run the command `pipenv shell` to initialize and activate our virtual enviornment. Unless specified pipenv will default to whatever virtualenv defaults to. We then allow pipenv to find and install the necessary modules for our server. All modules can be viewed inside the file `Pipfile` under the [packages] section.
