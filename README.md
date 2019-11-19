@@ -34,7 +34,7 @@ pipenv shell
 # install modules into virtual environment
 pipenv install
 # start script
-python3 brute.py
+python3 main.py
 ```
 
 #### apt systems Ubuntu, Debian, Mint, Etc
