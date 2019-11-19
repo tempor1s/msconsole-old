@@ -34,8 +34,8 @@ class CheckIn(object):
         dashboard_html = html.fromstring(dashboard.text)
         hidden_inputs = dashboard_html.xpath(r'//form//input[@type="hidden"]')
         form = {x.attrib["name"]: x.attrib["value"] for x in hidden_inputs}
-        form['user[email]'] = 'benlaugherty@gmail.com'
-        form['user[password]'] = 'rqN!RmmzoI9Cv4$7'
+        form['user[email]'] = self.email
+        form['user[password]'] = self.password
         response = self.s.post(
             'https://www.makeschool.com/login', data=form)
         
