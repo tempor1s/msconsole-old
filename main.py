@@ -19,10 +19,10 @@ class CheckIn(object):
         self.s = requests.Session()  # masters/PHD student named this variable
 
     def credentials(self):
-        """Set email and password fields if file exists, otherwise create .env file and get email and password from user."""
+        """Set email and password fields if file exists, otherwise create creds.txt file and get email and password from user."""
         filename = 'creds.txt'
         # TODO: Rewrite this
-        # check if file exists - if it does then set email and password from env, otherwise get email and password from user and create .env file
+        # check if file exists - if it does then set email and password from env, otherwise get email and password from user and create creds.txt file
         if os.path.exists(filename):
             with open(filename, 'r') as f:
                 # read email and password from file into a list
@@ -40,7 +40,7 @@ class CheckIn(object):
                 # set email and password properties
                 self.email = email
                 self.password = password
-                # write the email and the password to the .env file for later use
+                # write the email and the password to the creds.txt file for later use
                 f.write(f'{email}\n')
                 f.write(f'{password}')
 
@@ -64,7 +64,7 @@ class CheckIn(object):
             print('The crendetials entered are incorrect.\n')
             # delete the creds file to start over
             os.remove('creds.txt')
-            # recall the credentials function
+            # recall the login function
             self.login()
 
     def checkin(self):
@@ -74,12 +74,20 @@ class CheckIn(object):
         # send a post request to the shortlink with the token provided from cli
         r = self.s.post(f'http://make.sc/attend/{self.token.upper()}')
 
+        # create a tree out of the raw html
         dashboard_html = html.fromstring(r.text)
-        value = dashboard_html.xpath(r'//*[@id="js-header"]/div[3]/div/text()')[0].strip()
+        # the xpath to the banner message
+        xpath = r'//*[@id="js-header"]/div[3]/div/text()'
+        # the dashboard message
+        banner_message = dashboard_html.xpath(xpath)[0].strip()
 
-        # check to see if the login was successful
-        print('Request succeeded. Banner message is as followed:\n')
-        print(value, '\n')
+        # check to make sure the request succeeded
+        if r.status_code == 200:
+            print('Request succeeded. Banner message is as followed:\n')
+            print(banner_message, '\n')
+        else:
+            print('Something went wrong, please try again :(')
+        
 
 
 if __name__ == "__main__":
