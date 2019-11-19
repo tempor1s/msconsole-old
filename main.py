@@ -4,8 +4,11 @@ import os
 import sys
 import requests
 from lxml import html
+<<<<<<< HEAD
 from dotenv import load_dotenv
 load_dotenv()
+=======
+>>>>>>> a0283091668f08a52108fd3e8fc45b167cc16c28
 
 
 class CheckIn(object):
@@ -23,24 +26,29 @@ class CheckIn(object):
 
     def credentials(self):
         """Set email and password fields if file exists, otherwise create .env file and get email and password from user."""
-        filename = '.env'
+        filename = 'creds.txt'
+        # TODO: Rewrite this
         # check if file exists - if it does then set email and password from env, otherwise get email and password from user and create .env file
         if os.path.exists(filename):
-            self.email = os.getenv('EMAIL')
-            self.password = os.getenv('PASSWORD')
+            with open(filename, 'r') as f:
+                # read email and password from file into a list
+                lines = f.read().split('\n')
+
+                self.email = lines[0]
+                self.password = lines[1]
         else:
             # create a new file
             with open(filename, 'a+') as f:
                 # get the email and password from the user
                 email = input(
-                    'Enter Makeschool login email (we don\'t store your email or password): ')
+                    'Enter Makeschool login email (we don\'t store your email or password on a server): ')
                 password = input('Enter your Makeschool password: ')
                 # set email and password properties
                 self.email = email
                 self.password = password
                 # write the email and the password to the .env file for later use
-                f.write(f'EMAIL={email}\n')
-                f.write(f'PASSWORD={password}')
+                f.write(f'{email}\n')
+                f.write(f'{password}')
 
     def login(self):
         """Login to MakeSchool dashboard using email and password."""
@@ -53,6 +61,17 @@ class CheckIn(object):
         form['user[password]'] = self.password
         response = self.s.post(
             'https://www.makeschool.com/login', data=form)
+        
+        # jesus christ
+        if 'successfully' in response.text:
+            print('Signed in successfully.')
+        else:
+            # the crednetials are probably wrong
+            print('The crendetials entered are incorrect.\n')
+            # delete the creds file to start over
+            os.remove('creds.txt')
+            # recall the credentials function
+            self.login()
 
     def checkin(self):
         """Checks the user into their class!"""
@@ -60,7 +79,9 @@ class CheckIn(object):
         self.login()
         # send a post request to the shortlink with the token provided from cli
         r = self.s.post(f'http://make.sc/attend/{self.token.upper()}')
+
         # check to see if the login was successful
+<<<<<<< HEAD
         if 'success' in r.text:
             print(r.text)
             print('Success. You are now attending the class :)')
@@ -72,6 +93,10 @@ class CheckIn(object):
             os.remove('.env')
             # recall the credentials function
             self.credentials()
+=======
+        print('Success. You are now attending the class :)')
+        
+>>>>>>> a0283091668f08a52108fd3e8fc45b167cc16c28
 
 
 if __name__ == "__main__":
