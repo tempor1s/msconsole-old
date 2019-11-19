@@ -77,7 +77,7 @@ class CheckIn(object):
             # Grab hidden form fileds by looking through HTML XPath
             hidden_inputs = dashboard_html.xpath(
                 r'//form//input[@type="hidden"]')
-            # inside the form look for name and value fields
+            # inside the form look for name and value fields to get authenticity token
             form = {x.attrib["name"]: x.attrib["value"] for x in hidden_inputs}
             # set the form email value
             form['user[email]'] = self.email
@@ -98,7 +98,7 @@ class CheckIn(object):
             # catastrophic error, no idea what to do with this just bail
             except requests.exceptions.RequestException as e:
                 # catastrophic error. bail.
-                print e
+                print(e)
                 sys.exit(1)
         # if the login was successful
         if 'successfully' in response.text:
