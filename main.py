@@ -121,7 +121,11 @@ if __name__ == "__main__":
     # Get the first arg from command line
     args = sys.argv[1:3]
     # Get the attendence token from args
-    token = args[0]
+    try:
+        token = args[0]
+    except IndexError:
+        print('Please add an attendence token after the script. Example: `python3 main.py BRAVE`')
+        exit()
     # Create a new instance of CheckIn with the attendence token
     user = CheckIn(token)
     # Checkin

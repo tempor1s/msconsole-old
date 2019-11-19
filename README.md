@@ -1,16 +1,12 @@
 # Make Checkin
 
-<img src="img/logo.png" title="Makeschool Icon"></a>
+<img src="media/logo.png" title="Makeschool Icon"></a>
 
 ## Description
 
 Are you lazy and don't want to go to your dashboard and plug in the acccess token to mark your attendance as present, well try Make Checkin.
 
-There is also a Brute force implementation of marking yourself present for the MakeSchool attendence tracker if you don't know the access code.
-
-Never be marked tardy again! :)
-
-![Word Generation](/static/img/gen.gif)
+![Word Generation](/media/example.gif)
 
 ### Prerequisites
 
@@ -38,7 +34,9 @@ pipenv shell
 # install modules into virtual environment
 pipenv install
 # start script
-python3 brute.py
+python3 main.py <CODE>
+# example
+python main.py BRAVE
 ```
 
 #### apt systems Ubuntu, Debian, Mint, Etc
@@ -53,7 +51,9 @@ pipenv shell
 # install modules into virtual environment
 pipenv install
 # start script
-python3 main.py
+python3 main.py <CODE>
+# example
+python main.py BRAVE
 ```
 
 This also assumes that you have `brew` installed. After cloning the repository in desired directory we run the command `pipenv shell` to initialize and activate our virtual enviornment. Unless specified pipenv will default to whatever virtualenv defaults to. We then allow pipenv to find and install the necessary modules for our server. All modules can be viewed inside the file `Pipfile` under the [packages] section.
@@ -67,7 +67,6 @@ or whatever modifications you've made to the project, issue a pull request to th
 
 ## Built With
 
--   [Selenium](https://selenium.dev/) - Web Browser Automation Tool
 -   [Requests](https://2.python-requests.org/en/master/) - HTTP library
 -   [lxml](https://lxml.de/) - XML and HTML parsing library
 
