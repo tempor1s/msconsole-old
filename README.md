@@ -6,8 +6,6 @@
 
 Are you lazy and don't want to go to your dashboard and plug in the acccess token to mark your attendance as present, well try Make Checkin.
 
-![Word Generation](/media/example.gif)
-
 ### Prerequisites
 
 What things you need to install the software and how to install them
@@ -59,6 +57,19 @@ python main.py BRAVE
 This also assumes that you have `brew` installed. After cloning the repository in desired directory we run the command `pipenv shell` to initialize and activate our virtual enviornment. Unless specified pipenv will default to whatever virtualenv defaults to. We then allow pipenv to find and install the necessary modules for our server. All modules can be viewed inside the file `Pipfile` under the [packages] section.
 
 ## How to Run Script
+
+It is essential that you are on the connected the `MakeStudent` SSID. (wifi) After installation and setup you can run the simple command as followed:
+
+```bash
+# replace code with your class code
+python3 main.py <CODE>
+# as followed
+python main.py BRAVE
+```
+
+![Example](/media/example.gif)
+
+After entering command you should see a message from the MakeSchool website in the CLI that notifies you what was returned.
 
 ## How to contribute
 
