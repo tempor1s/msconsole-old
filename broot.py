@@ -1,22 +1,60 @@
-import requests
-from selenium import webdriver
-from getpass import getpass
-from threading import Thread
-from verify import is_valid
-from selenium.webdriver.common.keys import Keys
-import time
-import os
+#!/usr/local/bin/python3
 
-# set driver path
-driver = os.getcwd() + '/chromedriver'
+import os
+import sys
+import time
+import requests
+from lxml import html
+from getpass import getpass
+from verify import is_valid
+from threading import Thread
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from multiprocessing import Process, ProcessError
+
+
+class CheckIn(object):
+    def __init__(self):
+        self.email = None
+        self.password = None
+        self.session = requests.Session()
+
+    def set_email(self, email):
+        self.email = email
+
+    def set_password(self, password):
+        self.password = password
+
+    def dashboard(self):
+        form_data = {
+            'user[email]': self.email,
+            'user[password]': self.password,
+            'submit': 'submit',
+        }
+        url = "https://www.makeschool.com/dashboard"
+        # dash = requests.get("https://www.makeschool.com/dashboard")
+        response = requests.post(url, data=form_data)
+        print(response.status_code)
+        tree = html.document_fromstring(response.content)
+        # email XPath
+        email_x_path = "//*[@id='user_email']"
+        # password XPath
+        password_x_path = "//*[@id='new_user']/label[2]/input"
+        # login XPath
+        login_x_path = "//*[@id='new_user']/input[3]"
+
+        return tree.xpath("//*[@id='token']")
 
 
 class Bot(object):
     def __init__(self):
-        self.email = None
-        self.password = None
-        self.token = None
-        self.driver = webdriver.Chrome(driver)
+        self.email = None  # user email
+        self.password = None  # user password
+        self.token = None  # access token
+        self.chrome_path = os.getcwd() + '/chromedriver'  # chrome driver path
+        self.phantom_path = os.getcwd() + '/phantomjs'
+        self.chrome_driver = webdriver.Chrome(self.chrome_path)
+        self.phantom_driver = webdriver.PhantomJS(self.phantom_path)
 
     def set_token(self, token):
         self.token = token
@@ -38,7 +76,7 @@ class Bot(object):
         # login XPath
         login_x_path = "//*[@id='new_user']/input[3]"
         # set the driver
-        driver = self.driver
+        driver = self.phantom_driver
         # the dashboard
         dashboard = driver.get("https://www.makeschool.com/dashboard")
         # find email field and fill
@@ -79,6 +117,8 @@ class Bot(object):
         submit.click()
 
 
+############## Helper Functions ##################
+
 def get_email():
     email = input('Email: ')
     return email
@@ -94,22 +134,29 @@ def get_token():
     return token
 
 
+############## Helper Functions ##################
 if __name__ == "__main__":
-    # grab the users email address
+    # # grab the users email address
+    # email = get_email()
+    # # grab the users password
+    # pw = get_pass()
+    # # get the access token
+    # token = get_token()
+    # # instantiate the users bot
+    # user = Bot()
+    # # set the user email
+    # user.set_email(email)
+    # # set the user password
+    # user.set_password(pw)
+    # # set the user token
+    # user.set_token(token)
+    # # login
+    # user.login()
+    # # check in
+    # user.checkin()
+    user = CheckIn()
     email = get_email()
-    # grab the users password
-    pw = get_pass()
-    # get the access token
-    token = get_token()
-    # instantiate the users bot
-    user = Bot()
-    # set the user email
+    password = get_pass()
     user.set_email(email)
-    # set the user password
-    user.set_password(pw)
-    # set the user token
-    user.set_token(token)
-    # login
-    user.login()
-    # check in
-    user.checkin()
+    user.set_password(password)
+    print(user.dashboard())
