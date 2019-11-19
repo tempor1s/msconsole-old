@@ -11,6 +11,7 @@ from threading import Thread
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from multiprocessing import Process, ProcessError
+from selenium.webdriver.chrome.options import Options
 
 
 class CheckIn(object):
@@ -52,9 +53,10 @@ class Bot(object):
         self.password = None  # user password
         self.token = None  # access token
         self.chrome_path = os.getcwd() + '/chromedriver'  # chrome driver path
-        self.phantom_path = os.getcwd() + '/phantomjs'
-        self.chrome_driver = webdriver.Chrome(self.chrome_path)
-        self.phantom_driver = webdriver.PhantomJS(self.phantom_path)
+        # self.options = Options()
+        # self.options.set_headless(headless=True)
+        self.chrome_driver = webdriver.Chrome(
+            self.chrome_path)
 
     def set_token(self, token):
         self.token = token
@@ -69,6 +71,7 @@ class Bot(object):
             return False
 
     def login(self):
+
         # email XPath
         email_x_path = "//*[@id='user_email']"
         # password XPath
@@ -76,7 +79,7 @@ class Bot(object):
         # login XPath
         login_x_path = "//*[@id='new_user']/input[3]"
         # set the driver
-        driver = self.phantom_driver
+        driver = self.chrome_driver
         # the dashboard
         dashboard = driver.get("https://www.makeschool.com/dashboard")
         # find email field and fill
@@ -97,7 +100,7 @@ class Bot(object):
             login_x_path)
         # click the button to submit the data
         login_button.click()
-        time.sleep(2)
+        time.sleep(20)
 
     def bruteforce(self, path='./wordlist/words.txt'):
         with open(path, "r") as file:
@@ -105,13 +108,14 @@ class Bot(object):
 
     def checkin(self):
         # find access token path
-        access_token = self.driver.find_element_by_xpath("//*[@id='token']")
+        access_token = self.chrome_driver.find_element_by_xpath(
+            "//*[@id='token']")
         # clear the form before filling
         access_token.clear()
         # fill the token
         access_token.send_keys(self.token)
         # find submit
-        submit = self.driver.find_element_by_xpath(
+        submit = self.chrome_driver.find_element_by_xpath(
             "//*[@id='form']/div/div/button")
         # IM HERE!
         submit.click()
@@ -136,27 +140,27 @@ def get_token():
 
 ############## Helper Functions ##################
 if __name__ == "__main__":
-    # # grab the users email address
-    # email = get_email()
-    # # grab the users password
-    # pw = get_pass()
-    # # get the access token
-    # token = get_token()
-    # # instantiate the users bot
-    # user = Bot()
-    # # set the user email
-    # user.set_email(email)
-    # # set the user password
-    # user.set_password(pw)
-    # # set the user token
-    # user.set_token(token)
-    # # login
-    # user.login()
-    # # check in
-    # user.checkin()
-    user = CheckIn()
+    # grab the users email address
     email = get_email()
-    password = get_pass()
+    # grab the users password
+    pw = get_pass()
+    # get the access token
+    token = get_token()
+    # instantiate the users bot
+    user = Bot()
+    # set the user email
     user.set_email(email)
-    user.set_password(password)
-    print(user.dashboard())
+    # set the user password
+    user.set_password(pw)
+    # set the user token
+    user.set_token(token)
+    # login
+    user.login()
+    # check in
+    user.checkin()
+    # user = CheckIn()
+    # email = get_email()
+    # password = get_pass()
+    # user.set_email(email)
+    # user.set_password(password)
+    # print(user.dashboard())
