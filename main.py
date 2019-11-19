@@ -4,7 +4,6 @@ import os
 import sys
 import requests
 from lxml import html
-from verify import is_valid
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -62,9 +61,11 @@ class CheckIn(object):
         # send a post request to the shortlink with the token provided from cli
         r = self.s.post(f'http://make.sc/attend/{self.token.upper()}')
         # check to see if the login was successful
-        if 'success' in r.content:
+        if 'success' in r.text:
+            print(r.text)
             print('Success. You are now attending the class :)')
         else:
+            print(r.text)
             # the crednetials are probably wrong
             print('The crendetials entered are incorrect \n')
             # delete the .env file
