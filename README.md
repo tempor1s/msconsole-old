@@ -4,7 +4,7 @@
 
 ## Description
 
-Are you lazy and don't want to go to your dashboard and plug in the acccess token to make your attendance as present, well try makeBroot.
+Are you lazy and don't want to go to your dashboard and plug in the acccess token to mark your attendance as present, well try makeBroot.
 
 There is also a Brute force implementation of marking yourself present for the MakeSchool attendence tracker if you don't know the access code.
 
@@ -73,6 +73,7 @@ or whatever modifications you've made to the project, issue a pull request to th
 
 -   [Selenium](https://selenium.dev/) - Web Browser Automation Tool
 -   [Requests](https://2.python-requests.org/en/master/) - HTTP library
+-   [lxml](https://lxml.de/) - XML and HTML parsing library
 
 ## Authors
 
@@ -83,4 +84,4 @@ See also the list of [contributors](https://github.com/imthaghost/makeBroot/cont
 
 ## Acknowledgments
 
--   Hat tip to my professors [Meredith](https://github.com/meredithcat) and [Danni](https://github.com/droxey) for the inspiration!
+-   Hat tip to my professors [Meredith](https://github.com/meredithcat) and [Dani](https://github.com/droxey) for the inspiration!
