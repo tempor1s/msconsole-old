@@ -49,7 +49,6 @@ class CheckIn(object):
             with open(filename, 'r') as f:
                 # read email and password from file into a list
                 lines = f.read().split('\n')
-
                 self.email = lines[0]
                 self.password = lines[1]
         else:
@@ -68,23 +67,40 @@ class CheckIn(object):
 
     def login(self):
         """Login to MakeSchool dashboard using email and password."""
-        login_url = "https://www.makeschool.com/login"
-        self.credentials()
-        dashboard = self.s.get(login_url)
+        login_url = "https://www.makeschool.com/login"  # login url
+        self.credentials()  # get the users credentials
+        dashboard = self.s.get(login_url)  # get the login HTML
+        # check to see if the response is ok
         if dashboard.status_code == 200:
+            # parse the HTML returing the dashboard document
             dashboard_html = html.fromstring(dashboard.text)
+            # Grab hidden form fileds by looking through HTML XPath
             hidden_inputs = dashboard_html.xpath(
                 r'//form//input[@type="hidden"]')
+            # inside the form look for name and value fields
             form = {x.attrib["name"]: x.attrib["value"] for x in hidden_inputs}
+            # set the form email value
             form['user[email]'] = self.email
+            # set the form password value
             form['user[password]'] = self.password
-            response = self.s.post(
-                'https://www.makeschool.com/login', data=form)
+            # setup post request to login url with new data inserted into form
+            response = self.s.post(login_url, data=form)
         else:
+            # otherwise retry connection to server
             print('Retrying to connect to server')
-            requests_retry_session().get(login_url)
-
-        # jesus christ
+            try:
+                # HTTP retransmission to same urls
+                requests_retry_session().get(login_url)
+            # if there is a connection error request the user to try a new url
+            # the url has changed in some way - we have to update
+            except ConnectionError:
+                print('Bad url request, try a different one by setting login url')
+            # catastrophic error, no idea what to do with this just bail
+            except requests.exceptions.RequestException as e:
+                # catastrophic error. bail.
+                print e
+                sys.exit(1)
+        # if the login was successful
         if 'successfully' in response.text:
             print('Signed in successfully.')
         else:
@@ -101,14 +117,12 @@ class CheckIn(object):
         self.login()
         # send a post request to the shortlink with the token provided from cli
         r = self.s.post(f'http://make.sc/attend/{self.token.upper()}')
-
         # create a tree out of the raw html
         dashboard_html = html.fromstring(r.text)
         # the xpath to the banner message
         xpath = r'//*[@id="js-header"]/div[3]/div/text()'
         # the dashboard message
         banner_message = dashboard_html.xpath(xpath)[0].strip()
-
         # check to make sure the request succeeded
         if r.status_code == 200:
             print('Request succeeded. Banner message is as followed:\n')
