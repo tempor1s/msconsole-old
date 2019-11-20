@@ -81,7 +81,7 @@ After entering command you should see a message from the MakeSchool website in t
 # make the python script executable
 sudo chmod u+x checkin.py
 # test to see if its an executable by running
-./checking.py
+./checking.py Test
 # add the directory of where your script lives to your path
 export PATH=/path/to/checkin.py:$PATH
 # example
@@ -97,9 +97,17 @@ export PATH=$HOME/bin:/usr/local/bin:/path/to/checkin.py:$PATH
 pip3 install requests
 # install lxml
 pip3 install lxml
+# we should now be able to run the checkin.py file from anywhere
+checkin.py Test
+# lets also make an alias to make it cleaner, open your shell configuration file .bashrc or .zshrc
+vim .zshrc
+# add the following line to make an alias to the command
+alias checkin='checkin.py'
+# see example below
 ```
 
 ![ZSH Example](/media/zsh.png)
+![Alias Example](/media/alias.png)
 
 ## How to contribute
 
