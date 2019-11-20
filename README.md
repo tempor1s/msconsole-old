@@ -78,14 +78,28 @@ After entering command you should see a message from the MakeSchool website in t
 #### macOS Mojave 10.0+
 
 ```bash
-#
-sudo chmod +x checkin.py
-# add the directory to your path
+# make the python script executable
+sudo chmod u+x checkin.py
+# test to see if its an executable by running
+./checking.py
+# add the directory of where your script lives to your path
 export PATH=/path/to/checkin.py:$PATH
-# If you want it to stick, you'll have to do this in .bashrc or .bash_profile if you are using zsh it it would be the .zshrc file
+# example
+export PATH=~/scripts/checkin.py:$PATH
+# If you want the command to be globally accessable in your shell, you'll have to export the path in .bashrc or .bash_profile.
+# If you are using zsh it it would be the .zshrc file
 vim .zshrc
 # add the new path variable into the files
+export PATH=$HOME/bin:/usr/local/bin:/path/to/checkin.py:$PATH
+# you can see an example below
+# we now need to globally installed the python modules used for this script
+# install requests
+pip3 install requests
+# install lxml
+pip3 install lxml
 ```
+
+![ZSH Example](/media/zsh.png)
 
 ## How to contribute
 
