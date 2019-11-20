@@ -31,6 +31,7 @@ class CheckIn(object):
         self.token = token
         self.s = requests.Session()  # masters/PHD student named this variable
         self.creds_path = keychain + 'creds.txt'
+        self.checkin()
 
     def requests_retry_session(self, retries=3, backoff_factor=0.3, status_forcelist=(500, 502, 504), session=None):
         """Retry requesting session
@@ -154,6 +155,10 @@ class CheckIn(object):
             print('\x1b[1;31m' +
                   'Something went wrong, please try again :(' + '\x1b[0m')
 
+        # Banner messages
+        # You code is not related to any class.
+        # You are not registered for this class.
+
 
 if __name__ == "__main__":
     # Get the first arg from command line
@@ -167,4 +172,3 @@ if __name__ == "__main__":
     # Create a new instance of CheckIn with the attendence token
     user = CheckIn(token)
     # Checkin
-    user.checkin()
