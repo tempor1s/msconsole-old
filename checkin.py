@@ -1,10 +1,21 @@
-#!/usr/local/bin/python3
-
+#!/usr/bin/env python3
 import os
 import re
 import sys
 import requests
 from lxml import html, etree
+from getpass import getpass
+from platform import platform, system
+
+# set the UNIX password file path
+password_path = '/Library/Keychains/'
+# grab each users home directory
+home = os.path.expanduser('~')
+# set the keychain path
+keychain = home + password_path
+# check to see if file exists
+macOS = 'darwin'
+linux = 'linux'
 
 
 class CheckIn(object):
@@ -19,6 +30,7 @@ class CheckIn(object):
         self.password = None
         self.token = token
         self.s = requests.Session()  # masters/PHD student named this variable
+        self.creds_path = keychain + 'creds.txt'
 
     def requests_retry_session(self, retries=3, backoff_factor=0.3, status_forcelist=(500, 502, 504), session=None):
         """Retry requesting session
@@ -42,23 +54,20 @@ class CheckIn(object):
         return session
 
     def credentials(self):
-        """Set email and password fields if file exists, otherwise create creds.txt file and get email and password from user."""
-        filename = 'creds.txt'
-        # TODO: Rewrite this with .env
-        # check if file exists - if it does then set email and password from env, otherwise get email and password from user and create creds.txt file
-        if os.path.exists(filename):
-            with open(filename, 'r') as f:
+        if os.path.exists(self.creds_path):
+            # if the the file exists open it in read only mode and set the credentials
+            with open(self.creds_path, 'r') as f:
                 # read email and password from file into a list
                 lines = f.read().split('\n')
                 self.email = lines[0]
                 self.password = lines[1]
         else:
             # create a new file
-            with open(filename, 'a+') as f:
+            with open(self.creds_path, 'a+') as f:
                 # get the email and password from the user
                 email = input(
                     'Enter Makeschool login email (we don\'t store your email or password on a server): ')
-                password = input('Enter your Makeschool password: ')
+                password = getpass('Password: ')
                 # set email and password properties
                 self.email = email
                 self.password = password
@@ -119,7 +128,7 @@ class CheckIn(object):
             # the crednetials are probably wrong
             print('The crendetials entered are incorrect.\n')
             # delete the creds file to start over
-            os.remove('creds.txt')
+            os.remove(self.creds_path)
             # recall the login function
             self.login()
 
