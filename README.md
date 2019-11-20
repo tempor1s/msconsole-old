@@ -96,6 +96,7 @@ or whatever modifications you've made to the project, issue a pull request to th
 
 -   [Requests](https://2.python-requests.org/en/master/) - HTTP library
 -   [lxml](https://lxml.de/) - XML and HTML parsing library
+-   [Selenium](https://selenium.dev/) - Web Browser Automation for Visualization
 
 ## Authors
 
