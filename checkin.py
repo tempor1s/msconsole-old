@@ -123,7 +123,8 @@ class CheckIn(object):
             # Get the email from the <HEAD> content using the regex pattern
             email = re.findall(pattern, content)
             # Send the user a message letting them know they singed in successfully, and print out their Make School email
-            print(f'Signed in successfully. Make School Email: {email[0]}')
+            print(
+                '\x1b[1;32m' + 'Signed in successfully.' + '\x1b[0m' + '\n' + f'Make School Email: {email[0]}' + '\n')
         else:
             # the crednetials are probably wrong
             print('The crendetials entered are incorrect.\n')
@@ -146,10 +147,12 @@ class CheckIn(object):
         banner_message = dashboard_html.xpath(xpath)[0].strip()
         # check to make sure the request succeeded
         if r.status_code == 200:
-            print('Request succeeded. Banner message is as followed:\n')
-            print(banner_message, '\n')
+            print(
+                '\x1b[1;32m' + 'Request succeeded. Banner message is as followed:\n' + '\x1b[0m')
+            print('\033[93m' + banner_message + '\x1b[0m' + '\n')
         else:
-            print('Something went wrong, please try again :(')
+            print('\x1b[1;31m' +
+                  'Something went wrong, please try again :(' + '\x1b[0m')
 
 
 if __name__ == "__main__":
