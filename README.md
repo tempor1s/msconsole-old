@@ -1,6 +1,6 @@
 # Make Checkin
 
-<img src="media/logo.png" title="Makeschool Icon"></a>
+<img src="media/make_logo.png" title="Makeschool Icon"></a>
 
 ## Description
 
