@@ -137,7 +137,7 @@ class CheckIn(object):
         # log the user in
         self.login()
         # send a post request to the shortlink with the token provided from cli
-        r = self.s.post(f'http://make.sc/attend/{self.token.upper()}')
+        r = self.s.get(f'http://make.sc/attend/{self.token.upper()}')
         # create a tree out of the raw html
         dashboard_html = html.fromstring(r.text)
         # the xpath to the banner message
