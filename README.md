@@ -104,10 +104,15 @@ vim .zshrc
 # add the following line to make an alias to the command
 alias checkin='checkin.py'
 # see example below
+# we can now just run the command as followed:
+checkin <Code>
+#example
+checkin WIFE
 ```
 
-![ZSH Example](/media/zsh.png)
+![ZSH Example](/media/path.png)
 ![Alias Example](/media/alias.png)
+![Checkin](/media/command.gif)
 
 ## How to contribute
 
