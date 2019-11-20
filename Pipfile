@@ -8,7 +8,6 @@ autopep8 = "*"
 
 [packages]
 requests = "*"
-selenium = "*"
 lxml = "*"
 python-dotenv = "*"
 
