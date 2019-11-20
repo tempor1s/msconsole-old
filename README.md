@@ -92,6 +92,11 @@ vim .zshrc
 # add the new path variable into the files
 export PATH=$HOME/bin:/usr/local/bin:/path/to/checkin.py:$PATH
 # you can see an example below
+```
+
+![ZSH Example](/media/path.png)
+
+```bash
 # we now need to globally installed the python modules used for this script
 # install requests
 pip3 install requests
@@ -104,14 +109,17 @@ vim .zshrc
 # add the following line to make an alias to the command
 alias checkin='checkin.py'
 # see example below
+```
+
+![Alias Example](/media/alias.png)
+
+```bash
 # we can now just run the command as followed:
 checkin <Code>
 #example
 checkin WIFE
 ```
 
-![ZSH Example](/media/path.png)
-![Alias Example](/media/alias.png)
 ![Checkin](/media/command.gif)
 
 ## How to contribute
