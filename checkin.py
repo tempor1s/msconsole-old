@@ -6,6 +6,7 @@ import sys
 import requests
 from lxml import html, etree
 
+
 class CheckIn(object):
     """CheckIn is a class that allows you to checkin to your MakeShool classes using a CLI"""
 
