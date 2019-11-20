@@ -34,9 +34,9 @@ pipenv shell
 # install modules into virtual environment
 pipenv install
 # start script
-python3 main.py <CODE>
+python3 checkin.py <CODE>
 # example
-python3 main.py BRAVE
+python3 checkin.py BRAVE
 ```
 
 #### apt systems Ubuntu, Debian, Mint, Etc
@@ -51,9 +51,9 @@ pipenv shell
 # install modules into virtual environment
 pipenv install
 # start script
-python3 main.py <CODE>
+python3 checkin.py <CODE>
 # example
-python3 main.py BRAVE
+python3 checkin.py BRAVE
 ```
 
 This also assumes that you have `brew` installed. After cloning the repository in desired directory we run the command `pipenv shell` to initialize and activate our virtual enviornment. Unless specified pipenv will default to whatever virtualenv defaults to. We then allow pipenv to find and install the necessary modules for our server. All modules can be viewed inside the file `Pipfile` under the [packages] section.
@@ -64,14 +64,28 @@ It is essential that you are on the connected the `MakeStudent` SSID. (wifi) Aft
 
 ```bash
 # replace code with your class code
-python3 main.py <CODE>
+python3 checkin.py <CODE>
 # as followed
-python main.py BRAVE
+python checkin.py BRAVE
 ```
 
 ![Example](/media/example.gif)
 
 After entering command you should see a message from the MakeSchool website in the CLI that notifies you what was returned.
+
+## Making Executable File To Run As Single Command
+
+#### macOS Mojave 10.0+
+
+```bash
+#
+sudo chmod +x checkin.py
+# add the directory to your path
+export PATH=/path/to/checkin.py:$PATH
+# If you want it to stick, you'll have to do this in .bashrc or .bash_profile if you are using zsh it it would be the .zshrc file
+vim .zshrc
+# add the new path variable into the files
+```
 
 ## How to contribute
 
@@ -86,6 +100,6 @@ or whatever modifications you've made to the project, issue a pull request to th
 ## Authors
 
 -   **Ben Lafferty** - _Initial idea / CLI implementation_ - [tempor1s](https://github.com/tempor1s)
--   **Gary Frederick** - _Initial work_ - [imthaghost](https://github.com/imthaghost)
+-   **Gary Frederick** - _Initial work_ / _Server Calls_ - [imthaghost](https://github.com/imthaghost)
 
 See also the list of [contributors](https://github.com/tempor1s/make-checkin/contributors) who participated in this project.
