@@ -4,7 +4,7 @@ description = """
 See `github repo <https://github.com/tempor1s/make-checkin>`_ for information.
 """
 
-VERSION = '1.0.6'  # maintained by release tool
+VERSION = '1.0.7'  # maintained by release tool
 
 
 setup(
@@ -12,6 +12,7 @@ setup(
     version=VERSION,
     author='Ben Lafferty',
     author_email='benlaugherty@gmail.com',
+    packages=find_packages(),
     entry_points={
         'console_scripts': ['checkin=checkin.command_line:main']
     },
