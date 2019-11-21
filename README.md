@@ -16,6 +16,7 @@ What things you need to install the software and how to install them
 - Homebrew
 or
 - Pipenv
+- Python 3.4+
 ```
 
 ## Getting Started
@@ -50,6 +51,8 @@ git clone https://github.com/tempor1s/make-checkin
 pipenv shell
 # install modules into virtual environment
 pipenv install
+# change your directory to `checkin`
+cd checkin
 # start script
 python3 checkin.py <CODE>
 # example
