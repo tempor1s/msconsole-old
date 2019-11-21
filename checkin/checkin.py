@@ -145,24 +145,24 @@ class CheckIn(object):
             # something went wrong so print red message
             print('\x1b[1;31m' +
                   'Something went wrong, please try again :(' + '\x1b[0m')
-    
+
     # helper funcs
     def _check_banner_message(self, banner_message):
         message = None
 
         # check the message so that we can change the color :)
         if 'You code is not related to any class.' == banner_message:
-            message = '\033[93m' + banner_message + '\x1b[0m' + '\n' # yellow
+            message = '\033[93m' + banner_message + '\x1b[0m' + '\n'  # yellow
         elif 'You are not registered for this class.' == banner_message:
-            message = '\x1b[1;31m' + banner_message + '\x1b[0m' + '\n' # red
+            message = '\x1b[1;31m' + banner_message + '\x1b[0m' + '\n'  # red
         elif 'You need to be connected to Make School Wi-Fi to check-in.' == banner_message:
-            message = '\x1b[1;31m' + banner_message + '\x1b[0m' + '\n' # red
+            message = '\x1b[1;31m' + banner_message + '\x1b[0m' + '\n'  # red
         elif 'You have already checked in for this class.' == banner_message:
-            message = '\x1b[1;32m' + banner_message + '\x1b[0m' + '\n' # green
+            message = '\x1b[1;32m' + banner_message + '\x1b[0m' + '\n'  # green
         elif 'You have checked in present for this class.' == banner_message:
-            message = '\x1b[1;32m' + banner_message + '\x1b[0m' + '\n' # green
+            message = '\x1b[1;32m' + banner_message + '\x1b[0m' + '\n'  # green
         else:
-            message = '\033[93m' + banner_message + '\x1b[0m' + '\n' # yellow
+            message = '\033[93m' + banner_message + '\x1b[0m' + '\n'  # yellow
 
         return message
 
@@ -191,6 +191,9 @@ class CheckIn(object):
             keychain = home + password_path
             # return the keychain
             return keychain
+
+    def _encrypt(self, file):
+        pass
 
 
 if __name__ == "__main__":
