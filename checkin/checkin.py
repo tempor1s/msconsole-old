@@ -5,17 +5,7 @@ import sys
 import requests
 from lxml import html, etree
 from getpass import getpass
-from platform import platform, system
-
-# set the UNIX password file path
-password_path = '/Library/Keychains/'
-# grab each users home directory
-home = os.path.expanduser('~')
-# set the keychain path
-keychain = home + password_path
-# check to see if file exists
-macOS = 'darwin'
-linux = 'linux'
+from platform import system
 
 
 class CheckIn(object):
@@ -30,7 +20,7 @@ class CheckIn(object):
         self.password = None
         self.token = token
         self.s = requests.Session()  # masters/PHD student named this variable
-        self.creds_path = keychain + 'creds.txt'
+        self.creds_path = self._get_keychain() + 'creds.txt'
         self.checkin()
 
     def requests_retry_session(self, retries=3, backoff_factor=0.3, status_forcelist=(500, 502, 504), session=None):
@@ -158,6 +148,32 @@ class CheckIn(object):
         # Banner messages
         # You code is not related to any class.
         # You are not registered for this class.
+
+    def _get_keychain(self):
+        macOS = 'darwin'
+        linux = 'linux'
+        windows = None  # we dont support :( sorry
+        os_name = system().lower()
+        if os_name in linux or os_name == linux:
+            # Linux
+            # for now store the users password file in documents
+            password_path = '/Documents'
+            # grab each users home directory
+            home = os.path.expanduser('~')
+            # keychain path
+            keychain = home + password_path
+            # return the keychain
+            return keychain
+        elif os_name in macOS or os_name == macOS:
+            # MAC OS X
+            # set the UNIX password file path
+            password_path = '/Library/Keychains/'
+            # grab each users home directory
+            home = os.path.expanduser('~')
+            # set the keychain path
+            keychain = home + password_path
+            # return the keychain
+            return keychain
 
 
 if __name__ == "__main__":
