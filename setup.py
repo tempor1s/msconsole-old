@@ -4,7 +4,7 @@ description = """
 See `github repo <https://github.com/tempor1s/make-checkin>`_ for information.
 """
 
-VERSION = '1.0.4'  # maintained by release tool
+VERSION = '1.0.6'  # maintained by release tool
 
 
 setup(
