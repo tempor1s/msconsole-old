@@ -122,6 +122,13 @@ checkin WIFE
 
 ![Checkin](/media/command.gif)
 
+## Homebrew
+
+```bash
+# Tap the repo
+brew tap tempor1s/make-checkin https://github.com/tempor1s/make-checkin
+```
+
 ## How to contribute
 
 Fork the current repository and then make the changes that you'd like to said fork. Upon adding features, fixing bugs,
