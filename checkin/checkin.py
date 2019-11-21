@@ -139,7 +139,7 @@ class CheckIn(object):
         # check to make sure the request succeeded
         if r.status_code == 200:
             # Get the colored banner_message and print it to console
-            banner_message = self.check_banner_message(banner_message)
+            banner_message = self._check_banner_message(banner_message)
             print(banner_message)
         else:
             # something went wrong so print red message
@@ -147,7 +147,7 @@ class CheckIn(object):
                   'Something went wrong, please try again :(' + '\x1b[0m')
     
     # helper funcs
-    def check_banner_message(self, banner_message):
+    def _check_banner_message(self, banner_message):
         message = None
 
         # check the message so that we can change the color :)
