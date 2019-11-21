@@ -23,8 +23,6 @@ or
 
 ### Homebrew
 
-This also assumes that you have Homebrew installed on your system.
-
 ```bash
 # Tap the repo
 brew tap tempor1s/make-checkin https://github.com/tempor1s/make-checkin
