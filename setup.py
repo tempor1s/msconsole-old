@@ -4,7 +4,7 @@ description = """
 See `github repo <https://github.com/tempor1s/make-checkin>`_ for information.
 """
 
-VERSION = '1.0.0'  # maintained by release tool
+VERSION = '1.0.2'  # maintained by release tool
 
 
 setup(
@@ -14,7 +14,6 @@ setup(
     author_email='benlaugherty@gmail.com',
     entry_points={
         'console_scripts': ['checkin=command_line:main']
-    }
-    license='LICENSE',
-    description='A CLI application that allows you to checkin to a MakeSchool class.',
+    },
+    description='A CLI application that allows you to checkin to a MakeSchool class.'
 )
