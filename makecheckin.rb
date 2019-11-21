@@ -2,8 +2,8 @@ class Makecheckin < Formula
   include Language::Python::Virtualenv
   desc "A basic CLI application for checking into your Make School classes."
   depends_on "python"
-  url "http://github.com/tempor1s/make-checkin/archive/1.0.tar.gz"
-  version "1.0"
+  url "http://github.com/tempor1s/make-checkin/archive/1.0.0.tar.gz"
+  version "1.0.0"
 
   resource "certifi" do
     url "https://files.pythonhosted.org/packages/62/85/7585750fd65599e88df0fed59c74f5075d4ea2fe611deceb95dd1c2fb25b/certifi-2019.9.11.tar.gz"
