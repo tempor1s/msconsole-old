@@ -3,3 +3,4 @@
 .DS_Store
 creds.txt
 __pycache__
+env
