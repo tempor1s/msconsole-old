@@ -252,7 +252,7 @@ class CheckIn(object):
             message = '\x1b[1;31m' + banner_message + '\x1b[0m' + '\n'  # red
         elif 'You need to be connected to Make School Wi-Fi to check-in.' == banner_message:
             message = '\x1b[1;31m' + banner_message + '\x1b[0m' + '\n'  # red
-        elif 'You have already checked in for this class.' == banner_message:
+        elif 'You have already checked in as for this class.' == banner_message:
             message = '\x1b[1;32m' + banner_message + '\x1b[0m' + '\n'  # green
         elif 'You have checked in present for this class.' == banner_message:
             message = '\x1b[1;32m' + banner_message + '\x1b[0m' + '\n'  # green
