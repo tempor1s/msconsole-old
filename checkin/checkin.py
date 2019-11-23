@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 
-"""Checkin.py
+"""checkin.py
 
 This Module allows the user checkin to their class from the
 command line.
 
 It is assumed that the first argument enterd in the CLI
-is a valid class token.
+is a valid class attendence token.
 
 This tool accepts user credentials on first use. Depending on your os
 the credentials are stored in the proper credentials directory and 
@@ -21,10 +21,10 @@ functions:
     * requests_retry_session - returns the column headers of the file
     * credentials - the main function of the script
     * login - given a credentials file logs a user in thorugh url (https://makeschool.com)
-    * checkin - 
-    * _check_banner_message -
-    * _get_keychain - 
-    * _encypt - 
+    * checkin - checks a user into their class
+    * _check_banner_message - changes the color of terminal message depending on banner message contents
+    * _get_keychain - gets the location of where to store the creds file
+    * _encypt - encrpt user credentials to be stored
 
 """
 import os
@@ -55,12 +55,12 @@ class CheckIn(object):
         :creds_path:
             :type: string
         """
-        self.email = None
-        self.password = None
-        self.token = token
-        self.s = requests.Session()  # masters/PHD student named this variable
+        self.email = None # users dashboard login
+        self.password = None # users dashboard password
+        self.token = token # attendence token
+        self.s = requests.Session() # instantiate the request session
         self.creds_path = self._get_keychain() + 'creds.txt'
-        self.checkin()
+        self.checkin() # call checkin on instantiation
 
     def requests_retry_session(self, retries=3, backoff_factor=0.3, status_forcelist=(500, 502, 504), session=None):
         """Performs HTTP/HTTPS GET retransmission request.
@@ -90,19 +90,7 @@ class CheckIn(object):
         return session
 
     def credentials(self):
-        """Performs HTTP/HTTPS GET retransmission request.
-
-        :param retries: URL path for the request. Should begin with a slash.
-            :type: int
-        :param backoff_factor: HTTP GET parameters.
-            :type: float
-        :param status_forcelist: The time of the first request (None if no
-            retries have occurred).
-            :type: tuple(int)
-        :param session: The time of the first request (None if no
-            retries have occurred).
-            :type: Request Session Object
-        """
+        """Performs HTTP/HTTPS GET retransmission request."""
         if os.path.exists(self.creds_path):
             # if the the file exists open it in read only mode and set the credentials
             with open(self.creds_path, 'r') as f:
@@ -125,19 +113,7 @@ class CheckIn(object):
                 f.write(f'{password}')
 
     def login(self):
-        """Login to MakeSchool dashboard using email and password.
-
-        :param retries: URL path for the request. Should begin with a slash.
-            :type: int
-        :param backoff_factor: HTTP GET parameters.
-            :type: float
-        :param status_forcelist: The time of the first request (None if no
-            retries have occurred).
-            :type: tuple(int)
-        :param session: The time of the first request (None if no
-            retries have occurred).
-            :type: Request Session Object
-        """
+        """Login to MakeSchool dashboard using email and password."""
         login_url = "https://www.makeschool.com/login"  # login url
         self.credentials()  # get the users credentials
         dashboard = self.s.get(login_url)  # get the login HTML
@@ -195,20 +171,7 @@ class CheckIn(object):
             self.login()
 
     def checkin(self):
-        """Checks the user into their class!
-
-        :param retries: URL path for the request. Should begin with a slash.
-            :type: int
-        :param backoff_factor: HTTP GET parameters.
-            :type: float
-        :param status_forcelist: The time of the first request (None if no
-            retries have occurred).
-            :type: tuple(int)
-        :param session: The time of the first request (None if no
-            retries have occurred).
-            :type: Request Session Object
-        """
-
+        """Checks the user into their class!"""
         # log the user in
         self.login()
         # send a post request to the shortlink with the token provided from cli
@@ -231,22 +194,16 @@ class CheckIn(object):
 
     # helper funcs
     def _check_banner_message(self, banner_message):
-        """Checks the user into their class!
+        """Changes the color of the terminal message depending on what the banner message is.
 
-        :param retries: URL path for the request. Should begin with a slash.
-            :type: int
-        :param backoff_factor: HTTP GET parameters.
-            :type: float
-        :param status_forcelist: The time of the first request (None if no
-            retries have occurred).
-            :type: tuple(int)
-        :param session: The time of the first request (None if no
-            retries have occurred).
-            :type: Request Session Object
+        :param banner_message: 
+            :type: str
         """
         message = None
         # check the message so that we can change the color :)
         if 'You code is not related to any class.' == banner_message:
+            message = '\033[93m' + banner_message + '\x1b[0m' + '\n'  # yellow
+        elif 'You cannot check-in after a class is already over' == banner_message:
             message = '\033[93m' + banner_message + '\x1b[0m' + '\n'  # yellow
         elif 'You are not registered for this class.' == banner_message:
             message = '\x1b[1;31m' + banner_message + '\x1b[0m' + '\n'  # red
@@ -256,26 +213,15 @@ class CheckIn(object):
             message = '\x1b[1;32m' + banner_message + '\x1b[0m' + '\n'  # green
         elif 'You have checked in present for this class.' == banner_message:
             message = '\x1b[1;32m' + banner_message + '\x1b[0m' + '\n'  # green
+        elif 'You have checked in tardy for this class.' == banner_message:
+            message = '\x1b[1;32m' + banner_message + '\x1b[0m' + '\n'  # green
         else:
             message = '\033[93m' + banner_message + '\x1b[0m' + '\n'  # yellow
 
         return message
 
     def _get_keychain(self):
-        """Checks the user into their class!
-
-        :param retries: URL path for the request. Should begin with a slash.
-            :type: int
-        :param backoff_factor: HTTP GET parameters.
-            :type: float
-        :param status_forcelist: The time of the first request (None if no
-            retries have occurred).
-            :type: tuple(int)
-        :param session: The time of the first request (None if no
-            retries have occurred).
-            :type: Request Session Object
-        """
-
+        """Checks the user into their class!"""
         macOS = 'darwin'
         linux = 'linux'
         windows = None  # we dont support :( sorry
