@@ -164,15 +164,11 @@ class CheckIn(object):
         # log the user in
         self.login()
         # send a post request to the shortlink with the token provided from cli
-        r = self.s.get(f'http://make.sc/attend/{self.token.upper()}')
-        # create a tree out of the raw html
-        dashboard_html = html.fromstring(r.text)
-        # the xpath to the banner message
-        xpath = r'//*[@id="js-header"]/div[3]/div/text()'
-        # the dashboard message
-        banner_message = dashboard_html.xpath(xpath)[0].strip()
+        response = self.s.get(f'http://make.sc/attend/{self.token.upper()}')
+
+        banner_message = self._get_banner_message(response.text)
         # check to make sure the request succeeded
-        if r.status_code == 200:
+        if response.status_code == 200:
             # Get the colored banner_message and print it to console
             banner_message = check_banner_message(banner_message)
             print(banner_message)
@@ -180,6 +176,16 @@ class CheckIn(object):
             # something went wrong so print red message
             print('\x1b[1;31m' +
                   'Something went wrong, please try again :(' + '\x1b[0m')
+    
+    def _get_banner_message(self, response_text):
+        # create a tree out of the raw html
+        dashboard_html = html.fromstring(response_text)
+        # the xpath to the banner message
+        xpath = r'//*[@id="js-header"]/div[3]/div/text()'
+        # the dashboard message
+        banner_message = dashboard_html.xpath(xpath)[0].strip()
+        
+        return banner_message
     
     def run(self):
         pass
@@ -190,10 +196,10 @@ if __name__ == "__main__":
     args = sys.argv[1:3]
     # Get the attendence token from args
     try:
-        token = args[0]
+        attendence_token = args[0]
     except IndexError:
         print('Please add an attendence token after the script. Example: `python3 main.py BRAVE`')
         exit()
     # Create a new instance of CheckIn with the attendence token
-    checkin = CheckIn(token)
+    checkin = CheckIn(attendence_token)
     checkin.run()
