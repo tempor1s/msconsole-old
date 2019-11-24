@@ -36,9 +36,7 @@ from platform import system
 
 # External Python modules
 import requests
-import cryptography
 from lxml import html, etree
-from cryptography.fernet import Fernet
 from requests.adapters import HTTPAdapter  # import HTTPAdapter module
 from utils import graph_query
 import keyring
