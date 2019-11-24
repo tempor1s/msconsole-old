@@ -69,7 +69,6 @@ class CheckIn(object):
         self.token = token  # attendence token
         self.key = 'dkey'
         self.s = requests.Session()  # instantiate the request session
-        self.checkin()  # call checkin on instantiation
 
     def credentials(self):
         """Sets or gets user credentials"""
@@ -91,7 +90,7 @@ class CheckIn(object):
             keyring.set_password("credentials", self.email, pw)
             #print(keyring.get_password('credentials', self.email))
             print('\x1b[1;32m' +
-                    "password stored successfully" + '\x1b[0m')
+                  "password stored successfully" + '\x1b[0m')
         except keyring.errors.PasswordSetError:
             print('\x1b[1;31m' + "failed to store password" + '\x1b[0m')
             print("password", keyring.get_password(
@@ -160,23 +159,20 @@ class CheckIn(object):
             self.login()
 
     def checkin(self):
-        """Checks the user into their class!"""
-        # log the user in
-        self.login()
+        """Checks the user into their class! Requires the session to be logged in."""
         # send a post request to the shortlink with the token provided from cli
         response = self.s.get(f'http://make.sc/attend/{self.token.upper()}')
-
-        banner_message = self._get_banner_message(response.text)
         # check to make sure the request succeeded
         if response.status_code == 200:
             # Get the colored banner_message and print it to console
-            banner_message = check_banner_message(banner_message)
+            banner_message = self._get_banner_message(response.text)
             print(banner_message)
         else:
             # something went wrong so print red message
             print('\x1b[1;31m' +
                   'Something went wrong, please try again :(' + '\x1b[0m')
-    
+
+    # get the banner message from reponse text
     def _get_banner_message(self, response_text):
         # create a tree out of the raw html
         dashboard_html = html.fromstring(response_text)
@@ -184,10 +180,14 @@ class CheckIn(object):
         xpath = r'//*[@id="js-header"]/div[3]/div/text()'
         # the dashboard message
         banner_message = dashboard_html.xpath(xpath)[0].strip()
-        
-        return banner_message
-    
+        # color the banner message and return it
+        return check_banner_message(banner_message)
+
     def run(self):
+        # log the user in
+        self.login()
+        # check the user in
+        self.checkin()
         pass
 
 
