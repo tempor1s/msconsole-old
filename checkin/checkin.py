@@ -27,15 +27,20 @@ functions:
     * _encypt - encrpt user credentials to be stored
 
 """
-import os
-import re
-import sys
-import requests
-from lxml import html, etree
-from getpass import getpass
+# Standard Python modules.
+import os                    # Miscellaneous OS interfaces.
+import sys                   # System-specific parameters and functions.
+import re                    # regular expression functions
+from getpass import getpass  # CLI hidden input functionality
+from urllib3.util.retry import Retry  # HTTP retransmission functionality
 from platform import system
+
+# External Python modules
+import requests
+import cryptography
+from lxml import html, etree
+from cryptography.fernet import Fernet
 from requests.adapters import HTTPAdapter  # import HTTPAdapter module
-from requests.packages.urllib3.util.retry import Retry  # import Retry module
 
 
 class CheckIn(object):
@@ -55,12 +60,12 @@ class CheckIn(object):
         :creds_path:
             :type: string
         """
-        self.email = None # users dashboard login
-        self.password = None # users dashboard password
-        self.token = token # attendence token
-        self.s = requests.Session() # instantiate the request session
+        self.email = None  # users dashboard login
+        self.password = None  # users dashboard password
+        self.token = token  # attendence token
+        self.s = requests.Session()  # instantiate the request session
         self.creds_path = self._get_keychain() + 'creds.txt'
-        self.checkin() # call checkin on instantiation
+        self.checkin()  # call checkin on instantiation
 
     def requests_retry_session(self, retries=3, backoff_factor=0.3, status_forcelist=(500, 502, 504), session=None):
         """Performs HTTP/HTTPS GET retransmission request.
@@ -98,6 +103,8 @@ class CheckIn(object):
                 lines = f.read().split('\n')
                 self.email = lines[0]
                 self.password = lines[1]
+                # close the input stream
+                f.close()
         else:
             # create a new file
             with open(self.creds_path, 'a+') as f:
@@ -111,6 +118,8 @@ class CheckIn(object):
                 # write the email and the password to the creds.txt file for later use
                 f.write(f'{email}\n')
                 f.write(f'{password}')
+                # close the input stream
+                f.close()
 
     def login(self):
         """Login to MakeSchool dashboard using email and password."""
@@ -247,9 +256,70 @@ class CheckIn(object):
             # return the keychain
             return keychain
 
-    def _encrypt(self, file):
-        """Excrptys the credentials files"""
-        pass
+    def _gen_key(self):
+        # start by generating a encryption key
+        key = Fernet.generate_key()
+        # write encryption key to current working directory
+        file = open(os.curdir, 'wb')  # wb = write bytes
+        # input bytes into file
+        file.write(key)
+        # close file input stream
+        file.close()
+
+    def _retrieve_key(self, path):
+        # open file in read bytes mode
+        file = open(path, 'rb')
+        # set the key
+        key = file.read()
+        # close the output stream
+        file.close()
+        # print the key
+        print(key)
+        # return the key
+        return key
+
+    def _encrypt(self, path):
+        """Encrptys the credentials files"""
+        # Get the key from the file
+        file = open(path, 'rb')
+        # set key variable
+        key = file.read()
+        # close the output stream
+        file.close()
+        #  Open the credentials file we need to encrypt
+        with open(self.creds_path, 'rb') as f:
+            # output file contents
+            data = f.read()
+        # fernet encryption key
+        fernet = Fernet(key)
+        # encrypt file output stream with generated key
+        encrypted = fernet.encrypt(data)
+        # Write the encrypted file
+        with open(self.creds_path, 'wb') as f:
+            f.write(encrypted)
+            f.close()
+
+    def _decrypt(self, path):
+        # Get the key from the file
+        file = open(path, 'rb')
+        # set key to output stream
+        key = file.read()
+        # close output stream
+        file.close()
+        #  open the credentials file
+        with open(self.creds_path, 'rb') as f:
+            # the stream is the data we need to decrypt with our key
+            data = f.read()
+        # set the fernet key
+        fernet = Fernet(key)
+        # decrypt the output stream
+        encrypted = fernet.decrypt(data)
+        # Open the decrypted file
+        with open(self.creds_path, 'wb') as f:
+            # input decrypted data
+            f.write(encrypted)
+            # close input stream
+            f.close()
 
 
 if __name__ == "__main__":
