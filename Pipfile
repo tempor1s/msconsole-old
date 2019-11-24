@@ -11,6 +11,7 @@ requests = "*"
 lxml = "*"
 python-dotenv = "*"
 cryptography = "*"
+keyring = "*"
 
 [requires]
 python_version = "3.7"
