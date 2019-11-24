@@ -164,7 +164,7 @@ class CheckIn(object):
         if 'successfully' in response.text:
             # Print that we signed in successfully. 
             print('\x1b[1;32m' + 'Signed in successfully.' + '\x1b[0m' + '\n')
-            # GraphQL query to get user's name and student email
+            # GraphQL query to get current users name and student email
             query = """
             {
                 currentUser {
@@ -179,8 +179,8 @@ class CheckIn(object):
             print('Name: {}'.format(currentUser['name']))
             print('MS Email: {}\n'.format(currentUser['studentEmail']))
         else:
-            # the crednetials are probably wrong
-            print('The crendetials entered are incorrect.\n')
+            # the credentials are probably wrong
+            print('The credentials entered are incorrect.\n')
             # delete the creds file to start over
             os.remove(self.creds_path)
             # recall the login function
