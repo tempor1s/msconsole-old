@@ -9,7 +9,6 @@ autopep8 = "*"
 [packages]
 requests = "*"
 lxml = "*"
-cryptography = "*"
 keyring = "*"
 
 [requires]
