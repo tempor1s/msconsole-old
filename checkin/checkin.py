@@ -35,7 +35,8 @@ from lxml import html, etree
 from getpass import getpass
 from platform import system
 from requests.adapters import HTTPAdapter  # import HTTPAdapter module
-from requests.packages.urllib3.util.retry import Retry  # import Retry module
+from urllib3.util.retry import Retry # import Retry module
+import utils
 
 
 class CheckIn(object):
