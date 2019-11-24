@@ -73,9 +73,9 @@ class CheckIn(object):
     def credentials(self):
         """Sets or gets user credentials"""
         # if the password exits in the keychain already get the password
-        if keyring.get_password('credentials', self.key) and keyring.get_password('credentials', self.email):
-            self.email = keyring.get_password('credentials', self.key)
-            return keyring.get_password('credentials', self.email)
+        if keyring.get_password('msemail', self.key) and keyring.get_password('mspass', self.email):
+            self.email = keyring.get_password('msemail', self.key)
+            return keyring.get_password('mspass', self.email)
         # else the password keychain doesn't exist so lets set it
         else:
             self._create_creds()
@@ -85,10 +85,8 @@ class CheckIn(object):
             self.email = input(
                 'Enter Makeschool login email (we don\'t store your email or password on a server): ')
             pw = getpass('Password: ')
-            keyring.set_password('credentials', self.key, self.email)
-            #print(keyring.get_password('credentials', self.key))
-            keyring.set_password("credentials", self.email, pw)
-            #print(keyring.get_password('credentials', self.email))
+            keyring.set_password('msemail', self.key, self.email)
+            keyring.set_password("mspass", self.email, pw)
             print('\x1b[1;32m' +
                   "password stored successfully" + '\x1b[0m')
         except keyring.errors.PasswordSetError:
@@ -100,8 +98,8 @@ class CheckIn(object):
         """Login to MakeSchool dashboard using email and password."""
         login_url = "https://www.makeschool.com/login"  # login url
         self.email = keyring.get_password(
-            'credentials', self.key)  # get the users credentials
-        pw = keyring.get_password('credentials', self.email)
+            'msemail', self.key)  # get the users credentials
+        pw = keyring.get_password('mspass', self.email)
 
         dashboard = self.s.get(login_url)  # get the login HTML
         # check to see if the response is ok
@@ -184,11 +182,11 @@ class CheckIn(object):
         return check_banner_message(banner_message)
 
     def run(self):
+        """Run mashes all of the functions togther and checks the user into their class."""
         # log the user in
         self.login()
         # check the user in
         self.checkin()
-        pass
 
 
 if __name__ == "__main__":
