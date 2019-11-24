@@ -41,6 +41,7 @@ import cryptography
 from lxml import html, etree
 from cryptography.fernet import Fernet
 from requests.adapters import HTTPAdapter  # import HTTPAdapter module
+import utils
 
 
 class CheckIn(object):
