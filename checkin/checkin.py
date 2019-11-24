@@ -25,7 +25,6 @@ functions:
     * _check_banner_message - changes the color of terminal message depending on banner message contents
     * _get_keychain - gets the location of where to store the creds file
     * _encypt - encrpt user credentials to be stored
-
 """
 # Standard Python modules.
 import os                    # Miscellaneous OS interfaces.
@@ -67,7 +66,7 @@ class CheckIn(object):
         """
         self.email = None  # users dashboard login
         self.token = token  # attendence token
-        self.key = 'dkey'
+        self.key = 'key'
         self.s = requests.Session()  # instantiate the request session
 
     def credentials(self):
@@ -87,12 +86,11 @@ class CheckIn(object):
             pw = getpass('Password: ')
             keyring.set_password('msemail', self.key, self.email)
             keyring.set_password("mspass", self.email, pw)
-            print('\x1b[1;32m' +
-                  "password stored successfully" + '\x1b[0m')
+            print('\x1b[1;32m' + "Password stored successfully." + # green
+                  '\x1b[0m')
         except keyring.errors.PasswordSetError:
-            print('\x1b[1;31m' + "failed to store password" + '\x1b[0m')
-            print("password", keyring.get_password(
-                'credentials', self.email))
+            print('\x1b[1;31m' + "Failed to store password." + # red
+                  '\x1b[0m')
 
     def login(self):
         """Login to MakeSchool dashboard using email and password."""
