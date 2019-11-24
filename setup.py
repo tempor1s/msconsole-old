@@ -4,8 +4,7 @@ description = """
 See `github repo <https://github.com/tempor1s/make-checkin>`_ for information.
 """
 
-VERSION = '1.1.0'
-
+VERSION = '1.2.0'
 
 setup(
     name='Make Checkin',
