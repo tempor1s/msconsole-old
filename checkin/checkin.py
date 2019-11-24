@@ -96,12 +96,11 @@ class CheckIn(object):
 
     def login(self):
         """Login to MakeSchool dashboard using email and password."""
-        login_url = "https://www.makeschool.com/login"  # login url
-        self.email = keyring.get_password(
-            'msemail', self.key)  # get the users credentials
-        pw = keyring.get_password('mspass', self.email)
+        # makeschool login url to post and get from
+        login_url = "https://www.makeschool.com/login"
+        # get the login HTML
+        dashboard = self.s.get(login_url)
 
-        dashboard = self.s.get(login_url)  # get the login HTML
         # check to see if the response is ok
         if dashboard.status_code == 200:
             # parse the HTML returing the dashboard document
@@ -114,7 +113,7 @@ class CheckIn(object):
             # set the form email value
             form['user[email]'] = self.email
             # set the form password value
-            form['user[password]'] = pw
+            form['user[password]'] = keyring.get_password('mspass', self.email)
             # setup post request to login url with new data inserted into form
             response = self.s.post(login_url, data=form)
         else:
@@ -132,19 +131,13 @@ class CheckIn(object):
                 # catastrophic error. bail.
                 print(e)
                 sys.exit(1)
+
         # if the login was successful
         if 'successfully' in response.text:
             # Print that we signed in successfully.
             print('\x1b[1;32m' + 'Signed in successfully.' + '\x1b[0m' + '\n')
             # GraphQL query to get current users name and student email
-            query = """
-            {
-                currentUser {
-                    name
-                    studentEmail
-                }
-            }
-            """
+            query = "{ currentUser {name studentEmail} }"
             # make request to makeschool and drill down to currentUser from data response
             currentUser = graph_query(self.s, query)['data']['currentUser']
             # print the users name and MS email so that they know they logged in successfully
@@ -200,6 +193,6 @@ if __name__ == "__main__":
     except IndexError:
         print('Please add an attendence token after the script. Example: `python3 main.py BRAVE`')
         exit()
-    # Create a new instance of CheckIn with the attendence token
+    # Create a new instance of CheckIn with the attendence token and call run
     checkin = CheckIn(attendence_token)
     checkin.run()
