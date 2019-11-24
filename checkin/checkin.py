@@ -45,7 +45,7 @@ from utils import graph_query
 import keyring
 
 # Local Python modules
-from utils import graph_query, check_banner_message
+from utils import graph_query, check_banner_message, retransmission
 
 
 class CheckIn(object):
@@ -69,35 +69,7 @@ class CheckIn(object):
         self.token = token  # attendence token
         self.key = 'dkey'
         self.s = requests.Session()  # instantiate the request session
-        self.creds_path = self._get_keychain() + 'creds.txt'
         self.checkin()  # call checkin on instantiation
-
-    def requests_retry_session(self, retries=3, backoff_factor=0.3, status_forcelist=(500, 502, 504), session=None):
-        """Performs HTTP/HTTPS GET retransmission request.
-
-        :param retries: URL path for the request. Should begin with a slash.
-            :type: int
-        :param backoff_factor: HTTP GET parameters.
-            :type: float
-        :param status_forcelist: The time of the first request (None if no
-            retries have occurred).
-            :type: tuple(int)
-        :param session: The time of the first request (None if no
-            retries have occurred).
-            :type: Request Session Object
-        """
-        session = self.s
-        retry = Retry(
-            total=retries,  # retry limit
-            read=retries,  # retry limit again
-            connect=retries,  # retry limit andddd again
-            backoff_factor=backoff_factor,  # wait time
-            status_forcelist=status_forcelist,  # status code auto retry list
-        )
-        adapter = HTTPAdapter(max_retries=retry)  # start reconnection
-        session.mount('http://', adapter)
-        session.mount('https://', adapter)
-        return session
 
     def credentials(self):
         """Sets or gets user credentials"""
@@ -153,7 +125,7 @@ class CheckIn(object):
             print('\x1b[1;31m' + 'Retrying to connect to server')
             try:
                 # HTTP retransmission to same urls
-                requests_retry_session().get(login_url)
+                retransmission(session=self.s).get(login_url)
             # if there is a connection error request the user to try a new url
             # the url has changed in some way - we have to update
             except ConnectionError:
@@ -208,99 +180,9 @@ class CheckIn(object):
             # something went wrong so print red message
             print('\x1b[1;31m' +
                   'Something went wrong, please try again :(' + '\x1b[0m')
-
-    # helper functions
-    def _get_keychain(self):
-        """Checks the user into their class!"""
-        macOS = 'darwin'
-        linux = 'linux'
-        windows = None  # we dont support :( sorry
-        os_name = system().lower()
-        if os_name in linux or os_name == linux:
-            # Linux
-            # for now store the users password file in documents
-            password_path = '/Documents'
-            # grab each users home directory
-            home = os.path.expanduser('~')
-            # keychain path
-            keychain = home + password_path
-            # return the keychain
-            return keychain
-        elif os_name in macOS or os_name == macOS:
-            # MAC OS X
-            # set the UNIX password file path
-            password_path = '/Library/Keychains/'
-            # grab each users home directory
-            home = os.path.expanduser('~')
-            # set the keychain path
-            keychain = home + password_path
-            # return the keychain
-            return keychain
-
-    def _gen_key(self):
-        # start by generating a encryption key
-        key = Fernet.generate_key()
-        # write encryption key to current working directory
-        file = open(os.curdir, 'wb')  # wb = write bytes
-        # input bytes into file
-        file.write(key)
-        # close file input stream
-        file.close()
-
-    def _retrieve_key(self, path):
-        # open file in read bytes mode
-        file = open(path, 'rb')
-        # set the key
-        key = file.read()
-        # close the output stream
-        file.close()
-        # print the key
-        print(key)
-        # return the key
-        return key
-
-    def _encrypt(self, path):
-        """Encrptys the credentials files"""
-        # Get the key from the file
-        file = open(path, 'rb')
-        # set key variable
-        key = file.read()
-        # close the output stream
-        file.close()
-        #  Open the credentials file we need to encrypt
-        with open(self.creds_path, 'rb') as f:
-            # output file contents
-            data = f.read()
-        # fernet encryption key
-        fernet = Fernet(key)
-        # encrypt file output stream with generated key
-        encrypted = fernet.encrypt(data)
-        # Write the encrypted file
-        with open(self.creds_path, 'wb') as f:
-            f.write(encrypted)
-            f.close()
-
-    def _decrypt(self, path):
-        # Get the key from the file
-        file = open(path, 'rb')
-        # set key to output stream
-        key = file.read()
-        # close output stream
-        file.close()
-        #  open the credentials file
-        with open(self.creds_path, 'rb') as f:
-            # the stream is the data we need to decrypt with our key
-            data = f.read()
-        # set the fernet key
-        fernet = Fernet(key)
-        # decrypt the output stream
-        encrypted = fernet.decrypt(data)
-        # Open the decrypted file
-        with open(self.creds_path, 'wb') as f:
-            # input decrypted data
-            f.write(encrypted)
-            # close input stream
-            f.close()
+    
+    def run(self):
+        pass
 
 
 if __name__ == "__main__":
@@ -313,4 +195,5 @@ if __name__ == "__main__":
         print('Please add an attendence token after the script. Example: `python3 main.py BRAVE`')
         exit()
     # Create a new instance of CheckIn with the attendence token
-    user = CheckIn(token)
+    checkin = CheckIn(token)
+    checkin.run()
