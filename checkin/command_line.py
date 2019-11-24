@@ -11,6 +11,7 @@ def main():
         print('Please add an attendence token after `checkin`. Example: `checkin BRAVE`')
         exit()
     user = checkin.CheckIn(token)
+    user.run()
 
 if __name__ == '__main__':
     main()
