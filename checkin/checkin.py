@@ -183,6 +183,8 @@ class CheckIn(object):
 
     def run(self):
         """Run mashes all of the functions togther and checks the user into their class."""
+        # get the users creds
+        self.credentials()
         # log the user in
         self.login()
         # check the user in
