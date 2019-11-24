@@ -38,11 +38,10 @@ from platform import system
 import requests
 from lxml import html, etree
 from requests.adapters import HTTPAdapter  # import HTTPAdapter module
-from utils import graph_query
 import keyring
 
 # Local Python modules
-from utils import graph_query, check_banner_message, retransmission
+from checkin.utils import graph_query, check_banner_message, retransmission
 
 
 class CheckIn(object):
