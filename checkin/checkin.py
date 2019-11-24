@@ -9,7 +9,7 @@ It is assumed that the first argument enterd in the CLI
 is a valid class attendence token.
 
 This tool accepts user credentials on first use. Depending on your os
-the credentials are stored in the proper credentials directory and 
+the credentials are stored in the proper credentials directory and
 encrypted with the users native os password encryption algorithm.
 
 This script requires that `requests` and `lxml` be installed within the Python
@@ -42,6 +42,7 @@ from lxml import html, etree
 from cryptography.fernet import Fernet
 from requests.adapters import HTTPAdapter  # import HTTPAdapter module
 from utils import graph_query
+import keyring
 
 # Local Python modules
 from utils import graph_query
@@ -65,7 +66,6 @@ class CheckIn(object):
             :type: string
         """
         self.email = None  # users dashboard login
-        self.password = None  # users dashboard password
         self.token = token  # attendence token
         self.s = requests.Session()  # instantiate the request session
         self.creds_path = self._get_keychain() + 'creds.txt'
@@ -99,31 +99,23 @@ class CheckIn(object):
         return session
 
     def credentials(self):
-        """Performs HTTP/HTTPS GET retransmission request."""
-        if os.path.exists(self.creds_path):
-            # if the the file exists open it in read only mode and set the credentials
-            with open(self.creds_path, 'r') as f:
-                # read email and password from file into a list
-                lines = f.read().split('\n')
-                self.email = lines[0]
-                self.password = lines[1]
-                # close the input stream
-                f.close()
+        """Sets user credentials"""
+        # if the password exits in the keychain already get the password
+        if get_password('credentials', self.email):
+            return get_password('credentials', self.email)
+        # else the password keychain doesn't exist so lets set it
         else:
-            # create a new file
-            with open(self.creds_path, 'a+') as f:
-                # get the email and password from the user
-                email = input(
+            try:
+                self.email = input(
                     'Enter Makeschool login email (we don\'t store your email or password on a server): ')
-                password = getpass('Password: ')
-                # set email and password properties
-                self.email = email
-                self.password = password
-                # write the email and the password to the creds.txt file for later use
-                f.write(f'{email}\n')
-                f.write(f'{password}')
-                # close the input stream
-                f.close()
+                pw = getpass('Password: ')
+                keyring.set_password("credentials", self.email, getpass())
+                print('\x1b[1;32m' +
+                      "password stored successfully" + '\x1b[0m')
+            except keyring.errors.PasswordSetError:
+                print('\x1b[1;31m' + "failed to store password" + '\x1b[0m')
+                print("password", get_password(
+                    'credentials', self.email))
 
     def login(self):
         """Login to MakeSchool dashboard using email and password."""
@@ -142,12 +134,13 @@ class CheckIn(object):
             # set the form email value
             form['user[email]'] = self.email
             # set the form password value
-            form['user[password]'] = self.password
+            form['user[password]'] = keyring.get_password(
+                'credentials', self.email)
             # setup post request to login url with new data inserted into form
             response = self.s.post(login_url, data=form)
         else:
             # otherwise retry connection to server
-            print('Retrying to connect to server')
+            print('\x1b[1;31m' + 'Retrying to connect to server')
             try:
                 # HTTP retransmission to same urls
                 requests_retry_session().get(login_url)
@@ -162,7 +155,7 @@ class CheckIn(object):
                 sys.exit(1)
         # if the login was successful
         if 'successfully' in response.text:
-            # Print that we signed in successfully. 
+            # Print that we signed in successfully.
             print('\x1b[1;32m' + 'Signed in successfully.' + '\x1b[0m' + '\n')
             # GraphQL query to get current users name and student email
             query = """
@@ -212,7 +205,7 @@ class CheckIn(object):
     def _check_banner_message(self, banner_message):
         """Changes the color of the terminal message depending on what the banner message is.
 
-        :param banner_message: 
+        :param banner_message:
             :type: str
         """
         message = None
@@ -235,98 +228,6 @@ class CheckIn(object):
             message = '\033[93m' + banner_message + '\x1b[0m' + '\n'  # yellow
 
         return message
-
-    def _get_keychain(self):
-        """Checks the user into their class!"""
-        macOS = 'darwin'
-        linux = 'linux'
-        windows = None  # we dont support :( sorry
-        os_name = system().lower()
-        if os_name in linux or os_name == linux:
-            # Linux
-            # for now store the users password file in documents
-            password_path = '/Documents'
-            # grab each users home directory
-            home = os.path.expanduser('~')
-            # keychain path
-            keychain = home + password_path
-            # return the keychain
-            return keychain
-        elif os_name in macOS or os_name == macOS:
-            # MAC OS X
-            # set the UNIX password file path
-            password_path = '/Library/Keychains/'
-            # grab each users home directory
-            home = os.path.expanduser('~')
-            # set the keychain path
-            keychain = home + password_path
-            # return the keychain
-            return keychain
-
-    def _gen_key(self):
-        # start by generating a encryption key
-        key = Fernet.generate_key()
-        # write encryption key to current working directory
-        file = open(os.curdir, 'wb')  # wb = write bytes
-        # input bytes into file
-        file.write(key)
-        # close file input stream
-        file.close()
-
-    def _retrieve_key(self, path):
-        # open file in read bytes mode
-        file = open(path, 'rb')
-        # set the key
-        key = file.read()
-        # close the output stream
-        file.close()
-        # print the key
-        print(key)
-        # return the key
-        return key
-
-    def _encrypt(self, path):
-        """Encrptys the credentials files"""
-        # Get the key from the file
-        file = open(path, 'rb')
-        # set key variable
-        key = file.read()
-        # close the output stream
-        file.close()
-        #  Open the credentials file we need to encrypt
-        with open(self.creds_path, 'rb') as f:
-            # output file contents
-            data = f.read()
-        # fernet encryption key
-        fernet = Fernet(key)
-        # encrypt file output stream with generated key
-        encrypted = fernet.encrypt(data)
-        # Write the encrypted file
-        with open(self.creds_path, 'wb') as f:
-            f.write(encrypted)
-            f.close()
-
-    def _decrypt(self, path):
-        # Get the key from the file
-        file = open(path, 'rb')
-        # set key to output stream
-        key = file.read()
-        # close output stream
-        file.close()
-        #  open the credentials file
-        with open(self.creds_path, 'rb') as f:
-            # the stream is the data we need to decrypt with our key
-            data = f.read()
-        # set the fernet key
-        fernet = Fernet(key)
-        # decrypt the output stream
-        encrypted = fernet.decrypt(data)
-        # Open the decrypted file
-        with open(self.creds_path, 'wb') as f:
-            # input decrypted data
-            f.write(encrypted)
-            # close input stream
-            f.close()
 
 
 if __name__ == "__main__":
