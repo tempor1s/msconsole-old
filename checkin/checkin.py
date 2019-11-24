@@ -101,20 +101,20 @@ class CheckIn(object):
     def credentials(self):
         """Sets user credentials"""
         # if the password exits in the keychain already get the password
-        if get_password('credentials', self.email):
-            return get_password('credentials', self.email)
+        if keyring.get_password('credentials', self.email):
+            return keyring.get_password('credentials', self.email)
         # else the password keychain doesn't exist so lets set it
         else:
             try:
                 self.email = input(
                     'Enter Makeschool login email (we don\'t store your email or password on a server): ')
                 pw = getpass('Password: ')
-                keyring.set_password("credentials", self.email, getpass())
+                keyring.set_password("credentials", self.email, pw)
                 print('\x1b[1;32m' +
                       "password stored successfully" + '\x1b[0m')
             except keyring.errors.PasswordSetError:
                 print('\x1b[1;31m' + "failed to store password" + '\x1b[0m')
-                print("password", get_password(
+                print("password", keyring.get_password(
                     'credentials', self.email))
 
     def login(self):
