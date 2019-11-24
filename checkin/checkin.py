@@ -41,7 +41,10 @@ import cryptography
 from lxml import html, etree
 from cryptography.fernet import Fernet
 from requests.adapters import HTTPAdapter  # import HTTPAdapter module
-import utils
+from utils import graph_query
+
+# Local Python modules
+from utils import graph_query
 
 
 class CheckIn(object):
@@ -159,19 +162,22 @@ class CheckIn(object):
                 sys.exit(1)
         # if the login was successful
         if 'successfully' in response.text:
-            # Get HTML tree representation from text
-            html_tree = html.fromstring(response.text)
-            # Get <HEAD> element from HTML tree
-            root = html_tree.xpath('/html/head')
-            # Get the text content in the <HEAD> element
-            content = root[0].text_content()
-            # Regex pattern for getting email
-            pattern = r'[\w\.-]+@[\w\.-]+'
-            # Get the email from the <HEAD> content using the regex pattern
-            email = re.findall(pattern, content)
-            # Send the user a message letting them know they singed in successfully, and print out their Make School email
-            print(
-                '\x1b[1;32m' + 'Signed in successfully.' + '\x1b[0m' + '\n' + f'Make School Email: {email[0]}' + '\n')
+            # Print that we signed in successfully. 
+            print('\x1b[1;32m' + 'Signed in successfully.' + '\x1b[0m' + '\n')
+            # GraphQL query to get user's name and student email
+            query = """
+            {
+                currentUser {
+                    name
+                    studentEmail
+                }
+            }
+            """
+            # make request to makeschool and drill down to currentUser from data response
+            currentUser = graph_query(self.s, query)['data']['currentUser']
+            # print the users name and MS email so that they know they logged in successfully
+            print('Name: {}'.format(currentUser['name']))
+            print('MS Email: {}\n'.format(currentUser['studentEmail']))
         else:
             # the crednetials are probably wrong
             print('The crendetials entered are incorrect.\n')
