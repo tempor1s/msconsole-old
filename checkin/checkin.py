@@ -162,7 +162,7 @@ class CheckIn(object):
                 sys.exit(1)
         # if the login was successful
         if 'successfully' in response.text:
-            # Print that we signed in successfully. 
+            # Print that we signed in successfully.
             print('\x1b[1;32m' + 'Signed in successfully.' + '\x1b[0m' + '\n')
             # GraphQL query to get current users name and student email
             query = """
@@ -313,4 +313,3 @@ if __name__ == "__main__":
         exit()
     # Create a new instance of CheckIn with the attendence token
     user = CheckIn(token)
-    # Checkin
