@@ -67,6 +67,7 @@ class CheckIn(object):
         """
         self.email = None  # users dashboard login
         self.token = token  # attendence token
+        self.key = 'test'
         self.s = requests.Session()  # instantiate the request session
         self.creds_path = self._get_keychain() + 'creds.txt'
         self.checkin()  # call checkin on instantiation
@@ -101,7 +102,8 @@ class CheckIn(object):
     def credentials(self):
         """Sets user credentials"""
         # if the password exits in the keychain already get the password
-        if keyring.get_password('credentials', self.email):
+        if keyring.get_password('credentials', self.key):
+            self.email = keyring.get_password('credentials', self.key)
             return keyring.get_password('credentials', self.email)
         # else the password keychain doesn't exist so lets set it
         else:
@@ -109,7 +111,10 @@ class CheckIn(object):
                 self.email = input(
                     'Enter Makeschool login email (we don\'t store your email or password on a server): ')
                 pw = getpass('Password: ')
+                keyring.set_password('credentials', self.key, self.email)
+                #print(keyring.get_password('credentials', self.key))
                 keyring.set_password("credentials", self.email, pw)
+                #print(keyring.get_password('credentials', self.email))
                 print('\x1b[1;32m' +
                       "password stored successfully" + '\x1b[0m')
             except keyring.errors.PasswordSetError:
@@ -120,7 +125,11 @@ class CheckIn(object):
     def login(self):
         """Login to MakeSchool dashboard using email and password."""
         login_url = "https://www.makeschool.com/login"  # login url
-        self.credentials()  # get the users credentials
+        self.email = keyring.get_password(
+            'credentials', self.key)  # get the users credentials
+        print(self.email)
+        pw = keyring.get_password('credentials', self.email)
+        print(pw)
         dashboard = self.s.get(login_url)  # get the login HTML
         # check to see if the response is ok
         if dashboard.status_code == 200:
@@ -134,8 +143,7 @@ class CheckIn(object):
             # set the form email value
             form['user[email]'] = self.email
             # set the form password value
-            form['user[password]'] = keyring.get_password(
-                'credentials', self.email)
+            form['user[password]'] = pw
             # setup post request to login url with new data inserted into form
             response = self.s.post(login_url, data=form)
         else:
@@ -172,11 +180,13 @@ class CheckIn(object):
             print('Name: {}'.format(currentUser['name']))
             print('MS Email: {}\n'.format(currentUser['studentEmail']))
         else:
-            # the credentials are probably wrong
-            print('The credentials entered are incorrect.\n')
-            # delete the creds file to start over
-            os.remove(self.creds_path)
-            # recall the login function
+            # # the credentials are probably wrong
+            # print('The credentials entered are incorrect.\n')
+            # self.email = keyring.get_password('credentials', self.key)
+            # keyring.delete_password('credentials', self.email)
+            # keyring.delete_password('credentials', self.key)
+            # # recall the credentials function
+            self.credentials()
             self.login()
 
     def checkin(self):
