@@ -10,6 +10,7 @@ autopep8 = "*"
 requests = "*"
 lxml = "*"
 python-dotenv = "*"
+cryptography = "*"
 
 [requires]
 python_version = "3.7"
