@@ -6,7 +6,7 @@ This Module allows the user checkin to their class from the
 command line.
 
 It is assumed that the first argument enterd in the CLI
-is a valid class attendence token.
+is a string with an attendence token.
 
 This tool accepts user credentials on first use. Depending on your os
 the credentials are stored in the proper credentials directory and
@@ -83,10 +83,10 @@ class CheckIn(object):
             pw = getpass('Password: ')
             keyring.set_password('msemail', self.key, self.email)
             keyring.set_password("mspass", self.email, pw)
-            print('\x1b[1;32m' + "Password stored successfully." + # green
+            print('\x1b[1;32m' + "Password stored successfully." +  # green
                   '\x1b[0m')
         except keyring.errors.PasswordSetError:
-            print('\x1b[1;31m' + "Failed to store password." + # red
+            print('\x1b[1;31m' + "Failed to store password." +  # red
                   '\x1b[0m')
 
     def login(self):
