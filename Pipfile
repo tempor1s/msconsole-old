@@ -9,8 +9,7 @@ autopep8 = "*"
 [packages]
 requests = "*"
 lxml = "*"
-keyring = "*"
-entrypoints = "*"
+keyring = "==11.0.0"
 
 [requires]
 python_version = "3.7"

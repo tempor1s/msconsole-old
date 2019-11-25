@@ -41,7 +41,7 @@ from requests.adapters import HTTPAdapter  # import HTTPAdapter module
 import keyring
 
 # Local Python modules
-from checkin.utils import graph_query, check_banner_message, retransmission
+from utils import graph_query, check_banner_message, retransmission
 
 
 class CheckIn(object):
