@@ -10,8 +10,8 @@ def main():
     except IndexError:
         print('Please add an attendence token after `checkin`. Example: `python3 main.py BRAVE`')
         exit()
-    user = CheckIn(token)
-    user.run()
+    checkin = CheckIn(token)
+    checkin.run()
 
 if __name__ == '__main__':
     main()
