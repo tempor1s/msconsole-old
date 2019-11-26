@@ -67,6 +67,7 @@ python3 main.py
 -   [Requests](https://2.python-requests.org/en/master/) - HTTP library
 -   [lxml](https://lxml.de/) - XML and HTML parsing library
 -   [keying](https://pypi.org/project/keyring/) - Storing and accessing passwords library
+-   [clint](https://pypi.org/project/clint/) - Suite of tools for developing CLI applications.
 
 # Contribution Guidlines
 
@@ -103,7 +104,7 @@ We use GitHub issues to track public bugs. Report a bug by [opening a new issue]
 
 ## Write bug reports with detail, background, and sample code
 
-[This is an example](http://stackoverflow.com/q/12488905/180626) of a bug report I foun, and I think it's not a bad model. Here's [another example from Craig Hockenberry](http://www.openradar.me/11905408), an app developer whom I greatly respect.
+[This is an example](http://stackoverflow.com/q/12488905/180626) of a bug report I found, and I think it's not a bad model. Here's [another example from Craig Hockenberry](http://www.openradar.me/11905408), an app developer whom I greatly respect.
 
 **Great Bug Reports** tend to have:
 
@@ -121,7 +122,7 @@ People _love_ thorough bug reports. I'm not even kidding.
 
 I'm again borrowing these from [Facebook's Guidelines](https://github.com/facebook/draft-js/blob/a9316a723f9e918afde44dea68b5f9f39b7d9b00/CONTRIBUTING.md)
 
--   2 spaces for indentation rather than tabs (or tabs that convert to spaces)
+-   4 spaces for indentation rather than tabs (or tabs that convert to spaces)
 -   You can try running `pipenv install autopep8 --dev` for style unification
 
 ## License
