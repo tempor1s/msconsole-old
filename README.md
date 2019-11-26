@@ -1,79 +1,68 @@
-# Make Checkin
+# Contribution Guidlines
 
-<img src="media/make_logo_new.png" title="Makeschool Icon"></a>
+We love your input! We want to make contributing to this project as easy and transparent as possible, whether it's:
 
-## Description
+-   Reporting a bug
+-   Discussing the current state of the code
+-   Submitting a fix
+-   Proposing new features
+-   Becoming a maintainer
 
-Are you lazy and don't want to go to your dashboard and plug in the acccess token to mark your attendance as present, well try Make Checkin.
+## We Develop with Github
 
-![Success](/media/success.gif)
+We use github to host code, to track issues and feature requests, as well as accept pull requests.
 
-### Prerequisites
+## We Use [Github Flow](https://guides.github.com/introduction/flow/index.html), So All Code Changes Happen Through Pull Requests
 
-What things you need to install the software and how to install them
+Pull requests are the best way to propose changes to the codebase (we use [Github Flow](https://guides.github.com/introduction/flow/index.html)). We actively welcome your pull requests:
 
-```bash
-- Homebrew
-or
-- Pipenv
-- Python 3.4+
-```
+1. Clone the repo and create your branch from `master`.
+2. If you've added code that should be tested, add tests.
+3. If you've changed APIs, update the documentation.
+4. Ensure the test suite passes.
+5. Make sure your code lints.
+6. Issue that pull request!
 
-## Getting Started
+## Any contributions you make will be under the MIT Software License
 
-### Homebrew
+In short, when you submit code changes, your submissions are understood to be under the same [MIT License](http://choosealicense.com/licenses/mit/) that covers the project. Feel free to contact the maintainers if that's a concern.
 
-```bash
-# Tap the repo
-brew tap tempor1s/make-checkin https://github.com/tempor1s/make-checkin
-# Install the CLI tool
-brew install makecheckin
-# Checkin to your class!
-checkin <CODE>
-# example
-checkin BRAVE
-```
+## Report bugs using Github's [issues](https://github.com/briandk/transcriptase-atom/issues)
 
-After entering the command you should see a message from the MakeSchool website in the CLI that notifies you what was returned.
+We use GitHub issues to track public bugs. Report a bug by [opening a new issue](); it's that easy!
 
-![Checkin](/media/checkin.gif)
+## Write bug reports with detail, background, and sample code
 
-### Non-Brew Users
+[This is an example](http://stackoverflow.com/q/12488905/180626) of a bug report I foun, and I think it's not a bad model. Here's [another example from Craig Hockenberry](http://www.openradar.me/11905408), an app developer whom I greatly respect.
 
-```bash
-# install pipenv
-sudo pip install pipenv
-# clone repository
-git clone https://github.com/tempor1s/make-checkin
-# active the virtual enviornment
-pipenv shell
-# install modules into virtual environment
-pipenv install
-# change your directory to `checkin`
-cd checkin
-# start script
-python3 checkin.py <CODE>
-# example
-python3 checkin.py BRAVE
-```
+**Great Bug Reports** tend to have:
 
-After entering the command you should see a message from the MakeSchool website in the CLI that notifies you what was returned.
+-   A quick summary and/or background
+-   Steps to reproduce
+    -   Be specific!
+    -   Give sample code if you can. [My stackoverflow question](http://stackoverflow.com/q/12488905/180626) includes sample code that _anyone_ with a base R setup can run to reproduce what I was seeing
+-   What you expected would happen
+-   What actually happens
+-   Notes (possibly including why you think this might be happening, or stuff you tried that didn't work)
 
-![Example](/media/example.gif)
+People _love_ thorough bug reports. I'm not even kidding.
 
-## How to contribute
+## Use a Consistent Coding Style
 
-Fork the current repository and then make the changes that you'd like to said fork. Upon adding features, fixing bugs,
-or whatever modifications you've made to the project, issue a pull request to this repository containing the changes that you've made!
+I'm again borrowing these from [Facebook's Guidelines](https://github.com/facebook/draft-js/blob/a9316a723f9e918afde44dea68b5f9f39b7d9b00/CONTRIBUTING.md)
 
-## Built With
+-   2 spaces for indentation rather than tabs (or tabs that convert to spaces)
+-   You can try running `pipenv install autopep8 --dev` for style unification
 
--   [Requests](https://2.python-requests.org/en/master/) - HTTP library
--   [lxml](https://lxml.de/) - XML and HTML parsing library
+## License
+
+By contributing, you agree that your contributions will be licensed under its MIT License.
+
+## References
+
+This document was adapted from the open-source contribution guidelines for [Facebook's Draft](https://github.com/facebook/draft-js/blob/a9316a723f9e918afde44dea68b5f9f39b7d9b00/CONTRIBUTING.md)
 
 ## Authors
 
--   **Ben Lafferty** - _Initial idea / CLI implementation_ - [tempor1s](https://github.com/tempor1s)
--   **Gary Frederick** - _Initial work_ / _Server Calls_ - [imthaghost](https://github.com/imthaghost)
-
-See also the list of [contributors](https://github.com/tempor1s/make-checkin/contributors) who participated in this project.
+-   **Ben Lafferty** - _Contributor_ - [tempor1s](https://github.com/tempor1s)
+-   **Gary Frederick** - _Contributor_ - [imthaghost](https://github.com/imthaghost)
