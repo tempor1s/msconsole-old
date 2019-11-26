@@ -47,22 +47,16 @@ cd msconsole
 python3 main.py
 ```
 
-## ms console
-
-```bash
-# p3 console.py
-```
-
 ## To Do
 
--   [] Restructure to fit modular style
+-   [x] Restructure to fit modular style
 -   [] Better file and script organization
 -   [] Complete calendar module
 -   [] Complete console module
 -   [] Complete library module
 -   [] Create Makschool Ascii Banner
--   [] Restructure checkin module into module folder
--   [] Refactor utils into a folder with different scripts
+-   [x] Restructure checkin module into module folder
+-   [x] Refactor utils into a folder with different scripts
 -   [] Refactor checkin credentials so that they are used application-wide
 
 ## Built With

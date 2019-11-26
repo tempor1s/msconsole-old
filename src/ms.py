@@ -7,7 +7,7 @@ import argparse
 # external modules
 
 # local modules
-from src.checkin import CheckIn
+from src.modules.checkin import CheckIn # checkin module
 
 # TODO: convert options to arguments using argparse - DRY
 """Example Arguments
