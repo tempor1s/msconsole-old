@@ -75,5 +75,6 @@ or whatever modifications you've made to the project, issue a pull request to th
 
 -   **Ben Lafferty** - _Initial idea / CLI implementation_ - [tempor1s](https://github.com/tempor1s)
 -   **Gary Frederick** - _Initial work_ / _Server Calls_ - [imthaghost](https://github.com/imthaghost)
+-   **Tasfia Addrita** - _Calendar_ - [TasfiaAddrita](https://github.com/TasfiaAddrita)
 
 See also the list of [contributors](https://github.com/tempor1s/make-checkin/contributors) who participated in this project.
