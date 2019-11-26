@@ -138,10 +138,6 @@ class CheckIn(object):
             # print the users name and MS email so that they know they logged in successfully
             print('Name: {}'.format(currentUser['name']))
             print('MS Email: {}\n'.format(currentUser['studentEmail']))
-
-            query = "{ currentUser {name} }"
-            currentUserDashboard = graph_query(self.s, query, url='https://www.makeschool.com/dashboard')['data']['currentUser']
-            print(currentUserDashboard)
         else:
             # the credentials are probably wrong
             print('The credentials entered are incorrect.\n')
