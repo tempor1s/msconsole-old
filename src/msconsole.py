@@ -9,7 +9,7 @@ import argparse
 # local modules
 from src.checkin import CheckIn
 
-# todo: convert options to arguments using argparse - DRY
+# TODO: convert options to arguments using argparse - DRY
 """Example Arguments
 
     addArgumentCall('-t', '--title', action='store_true',
@@ -27,10 +27,11 @@ from src.checkin import CheckIn
                         help='Update getsploit.db database. Will be downloaded in the script path.')
 """
 
-# todo: rename __file__ to fit the command ms (ms.py) - so there aren't any name clashes
+# TODO: rename __file__ to fit the command ms (ms.py) - so there aren't any name clashes
 
 
 class MSConsole(object):
+    # TODO: Documentation for this class
     def __init__(self, argv):
         # Get all arguments except for the function name
         self.args = argv[1:]
@@ -40,11 +41,12 @@ class MSConsole(object):
             # The command that is being passed to msconsole
             command = self.args[0]
 
-            # check the command
+            # check the command and run a command respectivly
             if command.lower() == 'checkin':
                 self._checkin_command()
             elif command.lower() == 'help':
                 self._help_command()
+            # if their command doesnt any of our current commands.
             else:
                 print('Please enter a valid command.')
             # If no command was provided then print out a list of all the commands
@@ -63,7 +65,7 @@ class MSConsole(object):
             print(
                 'Please add an attendence token after `checkin`. Example: `ms checkin BRAVE`')
             exit()
-        # check the user into their class
+        # check the user into their class by creating an instance of CheckIn and running it.
         checkin = CheckIn(token)
         checkin.run()
 
@@ -72,23 +74,24 @@ class MSConsole(object):
         try:
             command = self.args[1]
 
+            # check the command against commands we already have
             if command.lower() == 'checkin':
-                # TODO: Implement checkin help command
+                # TODO: Implement descriptive help checkin command with examples and syntax
                 print(
                     'Please add an attendence token after `checkin`. Example: `ms checkin BRAVE`')
+                pass
+            elif command.lower() == 'help':
+                # TODO: Implement descriptive help for help command
                 pass
             else:
                 print('Please enter a valid command to get help from.')
         except IndexError:
-            # TODO: Implement better help command
+            # TODO: Implement more descriptive help command
             print('Please add a command after `help`. Example: `ms help checkin`')
             pass
 
-# For homebrew
-
-
 def main():
-    # pass command line args into MSConsole class
+    """Homebrew entry point."""
+    # pass command line args into MSConsole class and run it
     console = MSConsole(argv)
-    # run the command
     console.run()

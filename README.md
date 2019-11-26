@@ -61,6 +61,8 @@ python3 main.py
 -   [] Complete console module
 -   [] Complete library module
 -   [] Create Makschool Ascii Banner
+-   [] Restructure checkin module into module folder
+-   [] Refactor utils into a folder with different scripts
 
 ## Built With
 

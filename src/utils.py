@@ -1,6 +1,6 @@
 
 
-# todo: i say we break this into a folder with different scripts in the folder so they arent all jumbled in one file
+# TODO: Break into utils folder with seperate scripts for every command
 
 def graph_query(session, query, url='https://www.makeschool.com/graphql'):
     """Query MakeSchool GraphQL for data.
