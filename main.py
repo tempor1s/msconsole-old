@@ -1,6 +1,8 @@
 # For running msconsole through python locally. Mostly for test purposes.
-from src.msconsole import main
+from src.msconsole import MSConsole
+from sys import argv
 
 if __name__ == '__main__':
-    # Run msconsole main script
-    main()
+    # Create an instance of MSConsole and run it
+    console = MSConsole(argv)
+    console.run()
