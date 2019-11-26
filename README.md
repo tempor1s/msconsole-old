@@ -63,6 +63,7 @@ python3 main.py
 -   [] Create Makschool Ascii Banner
 -   [] Restructure checkin module into module folder
 -   [] Refactor utils into a folder with different scripts
+-   [] Refactor checkin credentials so that they are used application-wide
 
 ## Built With
 

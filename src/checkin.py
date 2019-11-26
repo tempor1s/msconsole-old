@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 
+# TODO: Since this command and others are all going to use credentials, create a system to be able to store them application wide
 """checkin.py
 
 This Module allows the user checkin to their class from the
 command line.
 
-It is assumed that the first argument enterd in the CLI
-is a string with an attendence token.
+It is assumed that the first argument given to this command is an
+attendence token.
 
 This tool accepts user credentials on first use. Depending on your os
 the credentials are stored in the proper credentials directory and
@@ -18,13 +19,12 @@ environment you are running this script in.
 If imported into another file the module contains the following
 functions:
 
-    * requests_retry_session - returns the column headers of the file
     * credentials - the main function of the script
-    * login - given a credentials file logs a user in thorugh url (https://makeschool.com)
+    * _create_creds - Stores password in keychain
+    * login - given credentials it logs a user in through url (https://makeschool.com/login)
     * checkin - checks a user into their class
-    * _check_banner_message - changes the color of terminal message depending on banner message contents
-    * _get_keychain - gets the location of where to store the creds file
-    * _encypt - encrpt user credentials to be stored
+    * _get_banner_message - gets the makeschool banner message from html
+    * run - runs everything together and allows a user to check into their class
 """
 # Standard Python modules.
 import os                    # Miscellaneous OS interfaces.
