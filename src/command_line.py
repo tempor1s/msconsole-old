@@ -1,4 +1,4 @@
-from src import checkin
+from src.checkin import CheckIn
 
 def main():
     import sys
