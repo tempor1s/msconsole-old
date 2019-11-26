@@ -1,10 +1,10 @@
-# Make Checkin
+# MS Console
 
 <img src="media/make_logo_new.png" title="Makeschool Icon"></a>
 
 ## Description
 
-Are you lazy and don't want to go to your dashboard and plug in the acccess token to mark your attendance as present, well try Make Checkin.
+A suite of tools that makes your MakeSchool life easier!
 
 ![Success](/media/success.gif)
 
@@ -24,17 +24,17 @@ or
 ### Homebrew
 
 ```bash
-# Tap the repo
-brew tap tempor1s/make-checkin https://github.com/tempor1s/make-checkin
-# Install the CLI tool
-brew install makecheckin
-# Checkin to your class!
-checkin <CODE>
-# example
-checkin BRAVE
+# tap the repo
+brew tap tempor1s/msconsole https://github.com/tempor1s/msconsole
+# install the CLI tool
+brew install msconsole
+# get a list of all the commands
+ms
+# checkin command example
+ms checkin BRAVE
 ```
 
-After entering the command you should see a message from the MakeSchool website in the CLI that notifies you what was returned.
+After running the checkin command and you sign in you should see a message from the MakeSchool website in the CLI that notifies you what was returned.
 
 ![Checkin](/media/checkin.gif)
 
@@ -44,20 +44,20 @@ After entering the command you should see a message from the MakeSchool website 
 # install pipenv
 sudo pip install pipenv
 # clone repository
-git clone https://github.com/tempor1s/make-checkin
+git clone https://github.com/tempor1s/msconsole
 # active the virtual enviornment
 pipenv shell
 # install modules into virtual environment
 pipenv install
-# change your directory to `checkin`
-cd checkin
-# start script
-python3 checkin.py <CODE>
-# example
-python3 checkin.py BRAVE
+# change your directory to `msconsole`
+cd msconsole
+# test the script - should return a list of all available commands
+python3 main.py
+# example - this should check you into your MakeSchool class
+python3 main.py checkin <CODE>
 ```
 
-After entering the command you should see a message from the MakeSchool website in the CLI that notifies you what was returned.
+After running the checkin command and you sign in you should see a message from the MakeSchool website in the CLI that notifies you what was returned.
 
 ![Example](/media/example.gif)
 
@@ -70,6 +70,7 @@ or whatever modifications you've made to the project, issue a pull request to th
 
 -   [Requests](https://2.python-requests.org/en/master/) - HTTP library
 -   [lxml](https://lxml.de/) - XML and HTML parsing library
+-   [keying](https://pypi.org/project/keyring/) - For storing credentials in Keychain
 
 ## Authors
 
@@ -77,4 +78,4 @@ or whatever modifications you've made to the project, issue a pull request to th
 -   **Gary Frederick** - _Initial work_ / _Server Calls_ - [imthaghost](https://github.com/imthaghost)
 -   **Tasfia Addrita** - _Calendar CLI implementation_ - [TasfiaAddrita](https://github.com/TasfiaAddrita)
 
-See also the list of [contributors](https://github.com/tempor1s/make-checkin/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/tempor1s/msconsole/contributors) who participated in this project.

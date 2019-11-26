@@ -1,7 +1,8 @@
 from src.checkin import CheckIn
 from sys import argv
 
-
+# Main function that packages everything together
+# TODO: Convert all of these functions into a class with a run command.
 def main():
     # Get all args excluding script name
     args = argv[1:]

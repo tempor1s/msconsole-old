@@ -1,9 +1,9 @@
-class Makecheckin < Formula
+class Msconsole < Formula
   include Language::Python::Virtualenv
-  desc "A basic CLI application for checking into your Make School classes."
+  desc "Suite of tools that makes your MakeSchool life easier!"
   depends_on "python"
-  url "https://github.com/tempor1s/make-checkin/archive/1.2.9.tar.gz"
-  version "1.2.9"
+  url "https://github.com/tempor1s/msconsole/archive/2.0.0.tar.gz"
+  version "2.0.0"
 
   resource "certifi" do
     url "https://files.pythonhosted.org/packages/62/85/7585750fd65599e88df0fed59c74f5075d4ea2fe611deceb95dd1c2fb25b/certifi-2019.9.11.tar.gz"
