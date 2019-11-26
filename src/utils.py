@@ -1,3 +1,7 @@
+
+
+# todo: i say we break this into a folder with different scripts in the folder so they arent all jumbled in one file
+
 def graph_query(session, query, url='https://www.makeschool.com/graphql'):
     """Query MakeSchool GraphQL for data.
 
@@ -59,6 +63,7 @@ def check_banner_message(banner_message):
         message = '\033[93m' + banner_message + '\x1b[0m' + '\n'  # yellow
 
     return message
+
 
 def retransmission(self, retries=3, backoff_factor=0.3, status_forcelist=(500, 502, 504), session=None):
     """Performs HTTP/HTTPS GET retransmission request.
