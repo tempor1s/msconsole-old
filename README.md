@@ -129,7 +129,7 @@ By contributing, you agree that your contributions will be licensed under its MI
 ## Authors
 
 -   **Ben Lafferty** - _Initial idea / CLI implementation_ - [tempor1s](https://github.com/tempor1s)
--   **Gary Frederick** - _Initial work_ / _Server Calls_ - [imthaghost](https://github.com/imthaghost)
+-   **Gary Frederick** - _Initial work / Server Calls / console & brute implementation_ - [imthaghost](https://github.com/imthaghost)
 -   **Tasfia Addrita** - _Calendar CLI implementation_ - [TasfiaAddrita](https://github.com/TasfiaAddrita)
 
 See also the list of [contributors](https://github.com/tempor1s/msconsole/contributors) who participated in this project.
