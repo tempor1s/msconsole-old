@@ -1,4 +1,4 @@
-def graph_query(session, query):
+def graph_query(session, query, url='https://www.makeschool.com/graphql'):
     """Query MakeSchool GraphQL for data.
 
     :param session: Requests session.
@@ -21,7 +21,7 @@ def graph_query(session, query):
         "Content-Type": 'application/json'}  # set headers to declare json type
 
     # post to makeschool graphql endpoint with query and headers
-    r = session.post(f'https://www.makeschool.com/graphql',
+    r = session.post(url,
                      json={'query': query}, headers=headers)
 
     # check if request was successful

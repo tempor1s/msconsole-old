@@ -41,7 +41,7 @@ from requests.adapters import HTTPAdapter  # import HTTPAdapter module
 import keyring
 
 # Local Python modules
-from checkin.utils import graph_query, check_banner_message, retransmission
+from src.utils import graph_query, check_banner_message, retransmission
 
 
 class CheckIn(object):
@@ -51,7 +51,7 @@ class CheckIn(object):
         """ The constructor for the CheckIn class
 
         :sparam token: MakeSchool attendance token
-            :type: string
+            :type: string 
         :attribute email:
             :type: string
         :attribute password:
@@ -138,6 +138,10 @@ class CheckIn(object):
             # print the users name and MS email so that they know they logged in successfully
             print('Name: {}'.format(currentUser['name']))
             print('MS Email: {}\n'.format(currentUser['studentEmail']))
+
+            query = "{ currentUser {name} }"
+            currentUserDashboard = graph_query(self.s, query, url='https://www.makeschool.com/dashboard')['data']['currentUser']
+            print(currentUserDashboard)
         else:
             # the credentials are probably wrong
             print('The credentials entered are incorrect.\n')

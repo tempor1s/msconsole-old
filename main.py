@@ -1,4 +1,4 @@
-from checkin import checkin
+from src.checkin import CheckIn
 
 def main():
     import sys
@@ -10,7 +10,7 @@ def main():
     except IndexError:
         print('Please add an attendence token after `checkin`. Example: `checkin BRAVE`')
         exit()
-    user = checkin.CheckIn(token)
+    user = CheckIn(token)
     user.run()
 
 if __name__ == '__main__':
