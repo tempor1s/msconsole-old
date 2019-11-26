@@ -50,14 +50,14 @@ python3 main.py
 ## To Do
 
 -   [x] Restructure to fit modular style
--   [] Better file and script organization
--   [] Complete calendar module
--   [] Complete console module
--   [] Complete library module
--   [] Create Makschool Ascii Banner
+-   [ ] Better file and script organization
+-   [ ] Complete calendar module
+-   [ ] Complete console module
+-   [ ] Complete library module
+-   [ ] Create Makschool Ascii Banner
 -   [x] Restructure checkin module into module folder
 -   [x] Refactor utils into a folder with different scripts
--   [] Refactor checkin credentials so that they are used application-wide
+-   [ ] Refactor checkin credentials so that they are used application-wide
 
 ## Built With
 
