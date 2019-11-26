@@ -13,7 +13,7 @@ setup(
     author_email='benlaugherty@gmail.com',
     packages=find_packages(),
     entry_points={
-        'console_scripts': ['ms=src.msconsole:main']
+        'console_scripts': ['ms=src.ms:main']
     },
     description="Suite of tools that makes your MakeSchool life easier!"
 )

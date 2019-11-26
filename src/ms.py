@@ -1,4 +1,4 @@
-"""msconsole is a module wrapper for the toolkit suite"""
+"""ms is a module wrapper for the toolkit suite"""
 
 # built in modules
 from sys import argv
