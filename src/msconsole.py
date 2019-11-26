@@ -1,5 +1,33 @@
-from src.checkin import CheckIn
+"""msconsole is a module wrapper for the toolkit suite"""
+
+# built in modules
 from sys import argv
+import argparse
+
+# external modules
+
+# local modules
+from src.checkin import CheckIn
+
+# todo: convert options to arguments using argparse - DRY
+"""Example Arguments
+
+    addArgumentCall('-t', '--title', action='store_true',
+                        help="Search JUST the exploit title (Default is description and source code).")
+    addArgumentCall('-j', '--json', action='store_true',
+                        help='Show result in JSON format.')
+    addArgumentCall('-m', '--mirror', action='store_true',
+                        help='Mirror (aka copies) search result exploit files to the subdirectory with your search query name.')
+    addArgumentCall('-c', '--count', nargs=1, type=int, default=10,
+                        help='Search limit. Default 10.')
+    if LOCAL_SEARCH_AVAILABLE:
+        addArgumentCall('-l', '--local', action='store_true',
+                        help='Perform search in the local database instead of searching online.')
+        addArgumentCall('-u', '--update', action='store_true',
+                        help='Update getsploit.db database. Will be downloaded in the script path.')
+"""
+
+# todo: rename __file__ to fit the command ms (ms.py) - so there aren't any name clashes
 
 
 class MSConsole(object):
@@ -57,6 +85,8 @@ class MSConsole(object):
             pass
 
 # For homebrew
+
+
 def main():
     # pass command line args into MSConsole class
     console = MSConsole(argv)
