@@ -49,7 +49,7 @@ git clone https://github.com/tempor1s/msconsole
 pipenv shell
 # install modules into virtual environment
 pipenv install
-# change your directory to `checkin`
+# change your directory to `msconsole`
 cd msconsole
 # test the script - should return a list of all available commands
 python3 main.py
