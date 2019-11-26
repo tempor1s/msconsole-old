@@ -1,5 +1,5 @@
 # For running msconsole through python locally. Mostly for test purposes.
-from src.msconsole import MSConsole
+from src.ms import MSConsole
 from sys import argv
 
 if __name__ == '__main__':

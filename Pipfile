@@ -10,6 +10,7 @@ autopep8 = "*"
 requests = "*"
 lxml = "*"
 keyring = "==11.0.0"
+clint = "*"
 
 [requires]
 python_version = "3.7"
