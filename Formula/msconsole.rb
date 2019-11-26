@@ -1,4 +1,4 @@
-class MSConsole < Formula
+class Msconsole < Formula
   include Language::Python::Virtualenv
   desc "Suite of tools that makes your MakeSchool life easier!"
   depends_on "python"
