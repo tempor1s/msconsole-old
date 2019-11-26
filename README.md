@@ -1,6 +1,6 @@
 # msconsole
 
-<img src="media/make_logo_new.png" title="Makeschool Icon"></a>
+<img src="docs/media/make_logo_new.png" title="Makeschool Icon"></a>
 
 ## Description
 

@@ -26,10 +26,6 @@ from src.checkin import CheckIn
         addArgumentCall('-u', '--update', action='store_true',
                         help='Update getsploit.db database. Will be downloaded in the script path.')
 """
-
-# TODO: rename __file__ to fit the command ms (ms.py) - so there aren't any name clashes
-
-
 class MSConsole(object):
     # TODO: Documentation for this class
     def __init__(self, argv):
