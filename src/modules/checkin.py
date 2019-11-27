@@ -194,6 +194,7 @@ class CheckIn(object):
         # check the user in
         self.checkin()
 
+
 if __name__ == "__main__":
     arguments = docopt(__doc__, version=__version__)
     if arguments['<token>']:
