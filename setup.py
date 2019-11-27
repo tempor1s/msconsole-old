@@ -1,14 +1,18 @@
-from setuptools import setup, find_packages
-
 description = """
 See `github repo <https://github.com/tempor1s/make-checkin>`_ for information.
 """
 
-VERSION = '2.1.0'
+__version__ = '2.1.0'
+__maintainer__ = 'Ben Lafferty'
+__credits__ = ['Ben Lafferty', 'Gary Frederick']
+__license__ = 'MIT'
+
+# Imports for setup to work :)
+from setuptools import setup, find_packages
 
 setup(
     name='Make Checkin',
-    version=VERSION,
+    version=__version__,
     author='Ben Lafferty',
     author_email='benlaugherty@gmail.com',
     packages=find_packages(),

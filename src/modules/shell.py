@@ -1,8 +1,20 @@
-""" Conosle moodule is a center hub for all modules 
+"""Shell module is a center hub for all modules 
     that allows user to be emersed into a shell by 
     creating a CLI dashboard
 """
 
+__doc__ = """Usage:
+    shell
+    shell -h|--help
+    shell -v|--version
+Options:
+    -h --help  Show help screen.
+    -v --version  Show version.
+"""
+
+__maintainer__ = 'Gary Frederick'  # main contributor
+__credits__ = ['Gary Frederick', 'Ben Lafferty']
+__license__ = 'MIT'
 
 # built in modules
 import os
@@ -11,11 +23,6 @@ import sys
 
 # external modules
 from clint.textui import puts, colored, indent
-
-__author__ = 'Gary Frederick'  # main contributor
-__latest_editor__ = None  # last user to edit document
-__date__ = 'November 26, 2019'  # last date edited
-__version__ = 0.1  # version number
 
 
 example2 = """
@@ -42,6 +49,15 @@ example2 = """
                                     
 
 """
+
+
+class Console(object):
+    def __init__(self):
+      pass
+
+    def run(self):
+        print(colored.blue(example2))
+
 
 if __name__ == "__main__":
     print(colored.blue(example2))
