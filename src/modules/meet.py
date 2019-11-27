@@ -28,28 +28,10 @@ from docopt import docopt
 import requests
 
 
-# class hello(object):
-#     def __init__(self, option):
-#         self.option = option
-
-
-class Meet:
+class Meet(object):
     def __init__(self):
         # TODO: implement this :)
         pass
-
-
-def say_hello(name):
-    return("Hello {}!".format(name))
-
-
-if __name__ == '__main__':
-    arguments = docopt(__doc__, version=__version__)
-    if arguments['<time>']:
-        print(say_hello(arguments['<time>']))
-    elif arguments['<hello>']:
+    
+    def run(self):
         pass
-    elif not len(sys.argv) > 1:
-        print(__doc__)
-    else:
-        print('Not an option check option list --help')

@@ -3,7 +3,8 @@
     creating a CLI dashboard
 """
 
-__doc__ = """Usage:
+__doc__ = """
+Usage:
     shell
     shell -h|--help
     shell -v|--version
