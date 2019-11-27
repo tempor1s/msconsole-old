@@ -51,7 +51,7 @@ python3 main.py
 
 -   [x] Restructure to fit modular style
 -   [x] Better file and script organization
--   [ ] Complete calendar module
+-   [ ] Complete meet module
 -   [ ] Complete console module
 -   [ ] Complete library module
 -   [ ] Create Makschool Ascii Banner
@@ -66,6 +66,7 @@ python3 main.py
 -   [lxml](https://lxml.de/) - XML and HTML parsing library
 -   [keying](https://pypi.org/project/keyring/) - Storing and accessing passwords library
 -   [clint](https://pypi.org/project/clint/) - Suite of tools for developing CLI applications.
+-   [docopt](http://docopt.org/) - For making our CLI beautiful :)
 
 # Contribution Guidlines
 
@@ -131,6 +132,6 @@ By contributing, you agree that your contributions will be licensed under its MI
 
 -   **Ben Lafferty** - _Initial idea / CLI implementation / Reviewer_ - [tempor1s](https://github.com/tempor1s)
 -   **Gary Frederick** - _Initial work / Server Calls / console & brute implementation_ - [imthaghost](https://github.com/imthaghost)
--   **Tasfia Addrita** - _Calendar CLI implementation_ - [TasfiaAddrita](https://github.com/TasfiaAddrita)
+-   **Tasfia Addrita** - _Meet CLI implementation_ - [TasfiaAddrita](https://github.com/TasfiaAddrita)
 
 See also the list of [contributors](https://github.com/tempor1s/msconsole/contributors) who participated in this project.

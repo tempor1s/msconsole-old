@@ -1,96 +1,71 @@
 """ms is a module wrapper for the toolkit suite"""
 
-# built in modules
+__doc__ = """
+Usage:
+    ms
+    ms <module> [<args>...]
+    ms -h|--help
+    ms -v|--version
+    ms -l|--list
+Options:
+    <module>      Optional module argument (name of module)
+    -h --help     Show help screen
+    -v --version  Show version
+
+Sub-Modules:
+    links
+"""
+
+__maintainer__ = 'Ben Lafferty'
+__credits__ = ['Ben Lafferty', 'Gary Frederick']
+__license__ = 'MIT'
+__version__ = '2.1.0'
+
 from sys import argv
 import argparse
 
-# external modules
+from docopt import docopt, DocoptExit
 
-# local modules
-from src.modules.checkin import CheckIn  # checkin module
-
-# TODO: convert options to arguments using argparse - DRY
-"""Example Arguments
-
-    addArgumentCall('-t', '--title', action='store_true',
-                        help="Search JUST the exploit title (Default is description and source code).")
-    addArgumentCall('-j', '--json', action='store_true',
-                        help='Show result in JSON format.')
-    addArgumentCall('-m', '--mirror', action='store_true',
-                        help='Mirror (aka copies) search result exploit files to the subdirectory with your search query name.')
-    addArgumentCall('-c', '--count', nargs=1, type=int, default=10,
-                        help='Search limit. Default 10.')
-    if LOCAL_SEARCH_AVAILABLE:
-        addArgumentCall('-l', '--local', action='store_true',
-                        help='Perform search in the local database instead of searching online.')
-        addArgumentCall('-u', '--update', action='store_true',
-                        help='Update getsploit.db database. Will be downloaded in the script path.')
-"""
+# for handeling all the modules
+from src import modules_handler
 
 
 class MSConsole(object):
-    # TODO: Documentation for this class
-    def __init__(self, argv):
-        # Get all arguments except for the function name
-        self.args = argv[1:]
+    def __init__(self):
+        self.args = docopt(__doc__, version=__version__, options_first=True)
 
     def run(self):
+        # Retrieve the module to execute.
+        module_name = self.args.pop('<module>')
+        if module_name is None:
+            raise DocoptExit()
+
+        module_name = module_name.capitalize()
+
+        # Retrieve the module arguments.
+        module_args = self.args.pop('<args>')
+        if module_args is None:
+            module_args = {}
+
+        # After 'poping' '<module>' and '<args>', what is left in the args dictionary are the global arguments.
+
+        # Retrieve the class from modules_handler
         try:
-            # The command that is being passed to msconsole
-            command = self.args[0]
+            module_class = getattr(modules_handler, module_name)
+        # if class doesn't exist, print unknown module and docstring
+        except AttributeError:
+            # TODO: Colors!
+            print('Unknown Module \n')
+            raise DocoptExit()
 
-            # check the command and run a command respectivly
-            if command.lower() == 'checkin':
-                self._checkin_command()
-            elif command.lower() == 'help':
-                self._help_command()
-            # if their command doesnt any of our current commands.
-            else:
-                print('Please enter a valid command.')
-            # If no command was provided then print out a list of all the commands
-        except IndexError:
-            print('Command List:')
-            # checkin command
-            print('     checkin - Checks you into your Make School class.')
-            print('     help - Get more information on how to run a command.')
-            exit()
-
-    def _checkin_command(self):
-        try:
-            token = self.args[1]
-        except IndexError:
-            # Tell them the the correct usage.
-            print(
-                'Please add an attendence token after `checkin`. Example: `ms checkin BRAVE`')
-            exit()
-        # check the user into their class by creating an instance of CheckIn and running it.
-        checkin = CheckIn(token)
-        checkin.run()
-
-    def _help_command(self):
-        # try to get the command that they pass in
-        try:
-            command = self.args[1]
-
-            # check the command against commands we already have
-            if command.lower() == 'checkin':
-                # TODO: Implement descriptive help checkin command with examples and syntax
-                print(
-                    'Please add an attendence token after `checkin`. Example: `ms checkin BRAVE`')
-                pass
-            elif command.lower() == 'help':
-                # TODO: Implement descriptive help for help command
-                pass
-            else:
-                print('Please enter a valid command to get help from.')
-        except IndexError:
-            # TODO: Implement more descriptive help command
-            print('Please add a command after `help`. Example: `ms help checkin`')
-            pass
+        # pass in module_args and args
+        module = module_class(module_args, self.args)
+        # execute the module
+        module.execute()
 
 
 def main():
-    """Homebrew entry point."""
+    """Entrypoint to run the application."""
     # pass command line args into MSConsole class and run it
-    console = MSConsole(argv)
+    console = MSConsole()
     console.run()
