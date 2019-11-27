@@ -1,6 +1,15 @@
-""" Shell moodule is a center hub for all modules 
+"""Shell module is a center hub for all modules 
     that allows user to be emersed into a shell by 
     creating a CLI dashboard
+"""
+
+__doc__ = """Usage:
+    shell
+    shell -h|--help
+    shell -v|--version
+Options:
+    -h --help  Show help screen.
+    -v --version  Show version.
 """
 
 __maintainer__ = 'Gary Frederick'  # main contributor
@@ -42,12 +51,12 @@ example2 = """
 """
 
 
-class console(object):
+class Console(object):
     def __init__(self):
-        pass
+      pass
 
     def run(self):
-        pass
+        print(colored.blue(example2))
 
 
 if __name__ == "__main__":

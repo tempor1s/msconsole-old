@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 
 # TODO: Since this command and others are all going to use credentials, create a system to be able to store them application wide
-__doc__ = """checkin.py
-
+__doc__ = """
 This Module allows the user checkin to their class from the
 command line.
 
@@ -54,6 +53,7 @@ import requests
 from lxml import html, etree
 from requests.adapters import HTTPAdapter  # import HTTPAdapter module
 import keyring
+from docopt import docopt
 
 # Local Python modules.
 # for querying makeschools general graphql
@@ -196,14 +196,3 @@ class CheckIn(object):
         self.login()
         # check the user in
         self.checkin()
-
-
-if __name__ == "__main__":
-    arguments = docopt(__doc__, version=__version__)
-    if arguments['<token>']:
-        checkin = CheckIn(arguments['<token>'])
-        checkin.run()
-    elif not len(sys.argv) > 1:
-        print(__doc__)
-    else:
-        print('Not an option check option list --help')
