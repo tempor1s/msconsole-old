@@ -7,7 +7,7 @@ import argparse
 # external modules
 
 # local modules
-from src.modules.checkin import CheckIn # checkin module
+from src.modules.checkin import CheckIn  # checkin module
 
 # TODO: convert options to arguments using argparse - DRY
 """Example Arguments
@@ -26,6 +26,8 @@ from src.modules.checkin import CheckIn # checkin module
         addArgumentCall('-u', '--update', action='store_true',
                         help='Update getsploit.db database. Will be downloaded in the script path.')
 """
+
+
 class MSConsole(object):
     # TODO: Documentation for this class
     def __init__(self, argv):
@@ -85,6 +87,7 @@ class MSConsole(object):
             # TODO: Implement more descriptive help command
             print('Please add a command after `help`. Example: `ms help checkin`')
             pass
+
 
 def main():
     """Homebrew entry point."""

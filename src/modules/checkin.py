@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # TODO: Since this command and others are all going to use credentials, create a system to be able to store them application wide
-"""checkin.py
+__doc__ = """checkin.py
 
 This Module allows the user checkin to their class from the
 command line.
@@ -25,7 +25,19 @@ functions:
     * checkin - checks a user into their class
     * _get_banner_message - gets the makeschool banner message from html
     * run - runs everything together and allows a user to check into their class
+
+Usage:
+    checkin.py
+    checkin.py <token>
+    checkin.py -h|--help
+    checkin.py -v|--version
+Options:
+    <token>  Optional token argument.
+    -h --help  Show help screen.
+    -v --version  Show version.
 """
+__version__ = 1.0
+
 # Standard Python modules.
 import os                    # Miscellaneous OS interfaces.
 import sys                   # System-specific parameters and functions.
@@ -40,10 +52,12 @@ from lxml import html, etree
 from requests.adapters import HTTPAdapter  # import HTTPAdapter module
 import keyring
 
-# Utils
-from src.utils.graphql import graph_query # for querying makeschools general graphql
-from src.utils.http import retransmission # for http get retransmission request
-from src.utils.colors import check_banner_message # for coloring the banner message depending on the message
+# Local Python modules.
+# for querying makeschools general graphql
+from src.utils.graphql import graph_query
+from src.utils.http import retransmission  # for http get retransmission request
+# for coloring the banner message depending on the message
+from src.utils.colors import check_banner_message
 
 
 class CheckIn(object):
@@ -182,14 +196,11 @@ class CheckIn(object):
 
 
 if __name__ == "__main__":
-    # Get the first arg from command line
-    args = sys.argv[1:3]
-    # Get the attendence token from args
-    try:
-        attendence_token = args[0]
-    except IndexError:
-        print('Please add an attendence token after the script. Example: `python3 main.py BRAVE`')
-        exit()
-    # Create a new instance of CheckIn with the attendence token and call run
-    checkin = CheckIn(attendence_token)
-    checkin.run()
+    arguments = docopt(__doc__, version=__version__)
+    if arguments['<token>']:
+        checkin = CheckIn(arguments['<token>'])
+        checkin.run()
+    elif not len(sys.argv) > 1:
+        print(__doc__)
+    else:
+        print('Not an option check option list --help')
