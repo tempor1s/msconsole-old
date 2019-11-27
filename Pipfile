@@ -11,6 +11,7 @@ requests = "*"
 lxml = "*"
 keyring = "==11.0.0"
 clint = "*"
+docopt = "*"
 
 [requires]
 python_version = "3.7"
