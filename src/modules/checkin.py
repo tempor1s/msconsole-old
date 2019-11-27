@@ -27,18 +27,20 @@ functions:
     * run - runs everything together and allows a user to check into their class
 
 Usage:
-    checkin.py
-    checkin.py <token>
-    checkin.py -h|--help
-    checkin.py -v|--version
+    checkin
+    checkin <token>
+    checkin -h|--help
+    checkin -v|--version
 Options:
     <token>  Optional token argument.
     -h --help  Show help screen.
     -v --version  Show version.
 """
-__version__ = 1.0
+__maintainer__ = 'Ben Lafferty'
+__credits__ = ['Ben Lafferty', 'Gary Frederick', 'Tasfia Addrita']
+__license__ = 'MIT'
 
-# Standard Python modules.
+# Standard Python modules
 import os                    # Miscellaneous OS interfaces.
 import sys                   # System-specific parameters and functions.
 import re                    # regular expression functions

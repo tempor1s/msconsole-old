@@ -1,6 +1,5 @@
 """ms is a module wrapper for the toolkit suite"""
 
-
 __doc__ = """
 Usage:
     ms
@@ -21,11 +20,9 @@ Options:
     -v --version  Show version.
 """
 
-__author__ = 'Ben Lafferty'  # main contributor
-__latest_editor__ = 'Gary Frederick'  # last user to edit document
-__date__ = 'November 26, 2019'  # last date edited
-__version__ = 1.0  # version
-
+__maintainer__ = 'Ben Lafferty'
+__credits__ = ['Ben Lafferty', 'Gary Frederick']
+__license__ = 'MIT'
 
 # Built in Modules
 from sys import argv

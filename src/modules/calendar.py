@@ -1,21 +1,19 @@
 """Calendar CLI module"""
 
-
 __doc__ = """
 Usage:
-    calendar.py
-    calendar.py <time>
-    calendar.py -h|--help
-    calendar.py -v|--version
+    calendar
+    calendar <time>
+    calendar -h|--help
+    calendar -v|--version
 Options:
     <time>  Optional time argument.
     -h --help  Show help screen.
     -v --version  Show version.
 """
-__author__ = 'Tasfia Addrita'  # main contributor
-__latest_editor__ = 'Gary Frederick'  # last user to edit document
-__date__ = 'November 26, 2019'  # last date edited
-__version__ = 0.1  # version number
+__maintainer__ = 'Tasfia Addrita'
+__credits__ = ['Ben Lafferty', 'Gary Frederick', 'Tasfia Addrita']
+__license__ = 'MIT'
 
 # build in modules
 import sys

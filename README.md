@@ -66,6 +66,7 @@ python3 main.py
 -   [lxml](https://lxml.de/) - XML and HTML parsing library
 -   [keying](https://pypi.org/project/keyring/) - Storing and accessing passwords library
 -   [clint](https://pypi.org/project/clint/) - Suite of tools for developing CLI applications.
+-   [docopt](http://docopt.org/) - For making our CLI beautiful :)
 
 # Contribution Guidlines
 
