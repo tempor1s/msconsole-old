@@ -25,13 +25,13 @@ import os
 from docopt import docopt
 import requests
 
-class hello(object):
-    def __init__(self, option):
-        self.option = option
+# class hello(object):
+#     def __init__(self, option):
+#         self.option = option
 
 
-def say_hello(name):
-    return("Hello {}!".format(name))
+# def say_hello(name):
+#     return("Hello {}!".format(name))
 
 
 if __name__ == '__main__':
