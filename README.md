@@ -50,7 +50,7 @@ python3 main.py
 ## To Do
 
 -   [x] Restructure to fit modular style
--   [ ] Better file and script organization
+-   [x] Better file and script organization
 -   [ ] Complete calendar module
 -   [ ] Complete console module
 -   [ ] Complete library module
@@ -58,7 +58,7 @@ python3 main.py
 -   [x] Restructure checkin module into module folder
 -   [x] Refactor utils into a folder with different scripts
 -   [x] Refactor utils file into multiple files for better scaling
--   [ ] Refactor checkin credentials so that they are used application-wide
+-   [ ] Refactor checkin credentials so that they are used application-wide (maybe login as well)
 
 ## Built With
 
@@ -129,7 +129,7 @@ By contributing, you agree that your contributions will be licensed under its MI
 
 ## Authors
 
--   **Ben Lafferty** - _Initial idea / CLI implementation_ - [tempor1s](https://github.com/tempor1s)
+-   **Ben Lafferty** - _Initial idea / CLI implementation / Reviewer_ - [tempor1s](https://github.com/tempor1s)
 -   **Gary Frederick** - _Initial work / Server Calls / console & brute implementation_ - [imthaghost](https://github.com/imthaghost)
 -   **Tasfia Addrita** - _Calendar CLI implementation_ - [TasfiaAddrita](https://github.com/TasfiaAddrita)
 
