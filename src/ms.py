@@ -23,18 +23,17 @@ Options:
 __maintainer__ = 'Ben Lafferty'
 __credits__ = ['Ben Lafferty', 'Gary Frederick']
 __license__ = 'MIT'
+__version__ = '2.1.0'
 
-# Built in Modules
 from sys import argv
 import argparse
-# External Python Modules
+
 import docopt
-# Local Python Modules
-from src.modules.checkin import CheckIn  # checkin module
-from src.modules.checkin import __doc__ as checkin_doc  # checkin Doc string
-from src.modules.calendar import __doc__ as calendar_doc  # calendar Doc string
-from src.modules.brute import __doc__ as brute_doc  # brute Doc string
-from src.modules.brute import BruteForcer, BruteParser  # brute force modules
+
+from src.modules.checkin import CheckIn, __doc__ as checkin_doc
+from src.modules.calendar import Calender, __doc__ as calendar_doc
+from src.modules.links import Links, __doc__ as links_doc
+from src.modules.brute import BruteForcer, BruteParser, __doc__ as brute_doc
 
 
 class MSConsole(object):
