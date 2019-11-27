@@ -1,15 +1,43 @@
 """ms is a module wrapper for the toolkit suite"""
 
-# built in modules
+
+__doc__ = """
+Usage:
+    ms
+    ms <checkin>
+    ms <calendar>
+    ms <console>
+    ms <library>
+    ms <link>
+    ms -h|--help
+    ms -v|--version
+Options:
+    <checkin>  Optional checkin argument.
+    <calendar> Optional calendar argument.
+    <console>  Optional console argument.
+    <library>  Optional library argument.
+    <link>     Optional link argument.
+    -h --help  Show help screen.
+    -v --version  Show version.
+"""
+
+__author__ = 'Ben Lafferty'  # main contributor
+__latest_editor__ = 'Gary Frederick'  # last user to edit document
+__date__ = 'November 26, 2019'  # last date edited
+__version__ = 1.0  # version
+
+
+# Built in Modules
 from sys import argv
 import argparse
-
-# external modules
-
-# local modules
+# External Python Modules
+import docopt
+# Local Python Modules
 from src.modules.checkin import CheckIn  # checkin module
+from src.modules.checkin import __doc__ as checkinDoc  # checkin Doc string
 
-# TODO: convert options to arguments using argparse - DRY
+
+# TODO: convert options to arguments using argparse or some other module - DRY
 """Example Arguments
 
     addArgumentCall('-t', '--title', action='store_true',
