@@ -14,6 +14,7 @@ Options:
 __maintainer__ = 'Tasfia Addrita'
 __credits__ = ['Ben Lafferty', 'Gary Frederick', 'Tasfia Addrita']
 __license__ = 'MIT'
+__version__ = '1.0.0'
 
 # build in modules
 import sys
@@ -27,6 +28,11 @@ class hello(object):
     def __init__(self, option):
         self.option = option
 
+class Calender(object):
+    def __init__(self):
+        #TODO: implement this :)
+        pass
+
 
 def say_hello(name):
     return("Hello {}!".format(name))
@@ -36,7 +42,8 @@ if __name__ == '__main__':
     arguments = docopt(__doc__, version=__version__)
     if arguments['<time>']:
         print(say_hello(arguments['<time>']))
-    elif arguments['<hello>']
+    elif arguments['<hello>']:
+        pass
     elif not len(sys.argv) > 1:
         print(__doc__)
     else:

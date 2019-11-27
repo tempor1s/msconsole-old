@@ -204,15 +204,3 @@ class BruteParser(HTMLParser):
                     self.parsed_results[username_field] = username_field
                 if name == "name" and value == password_field:
                     self.parsed_results[password_field] = password_field
-
-
-print("[*] Started HTML Form Brute-Forcer Script")
-print("[*] Building Token Queue")
-token_q = build_token_q("./wordlist/words.txt")
-if token_q.qsize():
-    print("[*] Password Queue Build Successful")
-    attempt_brute_force = BruteForcer(token_q)
-    attempt_brute_force.html_brute_forcer_thread_starter()
-else:
-    print("[!] Empty Password File!")
-    sys.exit(0)

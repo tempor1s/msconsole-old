@@ -39,6 +39,7 @@ Options:
 __maintainer__ = 'Ben Lafferty'
 __credits__ = ['Ben Lafferty', 'Gary Frederick', 'Tasfia Addrita']
 __license__ = 'MIT'
+__version__ = '1.2.9'
 
 # Standard Python modules
 import os                    # Miscellaneous OS interfaces.
