@@ -1,7 +1,7 @@
 from docopt import docopt
 
 from src.modules.checkin import CheckIn, __doc__ as checkin_doc
-from src.modules.calendar import Calender, __doc__ as calendar_doc
+from src.modules.meet import Meet, __doc__ as meet_doc
 from src.modules.links import Links, __doc__ as links_doc
 from src.modules.brute import BruteForcer, BruteParser, __doc__ as brute_doc
 from src.modules.library import Library, __doc__ as library_doc
@@ -78,3 +78,13 @@ class Shell(AbstractModule):
         # TODO: Implement
         console = Console()
         console.run()
+
+
+class Meet(AbstractModule):
+    # Shell modules docstring
+    # TODO: Comments and documentation
+    __doc__ = meet_doc
+
+    def execute(self):
+        # TODO: Implement
+        print('Not yet implemented :)')
