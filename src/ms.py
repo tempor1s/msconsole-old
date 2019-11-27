@@ -34,7 +34,7 @@ import argparse
 import docopt
 # Local Python Modules
 from src.modules.checkin import CheckIn  # checkin module
-from src.modules.checkin import __doc__ as checkinDoc  # checkin Doc string
+from src.modules.checkin import __doc__ as checkin_doc  # checkin Doc string
 
 
 # TODO: convert options to arguments using argparse or some other module - DRY
@@ -116,9 +116,8 @@ class MSConsole(object):
             print('Please add a command after `help`. Example: `ms help checkin`')
             pass
 
-
 def main():
-    """Homebrew entry point."""
+    """Entrypoint to run the application."""
     # pass command line args into MSConsole class and run it
     console = MSConsole(argv)
     console.run()
