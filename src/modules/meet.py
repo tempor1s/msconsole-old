@@ -28,7 +28,7 @@ from docopt import docopt
 import requests
 
 
-class Meet(object):
+class MeetModule(object):
     def __init__(self):
         # TODO: implement this :)
         pass

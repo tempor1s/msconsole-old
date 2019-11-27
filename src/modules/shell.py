@@ -52,7 +52,7 @@ example2 = """
 """
 
 
-class Console(object):
+class ShellModule(object):
     def __init__(self):
       pass
 

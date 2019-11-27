@@ -1,11 +1,11 @@
 from docopt import docopt
 
-from src.modules.checkin import CheckIn, __doc__ as checkin_doc
-from src.modules.meet import Meet, __doc__ as meet_doc
-from src.modules.links import Links, __doc__ as links_doc
+from src.modules.checkin import CheckInModule, __doc__ as checkin_doc
+from src.modules.meet import MeetModule, __doc__ as meet_doc
+from src.modules.links import LinksModule, __doc__ as links_doc
 from src.modules.brute import BruteForcer, BruteParser, __doc__ as brute_doc
-from src.modules.library import Library, __doc__ as library_doc
-from src.modules.shell import Console, __doc__ as console_doc
+from src.modules.library import LibraryModule, __doc__ as library_doc
+from src.modules.shell import ShellModule, __doc__ as console_doc
 
 
 class AbstractModule(object):
@@ -43,7 +43,7 @@ class Checkin(AbstractModule):
 
     def execute(self):
         if self.args['<token>']:
-            checkin = CheckIn(self.args['<token>'])
+            checkin = CheckInModule(self.args['<token>'])
             checkin.run()
         else:
             print(self.__doc__)
@@ -76,8 +76,8 @@ class Shell(AbstractModule):
 
     def execute(self):
         # TODO: Implement
-        console = Console()
-        console.run()
+        shell = ShellModule()
+        shell.run()
 
 
 class Meet(AbstractModule):
