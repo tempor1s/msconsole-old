@@ -40,8 +40,10 @@ from lxml import html, etree
 from requests.adapters import HTTPAdapter  # import HTTPAdapter module
 import keyring
 
-# Local Python modules
-from src.utils.utils import graph_query, check_banner_message, retransmission
+# Utils
+from src.utils.graphql import graph_query # for querying makeschools general graphql
+from src.utils.http import retransmission # for http get retransmission request
+from src.utils.colors import check_banner_message # for coloring the banner message depending on the message
 
 
 class CheckIn(object):
