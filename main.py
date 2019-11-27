@@ -1,4 +1,4 @@
-# For running msconsole through python locally. Mostly for test purposes.
+# For running msconsole through python locally. Mostly for test purposes
 from src.ms import main
 
 if __name__ == '__main__':
