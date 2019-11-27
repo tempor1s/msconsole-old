@@ -34,26 +34,10 @@ import argparse
 import docopt
 # Local Python Modules
 from src.modules.checkin import CheckIn  # checkin module
-from src.modules.checkin import __doc__ as checkinDoc  # checkin Doc string
-
-
-# TODO: convert options to arguments using argparse or some other module - DRY
-"""Example Arguments
-
-    addArgumentCall('-t', '--title', action='store_true',
-                        help="Search JUST the exploit title (Default is description and source code).")
-    addArgumentCall('-j', '--json', action='store_true',
-                        help='Show result in JSON format.')
-    addArgumentCall('-m', '--mirror', action='store_true',
-                        help='Mirror (aka copies) search result exploit files to the subdirectory with your search query name.')
-    addArgumentCall('-c', '--count', nargs=1, type=int, default=10,
-                        help='Search limit. Default 10.')
-    if LOCAL_SEARCH_AVAILABLE:
-        addArgumentCall('-l', '--local', action='store_true',
-                        help='Perform search in the local database instead of searching online.')
-        addArgumentCall('-u', '--update', action='store_true',
-                        help='Update getsploit.db database. Will be downloaded in the script path.')
-"""
+from src.modules.checkin import __doc__ as checkin_doc  # checkin Doc string
+from src.modules.calendar import __doc__ as calendar_doc  # calendar Doc string
+from src.modules.brute import __doc__ as brute_doc  # brute Doc string
+from src.modules.brute import BruteForcer, BruteParser  # brute force modules
 
 
 class MSConsole(object):
