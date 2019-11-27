@@ -102,7 +102,7 @@ class MSConsole(object):
 
 
 def main():
-    """Homebrew entry point."""
+    """Entrypoint to run the application."""
     # pass command line args into MSConsole class and run it
     console = MSConsole(argv)
     console.run()

@@ -4,3 +4,6 @@
 creds.txt
 __pycache__
 env
+build
+dist
+Make_Checkin.egg-info

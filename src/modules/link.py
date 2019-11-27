@@ -1,5 +1,4 @@
-"""The link moudle will open relative links for 
-specified class"""
+"""The link module will open relative links for specified class"""
 
 # built in modules
 import os
