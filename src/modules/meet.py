@@ -13,8 +13,8 @@ Options:
     -v --version  Show version.
 """
 __author__ = 'Tasfia Addrita'  # main contributor
-__latest_editor__ = 'Gary Frederick'  # last user to edit document
-__date__ = 'November 26, 2019'  # last date edited
+__latest_editor__ = 'Tasfia Addrita'  # last user to edit document
+__date__ = 'November 27, 2019'  # last date edited
 __version__ = 0.1  # version number
 
 # build in modules
