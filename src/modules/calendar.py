@@ -38,6 +38,7 @@ if __name__ == '__main__':
     arguments = docopt(__doc__, version=__version__)
     if arguments['<time>']:
         print(say_hello(arguments['<time>']))
+    elif arguments['<hello>']
     elif not len(sys.argv) > 1:
         print(__doc__)
     else:
