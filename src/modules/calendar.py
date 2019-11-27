@@ -23,7 +23,7 @@ import os
 
 # external modules
 from docopt import docopt
-
+import requests
 
 class hello(object):
     def __init__(self, option):
