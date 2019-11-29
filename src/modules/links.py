@@ -20,7 +20,7 @@ __version__ = '1.0.0'
 import os
 import sys
 
-class Links(object):
+class LinksModule(object):
     def __init__(self):
         # TODO: Implement this :)
         pass

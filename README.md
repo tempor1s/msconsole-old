@@ -51,7 +51,7 @@ python3 main.py
 
 -   [x] Restructure to fit modular style
 -   [x] Better file and script organization
--   [ ] Complete calendar module
+-   [ ] Complete meet module
 -   [ ] Complete console module
 -   [ ] Complete library module
 -   [ ] Create Makschool Ascii Banner

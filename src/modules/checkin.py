@@ -63,7 +63,7 @@ from src.utils.http import retransmission  # for http get retransmission request
 from src.utils.colors import check_banner_message
 
 
-class CheckIn(object):
+class CheckInModule(object):
     """CheckIn is a class that allows you to checkin to your MakeShool classes using a CLI"""
 
     def __init__(self, token):
