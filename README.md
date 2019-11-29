@@ -1,10 +1,24 @@
-# msconsole
-
+<h1 align="center">Welcome to msConsole 👋</h1>
 <img src="docs/media/make_logo_new.png" title="Makeschool Icon"></a>
+<p>
+    <a href="https://github.com/tempor1s/msconsole/commits/master">
+    <img alt="commits" src="https://img.shields.io/github/commit-activity/w/tempor1s/msconsole?color=green" target="_blank" />
 
-## Description
+  </a> 
+  <a href="#" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
+  </a>
+   <a href="https://github.com/imthaghost/gitmoji-changelog">
+    <img src="https://img.shields.io/badge/changelog-gitmoji-brightgreen.svg" alt="gitmoji-changelog">
+  </a>
+  
+   <a href="https://github.com/tempor1s/msconsole/commits/master">
+    <img alt="commits" src="  https://img.shields.io/github/contributors/tempor1s/msconsole" target="_blank" />
 
-A suite of tools that makes your MakeSchool life easier!
+  </a> 
+</p>
+
+> A suite of tools that makes your MakeSchool life easier!
 
 ### Prerequisites
 
@@ -17,7 +31,7 @@ or
 - Python 3.4+
 ```
 
-## Getting Started
+## 🚀 Getting Started
 
 ### Homebrew
 
@@ -128,7 +142,7 @@ I'm again borrowing these from [Facebook's Guidelines](https://github.com/facebo
 
 By contributing, you agree that your contributions will be licensed under its MIT License.
 
-## Authors
+## Contributors
 
 <table>
   <tr>
