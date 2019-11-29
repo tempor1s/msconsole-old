@@ -1,6 +1,10 @@
 <h1 align="center">Welcome to msConsole 👋</h1>
 <img src="docs/media/make_logo_new.png" title="Makeschool Icon"></a>
 <p>
+ <a href="https://github.com/tempor1s/msconsole/commits/master">
+    <img alt="commits" src="  https://img.shields.io/github/contributors/tempor1s/msconsole" target="_blank" />
+
+  </a>
     <a href="https://github.com/tempor1s/msconsole/commits/master">
     <img alt="commits" src="https://img.shields.io/github/commit-activity/w/tempor1s/msconsole?color=green" target="_blank" />
 
@@ -12,10 +16,6 @@
     <img src="https://img.shields.io/badge/changelog-gitmoji-brightgreen.svg" alt="gitmoji-changelog">
   </a>
   
-   <a href="https://github.com/tempor1s/msconsole/commits/master">
-    <img alt="commits" src="  https://img.shields.io/github/contributors/tempor1s/msconsole" target="_blank" />
-
-  </a> 
 </p>
 
 > A suite of tools that makes your MakeSchool life easier!
