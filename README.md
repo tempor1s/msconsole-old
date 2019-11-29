@@ -130,8 +130,9 @@ By contributing, you agree that your contributions will be licensed under its MI
 
 ## Authors
 
--   **Ben Lafferty** - _Initial idea / CLI implementation / Reviewer_ - [tempor1s](https://github.com/tempor1s)
--   **Gary Frederick** - _Initial work / Server Calls / console & brute implementation_ - [imthaghost](https://github.com/imthaghost)
--   **Tasfia Addrita** - _Calendar CLI implementation_ - [TasfiaAddrita](https://github.com/TasfiaAddrita)
-
-See also the list of [contributors](https://github.com/tempor1s/msconsole/contributors) who participated in this project.
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/imthaghost"><img src="https://avatars3.githubusercontent.com/u/46610773?s=460&v=4" width="75px;" alt="Gary Frederick"/><br /><sub><b>Gary Frederick</b></sub></a><br /><a href="https://github.com/kefranabg/readme-md-generator/commits?author=kefranabg" title="Code">💻</a></td>
+    <td align="center"><a href="http://yann-bertrand.fr/"><img src="https://avatars3.githubusercontent.com/u/29741401?s=460&v=4" width="75px;" alt="Yann Bertrand"/><br /><sub><b>Ben Lafferty</b></sub></a><br /><a href="https://github.com/kefranabg/readme-md-generator/commits?author=yannbertrand" title="Code">💻</a> <a href="https://github.com/kefranabg/readme-md-generator/commits?author=yannbertrand" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://nikx.io"><img src="https://avatars3.githubusercontent.com/u/5863693?s=460&v=4" width="75px;" alt="Nik"/><br /><sub><b>Tasfia Addrita</b></sub></a><br /><a href="https://github.com/kefranabg/readme-md-generator/commits?author=NikxDa" title="Code">💻</a></td>
+  </tr>

@@ -3,9 +3,9 @@ from docopt import docopt
 from src.modules.checkin import CheckIn, __doc__ as checkin_doc
 from src.modules.calendar import Calender, __doc__ as calendar_doc
 from src.modules.links import Links, __doc__ as links_doc
-from src.modules.brute import BruteForcer, BruteParser, __doc__ as brute_doc
-from src.modules.library import Library, __doc__ as library_doc
+from src.modules.brute import BruteForcer, BruteParser, BruteTest, __doc__ as brute_doc
 from src.modules.shell import Console, __doc__ as console_doc
+from src.modules.library import Library, __doc__ as library_doc
 
 
 class AbstractModule(object):
@@ -56,7 +56,11 @@ class Brute(AbstractModule):
 
     def execute(self):
         # TODO: Implement
-        print('Not yet implemented! :)')
+        # if self.args['<run>']:
+        #     force = BruteTest(self.args['<run>'])
+        # else:
+        #     print(self.__doc__)
+        force = BruteTest()
 
 
 class Library(AbstractModule):
