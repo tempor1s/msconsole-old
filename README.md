@@ -1,8 +1,6 @@
 <h1 align="center">Welcome to msConsole 👋</h1>
 <img src="docs/media/make_logo_new.png" title="Makeschool Icon"></a>
 <p>
- <a href="https://github.com/tempor1s/msconsole/commits/develop">
-    <img alt="commits" src="  https://img.shields.io/github/contributors/tempor1s/msconsole" target="_blank" />
 
   </a>
     <a href="https://github.com/tempor1s/msconsole/commits/master">
