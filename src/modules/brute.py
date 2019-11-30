@@ -2,7 +2,7 @@
 
 """Brute Force Checkin module
 
-#!Disclaimer:
+Disclaimer:
 
     The network administrator will see the spike in network
     requests. Not only will you potentially slow down
@@ -22,7 +22,7 @@ Hypothetical:
     naHQgcGxhY2VzLiA7KSA=
 
 Usage:
-    brute
+    brute 
     brute -h|--help
     brute -v|--version
 Options:
@@ -48,6 +48,7 @@ from lxml import html, etree
 from html.parser import HTMLParser
 import http.cookiejar
 import docopt
+from clint.textui import puts, colored, indent
 
 
 threads = 5  # number of threads
@@ -56,11 +57,10 @@ login_url = "https://makeschool.com/login/"
 dashboard_url = "https://makeschool.com/dashboard/"
 
 
-# Takes a word file and builds a word queue object. You can resume a word in the file
-# by modifying the resume_word value in the script
-
-
+##################### Helper Function ############################
 def build_token_q(file):
+    """Takes a word file and builds a word queue object. You can resume 
+    a word in the file by modifying the resume_word value in the script"""
     # open the word list
     fd = open(file, "rb")
     # create the wordlist from the file
@@ -85,6 +85,7 @@ def build_token_q(file):
                     if resume_found:
                         token_q.put(token)
         return token_q
+##################### Helper Function ############################
 
 
 class BruteForcer():
@@ -197,12 +198,14 @@ class BruteForcer():
                 target=self.html_brute_forcer)
             html_brute_forcer_thread.start()
 
-# An instance of this class allows for parsing the HTML page looking for username
-# and password fields as part of the input form. self.parsed_results should contain
-# username and password keys
-
 
 class BruteParser(HTMLParser):
+    """ An instance of this class allows for parsing the HTML 
+        page looking for username and password fields as part 
+        of the input form. self.parsed_results should contain
+        username and password keys
+    """
+
     def __init__(self):
         HTMLParser.__init__(self)
         self.parsed_results = {}
@@ -214,3 +217,15 @@ class BruteParser(HTMLParser):
                     self.parsed_results[username_field] = username_field
                 if name == "name" and value == password_field:
                     self.parsed_results[password_field] = password_field
+
+
+class BruteModule(object):
+    def __init__(self):
+        self.version = __version__
+        self.show()
+
+    def show(self):
+        operation = colored.magenta('[*]')
+        print(operation + "Started HTML Form Brute-Forcer Script" + '\n')
+        print(operation + "Building Token Queue" + '\n')
+        print(operation + colored.green("Password Queue Build Successful"))

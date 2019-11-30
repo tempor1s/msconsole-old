@@ -3,7 +3,8 @@
     creating a CLI dashboard
 """
 
-__doc__ = """Usage:
+__doc__ = """
+Usage:
     shell
     shell -h|--help
     shell -v|--version
@@ -51,7 +52,7 @@ example2 = """
 """
 
 
-class Console(object):
+class ShellModule(object):
     def __init__(self):
       pass
 

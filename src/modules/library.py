@@ -22,7 +22,7 @@ import sys
 __author__ = 'Gary Frederick'
 __version__ = 0.1
 
-class Library(object):
+class LibraryModule(object):
     def __init__(self):
         pass
 
