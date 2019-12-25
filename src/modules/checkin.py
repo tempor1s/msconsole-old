@@ -104,9 +104,9 @@ class CheckInModule(object):
             # inside the form look for name and value fields to get authenticity token
             form = {x.attrib["name"]: x.attrib["value"] for x in hidden_inputs}
             # set the form email value
-            form['user[email]'] = self.email
+            form['user[email]'] = _get_email(self.key)
             # set the form password value
-            form['user[password]'] = keyring.get_password('mspass', self.email)
+            form['user[password]'] = _get_password(_get_email(self.key))
             # setup post request to login url with new data inserted into form
             response = self.s.post(login_url, data=form)
         else:
@@ -139,7 +139,7 @@ class CheckInModule(object):
         else:
             # the credentials are probably wrong
             print('The credentials entered are incorrect.\n')
-            self.create_creds()
+            _create_creds(self.key)
             self.login()
 
     def checkin(self):
