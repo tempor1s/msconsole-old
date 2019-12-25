@@ -1,4 +1,5 @@
-def retransmission(self, retries=3, backoff_factor=0.3, status_forcelist=(500, 502, 504), session=None):
+
+def retransmission(retries=3, backoff_factor=0.3, status_forcelist=(500, 502, 504), session=None):
     """Performs HTTP/HTTPS GET retransmission request.
 
     :param retries: URL path for the request. Should begin with a slash.
