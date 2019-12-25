@@ -41,12 +41,13 @@ __license__ = 'MIT'
 __version__ = '1.2.9'
 
 # Standard Python modules
-import os                    # Miscellaneous OS interfaces.
-import sys                   # System-specific parameters and functions.
-import re                    # regular expression functions
 from getpass import getpass  # CLI hidden input functionality
 from urllib3.util.retry import Retry  # HTTP retransmission functionality
 from platform import system
+import sys                   # System-specific parameters and functions.
+import os                    # Miscellaneous OS interfaces.
+import re                    # regular expression functions
+
 
 # External Python modules
 import requests
@@ -56,11 +57,12 @@ import keyring
 from docopt import docopt
 
 # Local Python modules.
+from src.utils.credential import _set_email, _set_password, _get_password, _get_email, _create_creds, _check_credentials
+# for coloring the banner message depending on the message
+from src.utils.colors import check_banner_message
 # for querying makeschools general graphql
 from src.utils.graphql import graph_query
 from src.utils.http import retransmission  # for http get retransmission request
-# for coloring the banner message depending on the message
-from src.utils.colors import check_banner_message
 
 
 class CheckInModule(object):
@@ -88,25 +90,10 @@ class CheckInModule(object):
     def credentials(self):
         """Sets or gets user credentials"""
         # if the password exits in the keychain already get the password
-        if keyring.get_password('msemail', self.key) and keyring.get_password('mspass', self.email):
-            self.email = keyring.get_password('msemail', self.key)
-            return keyring.get_password('mspass', self.email)
-        # else the password keychain doesn't exist so lets set it
-        else:
-            self._create_creds()
+        _check_credentials(self.key, self.email)
 
-    def _create_creds(self):
-        try:
-            self.email = input(
-                'Enter Makeschool login email (we don\'t store your email or password on a server): ')
-            pw = getpass('Password: ')
-            keyring.set_password('msemail', self.key, self.email)
-            keyring.set_password("mspass", self.email, pw)
-            print('\x1b[1;32m' + "Password stored successfully." +  # green
-                  '\x1b[0m')
-        except keyring.errors.PasswordSetError:
-            print('\x1b[1;31m' + "Failed to store password." +  # red
-                  '\x1b[0m')
+    def create_creds(self):
+        _create_creds(self.key)
 
     def login(self):
         """Login to MakeSchool dashboard using email and password."""
@@ -160,7 +147,7 @@ class CheckInModule(object):
         else:
             # the credentials are probably wrong
             print('The credentials entered are incorrect.\n')
-            self._create_creds()
+            self.create_creds()
             self.login()
 
     def checkin(self):
