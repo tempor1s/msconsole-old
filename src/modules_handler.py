@@ -79,14 +79,7 @@ class Shell(AbstractModule):
     __doc__ = console_doc
 
     def execute(self):
-
-        # TODO: Implement
-<< << << < HEAD
-console = Console()
-console.run()
-== == == =
-shell = ShellModule()
-shell.run()
+        pass
 
 
 class Meet(AbstractModule):
@@ -97,6 +90,3 @@ class Meet(AbstractModule):
     def execute(self):
         # TODO: Implement
         print('Not yet implemented :)')
-
-
->>>>>> > 12453abcde79935fc21d0db2570c383dd6e34423
