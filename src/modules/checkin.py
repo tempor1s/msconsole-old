@@ -170,7 +170,7 @@ class CheckInModule(object):
     def run(self):
         """Run mashes all of the functions togther and checks the user into their class."""
         # get the users creds
-        _check_credentials(self.key, self.email)
+        _check_credentials(self.key)
         # log the user in
         self.login()
         # check the user in

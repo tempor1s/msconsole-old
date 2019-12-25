@@ -67,8 +67,8 @@ def _get_email(key):
     keyring.get_password('msemail', key)
 
 
-def _check_credentials(key, email):
-    if _get_email(key) and _get_password(email):
+def _check_credentials(key):
+    if _get_email(key) and _get_password(_get_email(key)):
             return True
         # else the password keychain doesn't exist so lets set it
         else:
