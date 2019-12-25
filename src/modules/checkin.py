@@ -87,14 +87,6 @@ class CheckInModule(object):
         self.key = 'key'
         self.s = requests.Session()  # instantiate the request session
 
-    def credentials(self):
-        """Sets or gets user credentials"""
-        # if the password exits in the keychain already get the password
-        _check_credentials(self.key, self.email)
-
-    def create_creds(self):
-        _create_creds(self.key)
-
     def login(self):
         """Login to MakeSchool dashboard using email and password."""
         # makeschool login url to post and get from
@@ -178,7 +170,7 @@ class CheckInModule(object):
     def run(self):
         """Run mashes all of the functions togther and checks the user into their class."""
         # get the users creds
-        self.credentials()
+        _check_credentials(self.key, self.email)
         # log the user in
         self.login()
         # check the user in
