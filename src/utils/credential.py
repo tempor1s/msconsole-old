@@ -28,13 +28,8 @@ __version__ = '1.0.0'
 import sys
 
 # external Python Modules
-try:
-    from PyInquirer import style_from_dict, Token, prompt
-    import requests
-    import keyring
-except ImportError as e:
-    sys.stdout.write(str(e))
-
+from PyInquirer import style_from_dict, Token, prompt
+import keyring
 # local Python Modules
 import src.utils.http
 
@@ -69,8 +64,8 @@ def _get_email(key):
 
 def _check_credentials(key):
     if _get_email(key) and _get_password(_get_email(key)):
-            return True
-        # else the password keychain doesn't exist so lets set it
+        return True
+    # else the password keychain doesn't exist so lets set it
     else:
         _create_creds(key)
 
@@ -102,12 +97,12 @@ def _create_creds(key):
         _set_email(key, email)
         _set_password(email, password)
         print('\x1b[1;32m' + "Password stored successfully." +  # green
-                  '\x1b[0m')
+              '\x1b[0m')
     except keyring.errors.PasswordSetError as error:
         sys.stdout.write(str(error))
         print('\x1b[1;31m' + "Failed to store password." +  # red
-                  '\x1b[0m')
-                  
+              '\x1b[0m')
+
 # def _login(s, key, email, password):
 #      """Login to MakeSchool dashboard using email and password."""
 #         # makeschool login url to post and get from
