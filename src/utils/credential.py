@@ -57,14 +57,14 @@ def _get_password(email):
     """
     gets the password from the keychain
     """
-    keyring.get_password('mspass', email)
+    return keyring.get_password('mspass', email)
 
 
 def _get_email(key):
     """
     gets the eamil from the keychain
     """
-    keyring.get_password('msemail', key)
+    return keyring.get_password('msemail', key)
 
 
 def _check_credentials(key):
