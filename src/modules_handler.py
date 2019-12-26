@@ -1,20 +1,11 @@
 from docopt import docopt
 
-<<<<<<< HEAD
-from src.modules.checkin import CheckIn, __doc__ as checkin_doc
-from src.modules.calendar import Calender, __doc__ as calendar_doc
-from src.modules.links import Links, __doc__ as links_doc
-from src.modules.brute import BruteForcer, BruteParser, BruteTest, __doc__ as brute_doc
-from src.modules.shell import Console, __doc__ as console_doc
-from src.modules.library import Library, __doc__ as library_doc
-=======
 from src.modules.checkin import CheckInModule, __doc__ as checkin_doc
 from src.modules.meet import MeetModule, __doc__ as meet_doc
 from src.modules.links import LinksModule, __doc__ as links_doc
 from src.modules.brute import BruteForcer, BruteParser, __doc__ as brute_doc
 from src.modules.library import LibraryModule, __doc__ as library_doc
 from src.modules.shell import ShellModule, __doc__ as console_doc
->>>>>>> 12453abcde79935fc21d0db2570c383dd6e34423
 
 
 class AbstractModule(object):
@@ -88,13 +79,7 @@ class Shell(AbstractModule):
     __doc__ = console_doc
 
     def execute(self):
-        # TODO: Implement
-<<<<<<< HEAD
-        console = Console()
-        console.run()
-=======
-        shell = ShellModule()
-        shell.run()
+        pass
 
 
 class Meet(AbstractModule):
@@ -105,4 +90,3 @@ class Meet(AbstractModule):
     def execute(self):
         # TODO: Implement
         print('Not yet implemented :)')
->>>>>>> 12453abcde79935fc21d0db2570c383dd6e34423

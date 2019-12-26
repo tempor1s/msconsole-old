@@ -2,8 +2,8 @@ class Msconsole < Formula
   include Language::Python::Virtualenv
   desc "Suite of tools that makes your MakeSchool life easier!"
   depends_on "python"
-  url "https://github.com/tempor1s/msconsole/archive/2.1.0.tar.gz"
-  version "2.1.0"
+  url "https://github.com/tempor1s/msconsole/archive/2.1.1.tar.gz"
+  version "2.1.1"
 
   resource "certifi" do
     url "https://files.pythonhosted.org/packages/62/85/7585750fd65599e88df0fed59c74f5075d4ea2fe611deceb95dd1c2fb25b/certifi-2019.9.11.tar.gz"
@@ -53,6 +53,36 @@ class Msconsole < Formula
   resource "docopt" do
     url "https://files.pythonhosted.org/packages/a2/55/8f8cab2afd404cf578136ef2cc5dfb50baa1761b68c9da1fb1e4eed343c9/docopt-0.6.2.tar.gz"
     sha256 "49b3a825280bd66b3aa83585ef59c4a8c82f2c8a522dbe754a8bc8d08c85c491"
+  end
+
+  resource "prompt-toolkit" do
+    url "https://files.pythonhosted.org/packages/55/56/8c39509b614bda53e638b7500f12577d663ac1b868aef53426fc6a26c3f5/prompt_toolkit-1.0.14.tar.gz"
+    sha256 "cc66413b1b4b17021675d9f2d15d57e640b06ddfd99bb724c73484126d22622f"
+  end
+
+  resource "Pygments" do
+    url "https://files.pythonhosted.org/packages/cb/9f/27d4844ac5bf158a33900dbad7985951e2910397998e85712da03ce125f0/Pygments-2.5.2.tar.gz"
+    sha256 "98c8aa5a9f778fcd1026a17361ddaf7330d1b7c62ae97c3bb0ae73e0b9b6b0fe"
+  end
+
+  resource "PyInquirer" do
+    url "https://files.pythonhosted.org/packages/fb/4c/434b7c454010a284b49d6f1d446fe8dc5960415613d8c0225b9e2efb6724/PyInquirer-1.0.3.tar.gz"
+    sha256 "c9a92d68d7727fbd886a7908c08fd9e9773e5dc211bf5cbf836ba90d366dee51"
+  end
+
+  resource "regex" do
+    url "https://files.pythonhosted.org/packages/fc/a6/2c153ced229ba51f941d15554a66293c9f79e2d5b9a18c1d1b0c52a31a1f/regex-2019.12.20.tar.gz"
+    sha256 "106e25a841921d8259dcef2a42786caae35bc750fb996f830065b3dfaa67b77e"
+  end
+
+  resource "six" do
+    url "https://files.pythonhosted.org/packages/94/3e/edcf6fef41d89187df7e38e868b2dd2182677922b600e880baad7749c865/six-1.13.0.tar.gz"
+    sha256 "30f610279e8b2578cab6db20741130331735c781b56053c59c4076da27f06b66"
+  end
+
+  resource "wcwidth" do
+    url "https://files.pythonhosted.org/packages/55/11/e4a2bb08bb450fdbd42cc709dd40de4ed2c472cf0ccb9e64af22279c5495/wcwidth-0.1.7.tar.gz"
+    sha256 "3df37372226d6e63e1b1e1eda15c594bca98a22d33a23832a90998faa96bc65e"
   end
 
   def install

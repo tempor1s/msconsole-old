@@ -2,7 +2,7 @@ description = """
 See `github repo <https://github.com/tempor1s/make-checkin>`_ for information.
 """
 
-__version__ = '2.1.0'
+__version__ = '2.1.1'
 __maintainer__ = 'Ben Lafferty'
 __credits__ = ['Ben Lafferty', 'Gary Frederick']
 __license__ = 'MIT'

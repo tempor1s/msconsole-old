@@ -16,7 +16,7 @@ def check_banner_message(banner_message):
         message = '\x1b[1;31m' + banner_message + '\x1b[0m' + '\n'  # red
     elif 'You have already checked in as for this class.' == banner_message:
         message = '\x1b[1;32m' + banner_message + '\x1b[0m' + '\n'  # green
-    elif 'You have checked in present for this class.' == banner_message:
+    elif 'You have checked in as present for this class.' == banner_message:
         message = '\x1b[1;32m' + banner_message + '\x1b[0m' + '\n'  # green
     elif 'You have checked in tardy for this class.' == banner_message:
         message = '\x1b[1;32m' + banner_message + '\x1b[0m' + '\n'  # green

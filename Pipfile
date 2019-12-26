@@ -12,6 +12,7 @@ lxml = "*"
 keyring = "==11.0.0"
 clint = "*"
 docopt = "*"
+pyinquirer = "*"
 
 [requires]
 python_version = "3.7"
