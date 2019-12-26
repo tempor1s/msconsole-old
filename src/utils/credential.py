@@ -71,8 +71,8 @@ def _check_credentials(key):
     if _get_email(key) and _get_password(_get_email(key)):
             return True
         # else the password keychain doesn't exist so lets set it
-        else:
-           _create_creds(key)
+    else:
+        _create_creds(key)
 
 
 def _create_creds(key):
