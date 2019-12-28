@@ -111,8 +111,6 @@ In short, when you submit code changes, your submissions are understood to be un
 
 ## Use a Consistent Coding Style
 
-I'm again borrowing these from [Facebook's Guidelines](https://github.com/facebook/draft-js/blob/a9316a723f9e918afde44dea68b5f9f39b7d9b00/CONTRIBUTING.md)
-
 -   4 spaces for indentation rather than tabs (or tabs that convert to spaces)
 -   You can try running `pipenv install autopep8 --dev` for style unification
 
