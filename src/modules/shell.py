@@ -36,7 +36,7 @@ except ImportError as error:
     print(error)
 
 # local Python Modules
-from ..modules.checkin import CheckInModule
+from src.modules.checkin import CheckInModule
 # # Module Docs
 # from checkin import __doc__ as checkin_doc
 # from brute import __doc__ as brute_doc
