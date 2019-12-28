@@ -79,7 +79,8 @@ class Shell(AbstractModule):
     __doc__ = console_doc
 
     def execute(self):
-        pass
+        s = ShellModule()
+        s.run()
 
 
 class Meet(AbstractModule):
