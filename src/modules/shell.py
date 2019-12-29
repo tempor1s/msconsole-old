@@ -26,14 +26,12 @@ import re
 
 
 # external modules
-try:
-    from PyInquirer import style_from_dict, Token, prompt
-    from PyInquirer import Validator, ValidationError
-    from colorama import Fore
-    import colorama
-    import emoji
-except ImportError as error:
-    print(error)
+from PyInquirer import style_from_dict, Token, prompt
+from PyInquirer import Validator, ValidationError
+from colorama import Fore
+import colorama
+import emoji
+
 
 # local Python Modules
 from src.modules.checkin import CheckInModule
@@ -264,8 +262,7 @@ class EmailValidator(Validator):
 
 class ShellModule(object):
     def __init__(self):
-        # initilize colorama
-        colorama.init()
+        self.key = None
 
     def banner_logo(self):
         make = """
