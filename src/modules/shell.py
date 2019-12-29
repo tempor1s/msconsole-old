@@ -3,7 +3,10 @@
     creating a CLI dashboard
 """
 
-__doc__ = """
+__doc__ = """Usage:
+    shell
+    shell -h|--help
+    shell -v|--version
 Options:
     modules   Show all avilable modules.
     help      Show help screen.
