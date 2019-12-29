@@ -3,12 +3,9 @@
     creating a CLI dashboard
 """
 
-__doc__ = """Usage:
-    shell
-    shell -h|--help
-    shell -v|--version
+__doc__ = """
 Options:
-    modules   Show all avilable modules
+    modules   Show all avilable modules.
     help      Show help screen.
     version   Show version.
 """
@@ -35,6 +32,7 @@ import emoji
 
 # local Python Modules
 from src.modules.checkin import CheckInModule
+
 # # Module Docs
 # from checkin import __doc__ as checkin_doc
 # from brute import __doc__ as brute_doc
@@ -153,111 +151,6 @@ class EmailValidator(Validator):
             raise ValidationError(
                 message='Please enter a email',
                 cursor_position=len(document.text))
-
-# def banner_logo():
-#     make = """
-
-
-#                                 # (((((((((
-#                          # (((((((       //
-#                        # (((((         ////
-#                      # (((           //////
-#                    # ((*      (      /##    ////////
-#                   # ((((*         /####    /////////
-#                    # ((((((*     /######    ////////
-#                      # ((((((((* /########    //////
-#                        # ((((((((((#########    ////
-#                          # (((((((##(//#######    //
-#                                (((((####(////#####
-#                                (((######(//////###
-#                                (########(////////#
-#                                  # (///////
-#                                    # (/////
-#                                      # (///
-#                                        # (/
-#     """
-#     # banner colors
-#     banner_colors = [Fore.BLUE, Fore.LIGHTBLUE_EX]
-#     # banner
-#     banner = random.choice(banner_colors) + make + Fore.RESET
-#     print(banner)
-#     print('\n')
-
-
-# def welcome():
-#     welcome_emoji_list = ['\U0001F918',
-#                           '\U0001F44B', '\U0001F5A4', '\U0001F47D', '\U0001F642', '\U0001F601', '\U0001F603', '\U0001F435', '\U0001F40D',
-#                           '\U0001F996']
-#     print('Hi, welcome to ms shell' +
-#           emoji.emojize(random.choice(welcome_emoji_list)) + '\n')
-
-
-# def ask_module():
-#     modules_prompt = {
-#         'type': 'input',
-#         'name': 'module',
-#         'message': 'Enter a command',
-#         # 'choices': ['checkin', 'links', 'library', 'brute', 'meet'],
-#         'filter': lambda val: val.lower(),
-#         'validate': ModuleValidator
-#     }
-#     answers = prompt(modules_prompt, style=style)
-#     module_choice = answers['module']
-#     return module_choice
-
-
-# def checkin_route():
-#     checkin_prompt = [
-#         {
-#             'type': 'input',
-#             'name': 'code',
-#             'message': 'Please enter checkin code',
-#             'filter': lambda val: val.lower()
-#         }
-#     ]
-#     answers = prompt(checkin_prompt, style=style)
-#     code = answers['code']
-#     c = CheckIn(code)
-#     c.run()
-
-
-# def help():
-#     print(__doc__)
-
-
-# def modules():
-#     module_list = ['brute', 'checkin', 'libray',
-#                    'links', 'meet', 'help', 'modules']
-#     for module in module_list:
-#         print(module)
-#     home()
-
-
-# def _version():
-#     print(__version__)
-#     home()
-
-
-# def home():
-#     module = ask_module()
-#     if module == 'modules':
-#         modules()
-#     if module == 'help':
-#         print(__doc__)
-#         home()
-#     if 'checkin' in module:
-#         if 'help' in module:
-#             print(checkin_doc)
-#             home()
-#         checkin_route()
-#     if 'version' in module:
-#         _version()
-
-
-# def run():
-#     banner_logo()
-#     welcome()
-#     home()
 
 
 class ShellModule(object):
