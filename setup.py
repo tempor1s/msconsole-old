@@ -1,8 +1,8 @@
 description = """
-See `github repo <https://github.com/tempor1s/make-checkin>`_ for information.
+See `github repo <https://github.com/tempor1s/msconsole>`_ for information.
 """
 
-__version__ = '2.1.2'
+__version__ = '2.1.3'
 __maintainer__ = 'Ben Lafferty'
 __credits__ = ['Ben Lafferty', 'Gary Frederick']
 __license__ = 'MIT'
