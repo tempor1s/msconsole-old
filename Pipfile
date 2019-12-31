@@ -13,6 +13,8 @@ keyring = "==11.0.0"
 clint = "*"
 docopt = "*"
 pyinquirer = "*"
+colorama = "*"
+emoji = "*"
 
 [requires]
 python_version = "3.7"

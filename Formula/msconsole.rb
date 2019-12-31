@@ -85,6 +85,16 @@ class Msconsole < Formula
     sha256 "3df37372226d6e63e1b1e1eda15c594bca98a22d33a23832a90998faa96bc65e"
   end
 
+  resource "colorama" do
+    url "https://files.pythonhosted.org/packages/82/75/f2a4c0c94c85e2693c229142eb448840fba0f9230111faa889d1f541d12d/colorama-0.4.3.tar.gz"
+    sha256 "e96da0d330793e2cb9485e9ddfd918d456036c7149416295932478192f4436a1"
+  end
+  
+  resource "emoji" do
+    url "https://files.pythonhosted.org/packages/40/8d/521be7f0091fe0f2ae690cc044faf43e3445e0ff33c574eae752dd7e39fa/emoji-0.5.4.tar.gz"
+    sha256 "60652d3a2dcee5b8af8acb097c31776fb6d808027aeb7221830f72cdafefc174"
+  end
+
   def install
     virtualenv_install_with_resources
   end
