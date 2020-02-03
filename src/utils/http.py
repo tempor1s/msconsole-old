@@ -1,3 +1,7 @@
+import requests
+from requests.adapters import HTTPAdapter
+from requests.packages.urllib3.util.retry import Retry
+
 
 def retransmission(retries=3, backoff_factor=0.3, status_forcelist=(500, 502, 504), session=None):
     """Performs HTTP/HTTPS GET retransmission request.

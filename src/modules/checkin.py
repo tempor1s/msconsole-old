@@ -112,9 +112,11 @@ class CheckInModule(object):
         else:
             # otherwise retry connection to server
             print('\x1b[1;31m' + 'Retrying to connect to server')
+            t0 = time.time()
             try:
-                # HTTP retransmission to same urls
-                retransmission(session=self.s).get(login_url)
+                response = retransmission(session=self.s).get(login_url)
+            except Exception as x:
+                print('It failed :(', x.__class__.__name__)
             # if there is a connection error request the user to try a new url
             # the url has changed in some way - we have to update
             except ConnectionError:
@@ -124,6 +126,11 @@ class CheckInModule(object):
                 # catastrophic error. bail.
                 print(e)
                 sys.exit(1)
+            else:
+                print('It eventually worked', response.status_code)
+            finally:
+                t1 = time.time()
+                print('Took', t1 - t0, 'seconds')
 
         # if the login was successful
         if 'successfully' in response.text:
