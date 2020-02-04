@@ -1,5 +1,5 @@
 description = """
-See `github repo <https://github.com/tempor1s/make-checkin>`_ for information.
+See `github repo <https://github.com/tempor1s/msconsole>`_ for information.
 """
 
 __version__ = '2.1.4'
