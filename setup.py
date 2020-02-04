@@ -2,7 +2,7 @@ description = """
 See `github repo <https://github.com/tempor1s/msconsole>`_ for information.
 """
 
-__version__ = '2.1.3'
+__version__ = '2.1.4'
 __maintainer__ = 'Ben Lafferty'
 __credits__ = ['Ben Lafferty', 'Gary Frederick']
 __license__ = 'MIT'
